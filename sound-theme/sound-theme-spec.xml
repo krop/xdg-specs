@@ -110,19 +110,19 @@
     <para>
     In the theme directory are also a set of subdirectories containing
     sound files. The subdirectories are allowed to be several levels
-    deep, e.g. the subdirectory "alerts/fr" in the theme "freedesktop"
-    would end up at $basedir/freedesktop/alerts/fr. (FIXME)
+    deep, e.g. the subdirectory "stereo/alerts" in the theme "freedesktop"
+    would end up at $basedir/freedesktop/stereo/alerts. (FIXME)
     </para>
     <para>
-    The sounds files must be one of the types: WAV/PCM 48kHz, 16 bits or OGG/Vorbis.
-    The extension must be ".wav", or ".ogg" respectively (lower case). The
-    support for OGG files is optional. Implementations that do not
-    support OGGs should just ignore any ".ogg" files. In
-    addition to this there may be an additional file with extra
-    sound-data for each file. It should have the same basename as the
-    sound file, with the extension ".sound". e.g. if the sound file is
-    called "system-log-out.wav" the corresponding file would be named
-    "system-log-out.sound".
+    The sounds files must be one of the types: WAV/PCM 48kHz, 16 bits
+    or OGG/Vorbis.  The extension must be ".wav", or ".ogg"
+    respectively (lower case). The support for OGG files is
+    optional. Implementations that do not support OGGs should just
+    ignore any ".ogg" files. In addition to this there may be an
+    additional file with extra sound-data for each file. It should
+    have the same basename as the sound file, with the extension
+    ".sound". e.g. if the sound file is called "system-log-out.wav"
+    the corresponding file would be named "system-log-out.sound".
     </para>
   </sect1>
 
@@ -135,9 +135,9 @@
     must always be stored in UTF-8 encoding.
     </para>
     <para>
-    The index.theme file must start with a section called <citetitle>Sound
-    Theme</citetitle>, with contents according to table 1 below. All lists are
-    comma-separated.
+    The index.theme file must start with a section called
+    <citetitle>Sound Theme</citetitle>, with contents according to
+    table 1 below. All lists are comma-separated.
     <table>
       <title>Standard Keys</title>
       <tgroup cols="4">
@@ -236,18 +236,38 @@
 	</thead>
 	<tbody>
 	  <row>
+	    <entry>Context</entry>
+	    <entry>
+              The context the sound is normally used in. This
+              is in detail discussed in <xref linkend="context"/>.
+	    </entry>
+	    <entry>string</entry>
+	    <entry>NO</entry>
+	  </row>
+	  <row>
+	    <entry>SoundSystem</entry>
+	    <entry>
+	      Define the sound system for which the sounds are made
+	      for. It can be "stereo" or "5.1", or whatever system
+	      suits the configuration in which they are recorded.
+	    </entry>
+	    <entry>string</entry>
+	    <entry>NO</entry>
+	  </row>
+	  <row>
 	    <entry>Length</entry>
 	    <entry>
               Nominal length in seconds of the sounds in this directory. (FIXME)
 	    </entry>
 	    <entry>integer</entry>
-	    <entry>YES</entry>
+	    <entry>NO</entry>
 	  </row>
 	  <row>
-	    <entry>Context</entry>
+	    <entry>Locale</entry>
 	    <entry>
-              The context the sound is normally used in. This
-              is in detail discussed in <xref linkend="context"/>.
+              Locale name, if applicable. (FIXME: not usable since
+              transaltions would have to update the index.. instead
+              subdirectoy locale seems more efficient...)
 	    </entry>
 	    <entry>string</entry>
 	    <entry>NO</entry>
@@ -281,10 +301,20 @@
 	  <row>
 	    <entry>DisplayName</entry>
 	    <entry>
-              A translated UTF8 string that can be used instead of the
-              icon name when the icon is listen in e.g. a user interface.
+              A translated UTF8 string that can be displayed instead
+              of the sound by a user interface.
 	    </entry>
 	    <entry>localestring</entry>
+	    <entry>NO</entry>
+	  </row>
+	  <row>
+	    <entry>Loop</entry>
+	    <entry>
+	      Indicates if the sound is appropriate in loop-mode
+	      playing. This can be useful for ringing tones,
+	      environment, instruments...
+	    </entry>
+	    <entry>boolean</entry>
 	    <entry>NO</entry>
 	  </row>
 	</tbody>
@@ -338,6 +368,13 @@
 	    </formalpara>
 	  </listitem>
 
+	  <listitem>
+	    <formalpara>
+	      <title>Games</title>
+	      <para>Sounds used for games.</para>
+	    </formalpara>
+	  </listitem>
+
 	</itemizedlist>
 
     </sect2>
@@ -371,20 +408,22 @@
     <para>
     The exact algorithm (in pseudocode) for looking up a sound in a theme
     (if the implementation supports OGG) is:
+
     <programlisting>
 FindSound(sound, locale) {
-  filename = FindSoundHelper(sound, locale, user selected theme);
+  filename = FindSoundHelper(sound, locale, soundsystem, user selected theme);
   if filename != none
     return filename
 
-  filename = FindSoundHelper(sound, locale, "freedesktop");
+  filename = FindSoundHelper(sound, locale, soundsystem, "freedesktop");
   if filename != none
     return filename
 
   return LookupFallbackSound (sound)
 }
-FindSoundHelper(sound, locale, theme) {
-  filename = LookupIcon (sound, locale, theme)
+
+FindSoundHelper(sound, locale, soundsystem, theme) {
+  filename = LookupSound (sound, locale, soundsystem, theme)
   if filename != none
     return filename
 
@@ -392,27 +431,48 @@ FindSoundHelper(sound, locale, theme) {
     parents = theme.parents
 
   for parent in parents {
-    filename = FindSoundHelper (sound, locale, parent)
+    filename = FindSoundHelper (sound, locale, soundsystem, parent)
     if filename != none
       return filename
   }
   return none
 }
      </programlisting>
+
      With the following helper functions:
+
      <programlisting>
-LookupSound (sound, locale, theme) {
+LookupSound (sound, locale, soundsystem, theme) {
+  // lookup localized version
   for each subdir in $(theme subdir list) {
     for each directory in $(basename list) {
-      for extension in ("wav", "ogg") {
-        if DirectoryMatchesLocale(subdir, size) {
-          filename = directory/$(themename)/subdir/sound.extension
-          if exist filename
-	    return filename
+      for system in (soundsystem, "stereo") {
+        if DirectoryMatchesSoundSystem(subdir, system) {
+          for extension in ("wav", "ogg") {
+	    filename = directory/$(themename)/subdir/$locale/sound.extension
+            if exist filename
+              return filename
+          }
         }
       }
     }
   }
+
+ // lookup unlocalized version
+  for each subdir in $(theme subdir list) {
+    for each directory in $(basename list) {
+      for system in (soundsystem, "stereo") {
+        if DirectoryMatchesSoundSystem(subdir, system) {
+          for extension in ("wav", "ogg") {
+	    filename = directory/$(themename)/subdir/sound.extension
+            if exist filename
+              return filename
+          }
+        }
+      }
+    }
+  }
+
   return none
 }
 
@@ -426,62 +486,14 @@ LookupFallbackSound (sound) {
   return none
 }
 
-DirectoryMatchesLocale(subdir, locale) {
-  read Type and size data from subdir
-  if Type is Fixed
-    return Size == iconsize
-  if Type is Scaled
-    return MinSize &lt;= iconsize &lt;= MaxSize
-  if Type is Threshold
-    return Size - Threshold &lt;= iconsize &lt;= Size + Threshold
+DirectoryMatchesSoundSystem(subdir, system) {
+  read SoundSystem from subdir
+  if SoundSystem == system
+    return true
+  return false
 }
 </programlisting>
-    </para>
-    <para>
-      In some cases you don't always want to fall back to a sound in
-      an inherited theme. For instance, sometimes you look for a set
-      of sounds, prefering any of them before using a sound from an
-      inherited theme. To support such operations implementations can
-      contain a function that finds the first of a list of sound names
-      in the inheritance hierarchy. I.E. It would look something like
-      this:
-<programlisting>
-FindBestSound(soundlist, size) {
-  filename = FindBestSoundHelper(iconList, size, user selected theme);
-  if filename != none
-    return filename
 
-  filename = FindBestSoundHelper(iconList, size, "freedesktop");
-  if filename != none
-    return filename
-
-  for icon in iconList {
-    filename = LookupFallbackSound (icon)
-    if filename != none
-      return filename
-  }
-  return none;
-}
-FindBestSoundHelper(soundlist, size, theme) {
-  for icon in iconList {
-    filename = LookupIcon (icon, size, theme)
-    if filename != none
-      return filename
-  }
-
-  if theme has parents
-    parents = theme.parents
-
-  for parent in parents {
-    filename = FindBestIconHelper (iconList, size, parent)
-    if filename != none
-      return filename
-  }
-  return none
-}
-</programlisting>
-    This can be very useful for example when handling mimetype icons, where there
-    are more and less "specific" versions of icons.
     </para>
   </sect1>
 
@@ -489,43 +501,50 @@ FindBestSoundHelper(soundlist, size, theme) {
     <title>Example</title>
     <para>
      Here is an example index.theme file:
-     <programlisting>[Sound Theme]
+     <programlisting>
+[Sound Theme]
 Name=Birch
 Name[fr]=Bouleau
 Comment=Sound theme using wooden instruments
 Comment[fr]=Theme utilisant des instruments en bois
 Inherits=wood,default
-Directories=
+Directories=stereo/alert/fr notifications/long/5.1
 
-[scalable/apps]
-Context=Applications
+[stereo/alert/fr]
+Context=Alert
+SoundSystem=stereo
 
+[notifications/long/5.1]
+Context=Notification
+SoundSystem=5.1
 </programlisting>
-     The corresponding directory tree in the /usr/share/sounds
-     directory could look like this:
-     <programlisting>birch/index.theme
-birch/scalable/apps/mozilla.svg
-birch/scalable/mimetypes/mime_text_plain.svg
-birch/scalable/mimetypes/mime_text_plain.icon
-birch/48x48/apps/mozilla.png
-birch/32x32/apps/mozilla.png
-birch/48x48/mimetypes/mime_text_plain.png
-birch/48x48/mimetypes/mime_text_plain.icon</programlisting>
-Where birch/scalable/mimetypes/mime_text_plain.icon contains:
-     <programlisting>[Icon Data]
-DisplayName=Mime text/plain
-EmbeddedTextRectangle=100,100,900,900
-AttachPoints=200,200|800,200|500,500|200,800|800,800</programlisting>
-And birch/48x48/mimetypes/mime_text_plain.icon contains:
-     <programlisting>[Icon Data]
-DisplayName=Mime text/plain
-EmbeddedTextRectangle=8,8,40,40
-AttachPoints=20,20|40,40|50,10|10,50</programlisting>
+
+The corresponding directory tree in the /usr/share/sounds
+directory could look like this:
+
+<programlisting>
+birch/index.theme
+birch/stereo/alert/evolution-urgent-message.ogg
+birch/stereo/alert/evolution-urgent-message.wav
+birch/stereo/alert/fr/evolution-urgent-message.ogg
+birch/stereo/alert/evolution-urgent-message.sound
+birch/5.1/alert/evolution-urgent-message.ogg
+</programlisting>
+
+Where birch/stereo/alert/evolution-urgent-message.sound contains:
+
+<programlisting>
+[Sound Data]
+DisplayName=Evolution urgent message
+DisplayName[fr]=Message urgent dans Evolution
+Loop=yes
+</programlisting>
+
     </para>
     <para>
-    In this example a lookup of "mozilla" would get the prerendered
-    48x48 and 32x32 icons before the SVG icons due to the order of
-    Directories.
+    In this example a lookup of "evolution-urgent-message", with a 5.1
+    system preference and no localization, would get the
+    "birch/5.1/alert/evolution-urgent-message.ogg" sound file.
     </para>
 
   </sect1>
@@ -534,20 +553,26 @@ AttachPoints=20,20|40,40|50,10|10,50</programlisting>
     <title>Installing Application Sounds</title>
     <para>
     So, you're an application author, and you want to install sounds
-    so that they can be used by your application. Minimally you should install
-    the sound file in the "freedesktop" theme. This means installing a WAV file in
-    $XDG_DATA_DIRS/sounds/freedesktop/. Optionally you can install sounds in different
-    languages. For example, installing a svg icon in $prefix/share/icons/hicolor/scalable/apps
-    means most desktops will have one icon that works for all sizes. You might even want to
-    install icons with a look that matches other well known themes so your application
-    will fit in with some specific desktop environment.
+    so that they can be used by your application. Minimally you should
+    install the sound file in the "freedesktop" theme. This means
+    installing a stereo WAV file in
+    $XDG_DATA_DIRS/sounds/freedesktop/stereo/$context.
+
+    Optionally you can install sounds in different formats and
+    language. For example, installing a localized OGG/Vorbis 5.1 game
+    sound in $prefix/share/sounds/freedesktop/5.1/game/fr.
+
+    You might even want to install sounds that matches other well
+    known themes so your application will fit in with some specific
+    desktop environment.
     </para>
     <para>
-    It is recommended that the icons installed in the hicolor theme look neutral,
-    since it is a fallback theme that will be used in combination with some very
-    different looking themes. But if you don't have any neutral icon, please install
-    whatever icon you have in the hicolor theme so that all applications get at
-    least some icon in all themes.
+    It is recommended that the sounds installed in the freedesktop
+    theme sound neutral, since it is a fallback theme that will be
+    used in combination with some very different sounds from any
+    origin. But if you don't have any neutral sound, please install
+    whatever sound you have in the freedesktop theme so that all your
+    application can at least produce some sounds in all themes.
     </para>
   </sect1>
 

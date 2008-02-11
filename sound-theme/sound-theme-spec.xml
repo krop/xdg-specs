@@ -88,7 +88,7 @@
     <para>
     In order to have a place for third party applications to install
     their sounds there should always exist a theme called
-    "freedesktop" The data for the freedesktop theme is available for
+    "freedesktop". The data for the freedesktop theme is available for
     download at: http://www.freedesktop.org/software/sound-theme/.
     Implementations are required to look in the "freedesktop" theme if
     a sound was not found in the current theme.
@@ -564,22 +564,19 @@ AttachPoints=20,20|40,40|50,10|10,50</programlisting>
     This caching can make it impossible for users to add sounds without
     having to restart applications. In order to handle this, any
     implementation that does caching is required to look at the mtime
-    of the toplevel icon directories when doing a cache lookup, unless
+    of the toplevel sound directories when doing a cache lookup, unless
     it already did so less than 5 seconds ago. This means that any
-    icon editor or theme installation program need only to change the
+    sound editor or theme installation program need only to change the
     mtime of the the toplevel directory where it changed the theme to
-    make sure that the new icons will eventually get used.
+    make sure that the new sounds will eventually get used.
     </para>
   </sect1>
 
   <sect1 id="background">
     <title>Background</title>
     <para>
-    The icon theme specification is based on the original
-    KDE icon theme system designed by Antonio Larossa,
-    Geert Janssen and Torsten Rahn. The common specification
-    mostly adds support for .icon files, renames the icon theme
-    description files and removes a few references to kde in them.
+    The sound theme specification is based on the "Icon Theme
+    Specification" by Alexander Larsson and Frans Englich.
     </para>
   </sect1>
 

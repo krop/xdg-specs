@@ -88,6 +88,7 @@
     <para>
     In order to have a place for third party applications to install
     their sounds there should always exist a theme called
+    <!-- FIXME: freedesktop theme might not be the right name, maybe "neutral" ? -->
     "freedesktop". The data for the freedesktop theme is available for
     download at: http://www.freedesktop.org/software/sound-theme/.
     Implementations are required to look in the "freedesktop" theme if

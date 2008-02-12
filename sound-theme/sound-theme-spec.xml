@@ -518,6 +518,7 @@ Directories=stereo/alert/fr notifications/long/5.1
 [stereo/alert/fr]
 Context=Alert
 SoundSystem=stereo
+Locale=fr
 
 [notifications/long/5.1]
 Context=Notification

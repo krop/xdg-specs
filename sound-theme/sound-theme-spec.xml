@@ -53,10 +53,14 @@
 	<term>Sound file</term>
 	<listitem>
 	  <para>
-          The supported sound file formats are WAV/PCM 48kHz, 16bits,
-          and OGG/Vorbis.  WAV is the recommended uncompressed format,
-          and OGG/Vorbis is for compressed. Support for OGGs is
-          optional.
+          The supported sound file formats are WAV/PCM 44.1-48kHz,
+          16bits, and OGG/Vorbis.  WAV at 48kHz, stereo is the
+          recommended uncompressed format, and OGG/Vorbis is the
+          recommended compressed format. Support for OGGs is optional.
+	  <footnote><para>
+	    FIXME: give a rationale about those
+	    choice
+	  </para></footnote>
 	  </para>
 	</listitem>
       </varlistentry>

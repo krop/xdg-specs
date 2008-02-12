@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+]>
+<article id="index">
+  <articleinfo>
+    <title>Sound Naming Specification</title>
+    <releaseinfo>Version 0.1</releaseinfo>
+    <date>February 12 2008</date>
+    <authorgroup>
+      <author>
+	<firstname>Marc-Andre</firstname>
+	<surname>Lureau</surname>
+	<affiliation>
+	  <address>
+	    <email>marc-andre.lureau@nokia.com</email>
+	  </address>
+	</affiliation>
+      </author>
+    </authorgroup>
+  </articleinfo>
+
+  <sect1 id="overview">
+    <title>Overview</title>
+    <para>
+This specification gives direction on how to name the sounds that are
+available for use by applications, when creating a sound theme. It
+does so by laying out a standard naming scheme for sound creation, as
+well as providing a minimal list of must have sounds, and a larger
+list with many more examples to help with the creation of extended
+sounds for third party applications, with different event types and
+usage.
+    </para>
+  </sect1>
+
+  <sect1 id="context">
+    <title>Context</title>
+
+    <para>
+      The list of default Contexts for the sound theme are:
+    </para>
+
+    <table>
+      <title>Standard Contexts</title>
+
+      <tgroup cols="3">
+	<thead>
+	  <row>
+	    <entry>Name</entry>
+	    <entry>Description</entry>
+	    <entry>Directory</entry>
+	  </row>
+	</thead>
+	<tbody>
+	  <row>
+	    <entry>Alert</entry>
+	    <entry>
+	      Sounds to alert the user of an action or event which may
+	      have a major imact on the system or their current use
+	      case, such as <action>dialog-error</action>.
+	    </entry>
+	    <entry>altert</entry>
+	  </row>
+	  <row>
+	    <entry>Notification</entry>
+	    <entry>
+	      Sounds to notify the user that the system, or their
+	      current use case has changed state in some way, e.g. new
+	      email arriving, new non-critical update available...
+	    </entry>
+	    <entry>notification</entry>
+	  </row>
+	  <row>
+	    <entry>Support</entry>
+	    <entry>
+	      Sounds that give the user feedback on their
+	      actions. Sounds on window opening / closing for example.
+	    </entry>
+	    <entry>support</entry>
+	  </row>
+	  <row>
+	    <entry>Game</entry>
+	    <entry>
+	      Sound used in games.
+	    </entry>
+	    <entry>game</entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </table>
+  </sect1>
+
+  <sect1 id="guidelines">
+    <title>Sound Naming Guidelines</title>
+
+    <para>
+      Here we define some guidelines for when creating new sounds that
+      extend the standardized list of sound names defined here, in
+      order to provide sounds for more specific events and usages.
+      <itemizedlist>
+	<listitem>
+	  <para>
+	    Sound names are in the en_US.US_ASCII locale. This means
+	    that the allowable characters in the sound names, must
+	    fall withing the US-ASCII character set. As a further
+	    restriction, all sound names may only contain lowercase
+	    letters, numbers, underscore, dash, or period
+	    characters. Spaces, colons, slashes, and backslashes are
+	    not allowed. Also, sound names must be spelled as they are
+	    in the en_US dictionary.
+	  </para>
+	</listitem>
+	<listitem>
+	  <para>
+	    The dash <quote>-</quote> character is used to separate
+	    levels of specificity in sound names.  For instance, we
+	    use <quote>search-results</quote> as the generic item for all
+	    mouse devices, and we use <quote>search-results-empty</quote>
+	    for a USB mouse device. However, if the more specific item
+	    does not exist in the current theme, and does exist in a
+	    parent theme, the generic sound from the current theme is
+	    preferred, in order to keep consistent style.
+	  </para>
+	</listitem>
+        <listitem>
+          <para>
+	    Sounds for branded applications should be named the same
+	    as the binary executable for the application.
+	  </para>
+	</listitem>
+      </itemizedlist>
+    </para>
+  </sect1>
+
+  <sect1 id="names">
+    <title>Standard Sounds Names</title>
+
+    <para>
+      This section describes the standard sounds names that should be
+      used by artists when creating themes, and by developers when
+      writing applications which will use the Sound Theme
+      Specification.
+    </para>
+
+    <sect2 id="alerts">
+      <title>Alerts</title>
+      <para>
+	This is to notify the user of an action or event which may
+	have a major imact on the system or their current use case.
+      </para>
+
+      <table id="alerts-table">
+	<title>Standard Alerts Sounds</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Name</entry>
+	      <entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>network-error</entry>
+	      <entry>
+		The sound used when an error occurs trying to intialize
+		the network connection of the computing device.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>dialog-error</entry>
+	      <entry>
+		The sound used when a dialog is opened to explain an
+		error condition to the user.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>battery-low</entry>
+	      <entry>
+		The sound used when the battery is low (below 20%, for
+		example).
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>software-update-urgent</entry>
+	      <entry>
+		The sound used when an urgent update is available
+		through the system software update program.
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+
+    <sect2 id="notification">
+      <title>Notifications</title>
+      <para>
+	This is to alert the user that the system, or their current
+	use case has changed state in some way - mew email arriving,
+	new non-critical update to an application available.
+      </para>
+
+      <table id="notifications-table">
+	<title>Standard Notifications Sounds</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Name</entry>
+	      <entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>search-results</entry>
+	      <entry>
+		The sound used when one or more search results are
+		returned.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>search-results-empty</entry>
+	      <entry>
+		The sound used when no search results are returned.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>system-lock-screen</entry>
+	      <entry>
+		The sound used when the user locks their current
+		session.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>system-log-out</entry>
+	      <entry>
+		The sound used when a user logs into the system or a
+		service (i.e. desktop login)
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>system-log-in</entry>
+	      <entry>
+		The sound used when a user logs out of the system or a
+		service (i.e. Gaim logout)
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>battery-caution</entry>
+	      <entry>
+		The sound used when the battery is (below 40%, for
+		example).
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>dialog-information</entry>
+	      <entry>
+		The sound used when a dialog is opened to give
+		information to the user that may be pertinent to the
+		requested action.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>software-update-available</entry>
+	      <entry>
+		The sound used when an update is available for
+		software installed on the computing device, through
+		the system software update program.
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+
+    <sect2 id="support">
+      <title>Support</title>
+      <para>
+	This is to alert the user that the system, or their current
+	use case has changed state in some way - mew email arriving,
+	new non-critical update to an application available.
+      </para>
+
+      <table id="support-table">
+	<title>Standard Support Sounds</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Name</entry>
+	      <entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>message-new</entry>
+	      <entry>
+		The sound used when a new IM or email is recieved.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>message-sent</entry>
+	      <entry>
+		The sound used when a new IM or email is sent.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-new</entry>
+	      <entry>
+		The sound used when a new window or dialog is opened.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-close</entry>
+	      <entry>
+		The sound used when an existing window is closed.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>dialog-ok</entry>
+	      <entry>
+		The sound used for the OK button that might appear in
+		dialog windows.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>dialog-cancel</entry>
+	      <entry>
+		The sound used for the Cancel button that might appear
+		in dialog windows.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>drag-accept</entry>
+	      <entry>
+		The sound used when a file is accepted by a window,
+		such as a folder or IM conversation.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>trash-empty</entry>
+	      <entry>
+		The sound used when the user emptys the trash.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>file-sendto-trash</entry>
+	      <entry>
+		The sound used when a file or folder is sent to the
+		trash.
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+
+    <sect2 id="games">
+      <title>Game</title>
+      <para>
+	This is to alert the user that the system, or their current
+	use case has changed state in some way - mew email arriving,
+	new non-critical update to an application available.
+      </para>
+
+      <table id="games-table">
+	<title>Standard Games Sounds</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Name</entry>
+	      <entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
+	    <row>
+	      <entry>game-over</entry>
+	      <entry>
+		Guess what...!
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="background">
+    <title>Background</title>
+    <para>
+    The sound naming specification is heavily based on the "Sound
+    Naming Specification" by Rodney Dawes and the "Bango Project"
+    started by Jon Bolt.
+    </para>
+  </sect1>
+
+  <appendix id="changelog">
+    <title>Change History</title>
+    <formalpara>
+      <title>Version 0.1, February 12 2008, Marc-Andre Lureau</title>
+      <para>
+        <itemizedlist>
+          <listitem>
+	    <para>
+              Created initial draft.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
+  </appendix>
+</article>

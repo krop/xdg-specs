@@ -370,7 +370,7 @@
 
 	  <listitem>
 	    <formalpara>
-	      <title>Games</title>
+	      <title>Game</title>
 	      <para>Sounds used for games.</para>
 	    </formalpara>
 	  </listitem>
@@ -600,7 +600,7 @@ Loop=yes
   <sect1 id="background">
     <title>Background</title>
     <para>
-    The sound theme specification is based on the "Icon Theme
+    The sound theme specification is heavily based on the "Icon Theme
     Specification" by Alexander Larsson and Frans Englich.
     </para>
   </sect1>

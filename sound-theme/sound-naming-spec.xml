@@ -11,9 +11,30 @@
       <author>
 	<firstname>Marc-Andre</firstname>
 	<surname>Lureau</surname>
+	<authorblurb><para>Sound Naming Specification</para></authorblurb>
 	<affiliation>
 	  <address>
 	    <email>marc-andre.lureau@nokia.com</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Rodney</firstname>
+	<surname>Dawes</surname>
+	<authorblurb><para>Icon Naming Specification author</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>dobey.pwns@gmail.com</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Jon</firstname>
+	<surname>Bold</surname>
+	<authorblurb><para>Bango! project</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>jon.wordescapes@co.uk</email>
 	  </address>
 	</affiliation>
       </author>

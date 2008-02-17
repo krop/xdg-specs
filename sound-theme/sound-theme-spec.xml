@@ -11,9 +11,40 @@
       <author>
 	<firstname>Marc-Andre</firstname>
 	<surname>Lureau</surname>
+	<authorblurb><para>Sound Theme Specification</para></authorblurb>
 	<affiliation>
 	  <address>
 	    <email>marc-andre.lureau@nokia.com</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Patryk</firstname>
+	<surname>Zawadzki</surname>
+	<authorblurb><para>Initial Sound Theme Specification draft proposal</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>patrys@pld-linux.org</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Alexander</firstname>
+	<surname>Larsson</surname>
+	<authorblurb><para>Icon Theme Specification author</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>alexl@redhat.com</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
+	<firstname>Frans</firstname>
+	<surname>Englich</surname>
+	<authorblurb><para>Icon Theme Specification author</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>frans.englich@telia.com</email>
 	  </address>
 	</affiliation>
       </author>

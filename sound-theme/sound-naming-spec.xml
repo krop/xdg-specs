@@ -19,9 +19,19 @@
 	</affiliation>
       </author>
       <author>
+	<firstname>Lennart Poettering</firstname>
+	<surname>Poettering</surname>
+	<authorblurb><para>PulseAudio Project</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>lennart@poettering.net</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
 	<firstname>Rodney</firstname>
 	<surname>Dawes</surname>
-	<authorblurb><para>Icon Naming Specification author</para></authorblurb>
+	<authorblurb><para>Icon Naming Specification</para></authorblurb>
 	<affiliation>
 	  <address>
 	    <email>dobey.pwns@gmail.com</email>
@@ -31,7 +41,7 @@
       <author>
 	<firstname>Jon</firstname>
 	<surname>Bold</surname>
-	<authorblurb><para>Bango! project</para></authorblurb>
+	<authorblurb><para>Bango! Project</para></authorblurb>
 	<affiliation>
 	  <address>
 	    <email>jon.wordescapes@co.uk</email>
@@ -77,8 +87,8 @@ usage.
 	    <entry>Alert</entry>
 	    <entry>
 	      Sounds to alert the user of an action or event which may
-	      have a major imact on the system or their current use
-	      case, such as <action>dialog-error</action>.
+	      have a major impact on the system or their current use,
+	      such as <action>dialog-error</action>.
 	    </entry>
 	    <entry>altert</entry>
 	  </row>
@@ -92,12 +102,12 @@ usage.
 	    <entry>notification</entry>
 	  </row>
 	  <row>
-	    <entry>Support</entry>
+	    <entry>Actions</entry>
 	    <entry>
 	      Sounds that give the user feedback on their
 	      actions. Sounds on window opening / closing for example.
 	    </entry>
-	    <entry>support</entry>
+	    <entry>action</entry>
 	  </row>
 	  <row>
 	    <entry>Game</entry>
@@ -181,10 +191,17 @@ usage.
 	  </thead>
 	  <tbody>
 	    <row>
-	      <entry>network-error</entry>
+	      <entry>network-connectivity-lost</entry>
 	      <entry>
-		The sound used when an error occurs trying to intialize
-		the network connection of the computing device.
+		The sound used when network connectivity is lost.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>network-connectivity-error</entry>
+	      <entry>
+		The sound used when an error occurs when it is tried
+		to initialize the network connection of the computing
+		device.
 	      </entry>
 	    </row>
 	    <row>
@@ -206,6 +223,12 @@ usage.
 	      <entry>
 		The sound used when an urgent update is available
 		through the system software update program.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>power-unplug-battey-low</entry>
+	      <entry>
+		The power cable has been unplugged and the battery level is low.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -232,6 +255,84 @@ usage.
 	  </thead>
 	  <tbody>
 	    <row>
+	      <entry>instant-message-new</entry>
+	      <entry>
+		The sound used when a new IM is recieved.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>email-message-new</entry>
+	      <entry>
+		The sound used when a new email is recieved.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>media-burn-complete</entry>
+	      <entry>
+		The sound used when an optical medium completed burning.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>media-rip-complete</entry>
+	      <entry>
+		The sound used when an optical medium completed ripping.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>download-complete</entry>
+	      <entry>
+		The sound used when an file completed downloading..
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>phone-incoming-call</entry>
+	      <entry>
+		The sound used when an phone/voip call is coming in. Usually some kind of ring sound.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>phone-outgoing-busy</entry>
+	      <entry>
+		The sound used when a phone/voip call is dialed out and the responder is not available.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>phone-hangup</entry>
+	      <entry>
+		The sound used when a phone/voip call is ended due to hangup.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>phone-failure</entry>
+	      <entry>
+		The sound used when a phone/voip call is canceled due to some error.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>network-connectivity-established</entry>
+	      <entry>
+		The sound used when network connectivity is established.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>system-bootup</entry>
+	      <entry>
+		The sound used when the computer is being booted up.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>system-ready</entry>
+	      <entry>
+		The sound used when the computer is booted up and shows the login screen
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>system-shutdown</entry>
+	      <entry>
+		The sound used when the computer is being shut down.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>search-results</entry>
 	      <entry>
 		The sound used when one or more search results are
@@ -245,31 +346,56 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>system-lock-screen</entry>
+	      <entry>desktop-login</entry>
+	      <entry>
+		The sound used when a user logs into the system.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>desktop-logout</entry>
+	      <entry>
+		The sound used when a user logs out of the system
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>desktop-lock-screen</entry>
 	      <entry>
 		The sound used when the user locks their current
 		session.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>system-log-out</entry>
+	      <entry>service-login</entry>
 	      <entry>
-		The sound used when a user logs into the system or a
-		service (i.e. desktop login)
+		The sound used when a user logs out of a service
+		(i.e. Gaim logout)
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>system-log-in</entry>
+	      <entry>service-logout</entry>
 	      <entry>
-		The sound used when a user logs out of the system or a
-		service (i.e. Gaim logout)
+		The sound used when a user logs out of a service (i.e. Gaim logout)
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>battery-caution</entry>
 	      <entry>
-		The sound used when the battery is (below 40%, for
+		The sound used when the battery is nearing depletion (below 40%, for
 		example).
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>battery-full</entry>
+	      <entry>
+		The sound used when the battery is fully loaded up.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>dialog-warning</entry>
+	      <entry>
+		The sound used when a dialog is opened to give
+		information to the user that may be pertinent to the
+		requested action.
 	      </entry>
 	    </row>
 	    <row>
@@ -281,6 +407,12 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>dialog-question</entry>
+	      <entry>
+		The sound used when a dialog is opened to ask the user a question.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>software-update-available</entry>
 	      <entry>
 		The sound used when an update is available for
@@ -288,17 +420,63 @@ usage.
 		the system software update program.
 	      </entry>
 	    </row>
+	    <row>
+	      <entry>device-plugged</entry>
+	      <entry>
+		The sound used when a device has become available to the desktop, i.e. due to USB plugging.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>device-unplugged</entry>
+	      <entry>
+		The sound used when a device has become unavailable to the desktop, i.e. due to USB unplug.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-new</entry>
+	      <entry>
+		The sound used when a new window or dialog is opened.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>power-plug</entry>
+	      <entry>
+		The power cable has been plugged in.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>power-unplug</entry>
+	      <entry>
+		The power cable has been unplugged.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>lid-open</entry>
+	      <entry>
+		The lid has been opened (for laptops, mobile devices)
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>lid-close</entry>
+	      <entry>
+		The lid has been closed (for laptops, mobile devices)
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>alarm-clock-elapsed</entry>
+	      <entry>
+		A user configured alarm elapsed.
+	      </entry>
+	    </row>
 	  </tbody>
 	</tgroup>
       </table>
     </sect2>
 
-    <sect2 id="support">
-      <title>Support</title>
+    <sect2 id="actions">
+      <title>Actions</title>
       <para>
-	This is to alert the user that the system, or their current
-	use case has changed state in some way - mew email arriving,
-	new non-critical update to an application available.
+	Actions sounds are used as feedback for an immediate user operation.
       </para>
 
       <table id="support-table">
@@ -312,21 +490,21 @@ usage.
 	  </thead>
 	  <tbody>
 	    <row>
-	      <entry>message-new</entry>
+	      <entry>phone-outgoing-calling</entry>
 	      <entry>
-		The sound used when a new IM or email is recieved.
+		The sound used when a phone/voip call is dialed out.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>message-sent</entry>
+	      <entry>instant-message-sent</entry>
 	      <entry>
-		The sound used when a new IM or email is sent.
+		The sound used when a new IM is sent.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>window-new</entry>
+	      <entry>email-message-sent</entry>
 	      <entry>
-		The sound used when a new window or dialog is opened.
+		The sound used when a new email is sent.
 	      </entry>
 	    </row>
 	    <row>
@@ -336,37 +514,222 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>window-slide-in</entry>
+	      <entry>
+		The sound used when a window is slided in by some means. Example: panel.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-slide-out</entry>
+	      <entry>
+		The sound used when a window is slided out by some means. Example: panel.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-minimized</entry>
+	      <entry>
+		The sound used when an existing window is minimized.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-unminimized</entry>
+	      <entry>
+		The sound used when an existing window is unminimized.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-maximized</entry>
+	      <entry>
+		The sound used when an existing window is maximized.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-unmaximized</entry>
+	      <entry>
+		The sound used when an existing window is unmaximized.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>dialog-ok</entry>
 	      <entry>
-		The sound used for the OK button that might appear in
-		dialog windows.
+		The sound used when a windows is closed by clicking on the OK button for a window.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>dialog-cancel</entry>
 	      <entry>
-		The sound used for the Cancel button that might appear
-		in dialog windows.
+		The sound used when a windows is closed by clicking on the Cancel button for a window.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>drag-start</entry>
+	      <entry>
+		The sound used when drag of a file/item i started
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>drag-accept</entry>
 	      <entry>
-		The sound used when a file is accepted by a window,
+		The sound used when a file/item drag is accepted by a window,
+		such as a folder or IM conversation.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>drag-fail</entry>
+	      <entry>
+		The sound used when a file/item drag is not accepted by a window,
 		such as a folder or IM conversation.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>trash-empty</entry>
 	      <entry>
-		The sound used when the user emptys the trash.
+		The sound used when the user empties the trash.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>file-sendto-trash</entry>
+	      <entry>item-deleted</entry>
+	      <entry>
+		The sound used when a file or folder is deleted
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>item-trash</entry>
 	      <entry>
 		The sound used when a file or folder is sent to the
 		trash.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>link-click</entry>
+	      <entry>
+		The sound used when a link in a web or help browser is clicked.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>button-click</entry>
+	      <entry>
+		The sound used when a button in a dialog is clicked.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>menu-click</entry>
+	      <entry>
+		The sound used when a menu in a dialog is clicked.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>button-toggle-on</entry>
+	      <entry>
+		The sound used when a toggle/check/radio button is activated.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>button-toggle-off</entry>
+	      <entry>
+		The sound used when a toggle/check/radio button is deactivated.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>menu-popup</entry>
+	      <entry>
+		The sound used when a menu is popped up.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>menu-popdown</entry>
+	      <entry>
+		The sound used when a menu is popped down.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>photo-shutter</entry>
+	      <entry>
+		A photo has been shot.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>count-down</entry>
+	      <entry>
+		A countdown (e.g. for a photo shooting) sound that is repeated each second.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-volume-change</entry>
+	      <entry>
+		The test sound that is used to make volume changes noticeable by the user when he uses a volume slider.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-left</entry>
+	      <entry>
+		The test sound for identifying the left speaker. A mono file with a voice saying "left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-right</entry>
+	      <entry>
+		The test sound for identifying the right speaker. A mono file with a voice saying "right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-front-left</entry>
+	      <entry>
+		The test sound for identifying the front-left speaker. A mono file with a voice saying "front left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-front-right</entry>
+	      <entry>
+		The test sound for identifying the front-right speaker. A mono file with a voice saying "front right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-front-center</entry>
+	      <entry>
+		The test sound for identifying the front-center speaker. A mono file with a voice saying "front center".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-rear-left</entry>
+	      <entry>
+		The test sound for identifying the front-left speaker. A mono file with a voice saying "rear left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-rear-right</entry>
+	      <entry>
+		The test sound for identifying the front-right speaker. A mono file with a voice saying "rear right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-rear-center</entry>
+	      <entry>
+		The test sound for identifying the front-center speaker. A mono file with a voice saying "rear center".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-lfe</entry>
+	      <entry>
+		The test sound for identifying the lfe/subwoofer speaker. A mono file with a voice saying "subwoofer", alternatively a low frequency noise.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-side-left</entry>
+	      <entry>
+		The test sound for identifying the side-left speaker. A mono file with a voice saying "side left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-side-right</entry>
+	      <entry>
+		The test sound for identifying the side-right speaker. A mono file with a voice saying "side right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-test-signal</entry>
+	      <entry>
+		The test sound for testing audio.
 	      </entry>
 	    </row>
 	  </tbody>
@@ -393,9 +756,33 @@ usage.
 	  </thead>
 	  <tbody>
 	    <row>
-	      <entry>game-over</entry>
+	      <entry>game-over-winner</entry>
 	      <entry>
 		Guess what...!
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>game-over-loser</entry>
+	      <entry>
+		Guess what...!
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>game-card-shuffle</entry>
+	      <entry>
+		In card games, when the cards are shuffled.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>game-human-move</entry>
+	      <entry>
+		When the user makes a move
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>game-computer-move</entry>
+	      <entry>
+		When the a computer makes a move
 	      </entry>
 	    </row>
 	  </tbody>

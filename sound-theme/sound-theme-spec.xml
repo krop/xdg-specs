@@ -92,6 +92,8 @@
 	    FIXME: give a rationale about those
 	    choice
 	  </para></footnote>
+	  The sample must be normalized, in order to be mixed down
+	  nicely with a suitable average replay level.
 	  </para>
 	</listitem>
       </varlistentry>
@@ -115,7 +117,7 @@
     default, apps should look in $XDG_DATA_DIRS/sounds.  Applications
     may further add their own sound directories to this list, and
     users may extend or change the list (in application/desktop
-    specific ways).In each of these directories themes are stored as
+    specific ways). In each of these directories themes are stored as
     subdirectories. A theme can be spread across several base
     directories by having subdirectories of the same name. This way
     users can extend and override system themes.
@@ -159,6 +161,10 @@
     have the same basename as the sound file, with the extension
     ".sound". e.g. if the sound file is called "system-log-out.wav"
     the corresponding file would be named "system-log-out.sound".
+    </para>
+    <para>
+     The sound samples must be normalized with a suitable average
+     replay level, in order to be properly mixed down.
     </para>
   </sect1>
 
@@ -658,3 +664,5 @@ Loop=yes
     </formalpara>
   </appendix>
 </article>
+
+http://replaygain.khydrogenaudio.orc/calculationg_rg.html

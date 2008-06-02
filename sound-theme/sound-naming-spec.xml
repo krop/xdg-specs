@@ -145,12 +145,13 @@ usage.
 	  <para>
 	    The dash <quote>-</quote> character is used to separate
 	    levels of specificity in sound names.  For instance, we
-	    use <quote>search-results</quote> as the generic item for all
-	    mouse devices, and we use <quote>search-results-empty</quote>
-	    for a USB mouse device. However, if the more specific item
-	    does not exist in the current theme, and does exist in a
-	    parent theme, the generic sound from the current theme is
-	    preferred, in order to keep consistent style.
+	    use <quote>search-results</quote> as the generic item for
+	    all search results, and we use
+	    <quote>search-results-empty</quote> for an empty search
+	    result. However, if the more specific item does not exist
+	    in the current theme, and does exist in a parent theme,
+	    the generic sound from the current theme is preferred, in
+	    order to keep consistent style.
 	  </para>
 	</listitem>
         <listitem>

@@ -422,13 +422,13 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>device-plugged</entry>
+	      <entry>device-added</entry>
 	      <entry>
 		The sound used when a device has become available to the desktop, i.e. due to USB plugging.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>device-unplugged</entry>
+	      <entry>device-removed</entry>
 	      <entry>
 		The sound used when a device has become unavailable to the desktop, i.e. due to USB unplug.
 	      </entry>

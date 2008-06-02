@@ -551,6 +551,12 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>notebook-tab-changed</entry>
+	      <entry>
+		The sound used when a notebook tab is changed.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>dialog-ok</entry>
 	      <entry>
 		The sound used when a windows is closed by clicking on the OK button for a window.
@@ -591,11 +597,17 @@ usage.
 	    <row>
 	      <entry>item-deleted</entry>
 	      <entry>
-		The sound used when a file or folder is deleted
+		The sound used when a item is deleted.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>item-trash</entry>
+	      <entry>item-selected</entry>
+	      <entry>
+		The sound used when an item is selected.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>file-trash</entry>
 	      <entry>
 		The sound used when a file or folder is sent to the
 		trash.
@@ -641,6 +653,12 @@ usage.
 	      <entry>menu-popdown</entry>
 	      <entry>
 		The sound used when a menu is popped down.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>menu-replace</entry>
+	      <entry>
+		The sound used when replacing an active menu with another menu.
 	      </entry>
 	    </row>
 	    <row>

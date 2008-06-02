@@ -644,9 +644,15 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>photo-shutter</entry>
+	      <entry>camera-shutter</entry>
 	      <entry>
 		A photo has been shot.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>camera-focus</entry>
+	      <entry>
+		A camera has the focus.
 	      </entry>
 	    </row>
 	    <row>

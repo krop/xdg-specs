@@ -227,7 +227,7 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>power-unplug-battey-low</entry>
+	      <entry>power-unplug-battery-low</entry>
 	      <entry>
 		The power cable has been unplugged and the battery level is low.
 	      </entry>
@@ -614,21 +614,33 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>link-click</entry>
+	      <entry>link-pressed</entry>
 	      <entry>
-		The sound used when a link in a web or help browser is clicked.
+		The sound used when a link in a web or help browser is pressed.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>button-click</entry>
+	      <entry>link-released</entry>
 	      <entry>
-		The sound used when a button in a dialog is clicked.
+		The sound used when a link in a web or help browser is releaed.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>button-pressed</entry>
+	      <entry>
+		The sound used when a button is pressed.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>button-released</entry>
+	      <entry>
+		The sound used when a button is released.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>menu-click</entry>
 	      <entry>
-		The sound used when a menu in a dialog is clicked.
+		The sound used when a menu item is clicked.
 	      </entry>
 	    </row>
 	    <row>
@@ -668,7 +680,7 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>camera-focus</entry>
+	      <entry>focus-camera</entry>
 	      <entry>
 		A camera has the focus.
 	      </entry>
@@ -842,3 +854,4 @@ usage.
     </formalpara>
   </appendix>
 </article>
+<!-- TODO: inverting naming--><!-- TODO: jack sensing -->

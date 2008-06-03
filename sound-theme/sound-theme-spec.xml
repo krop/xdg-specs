@@ -125,7 +125,6 @@
     <para>
     In order to have a place for third party applications to install
     their sounds there should always exist a theme called
-    <!-- FIXME: freedesktop theme might not be the right name, maybe "neutral" ? -->
     "freedesktop". The data for the freedesktop theme is available for
     download at: http://www.freedesktop.org/software/sound-theme/.
     Implementations are required to look in the "freedesktop" theme if
@@ -287,7 +286,7 @@
 	    <entry>NO</entry>
 	  </row>
 	  <row>
-	    <entry>SoundSystem</entry>
+	    <entry>OutputProfile</entry>
 	    <entry>
 	      Define the sound system for which the sounds are made
 	      for. It can be "stereo" or "5.1", or whatever system
@@ -453,19 +452,19 @@
 
     <programlisting>
 FindSound(sound, locale) {
-  filename = FindSoundHelper(sound, locale, soundsystem, user selected theme);
+  filename = FindSoundHelper(sound, locale, outputprofile, user selected theme);
   if filename != none
     return filename
 
-  filename = FindSoundHelper(sound, locale, soundsystem, "freedesktop");
+  filename = FindSoundHelper(sound, locale, outputprofile, "freedesktop");
   if filename != none
     return filename
 
   return LookupFallbackSound (sound)
 }
 
-FindSoundHelper(sound, locale, soundsystem, theme) {
-  filename = LookupSound (sound, locale, soundsystem, theme)
+FindSoundHelper(sound, locale, outputprofile, theme) {
+  filename = LookupSound (sound, locale, outputprofile, theme)
   if filename != none
     return filename
 
@@ -473,7 +472,7 @@ FindSoundHelper(sound, locale, soundsystem, theme) {
     parents = theme.parents
 
   for parent in parents {
-    filename = FindSoundHelper (sound, locale, soundsystem, parent)
+    filename = FindSoundHelper (sound, locale, outputprofile, parent)
     if filename != none
       return filename
   }
@@ -484,12 +483,12 @@ FindSoundHelper(sound, locale, soundsystem, theme) {
      With the following helper functions:
 
      <programlisting>
-LookupSound (sound, locale, soundsystem, theme) {
+LookupSound (sound, locale, outputprofile, theme) {
   // lookup localized version
   for each subdir in $(theme subdir list) {
     for each directory in $(basename list) {
-      for system in (soundsystem, "stereo") {
-        if DirectoryMatchesSoundSystem(subdir, system) {
+      for profile in (outputprofile, "stereo") {
+        if DirectoryMatchesOutputProfile(subdir, profile) {
           for extension in ("wav", "ogg") {
 	    filename = directory/$(themename)/subdir/$locale/sound.extension
             if exist filename
@@ -503,8 +502,8 @@ LookupSound (sound, locale, soundsystem, theme) {
  // lookup unlocalized version
   for each subdir in $(theme subdir list) {
     for each directory in $(basename list) {
-      for system in (soundsystem, "stereo") {
-        if DirectoryMatchesSoundSystem(subdir, system) {
+      for profile in (outputprofile, "stereo") {
+        if DirectoryMatchesOutputProfile(subdir, profile) {
           for extension in ("wav", "ogg") {
 	    filename = directory/$(themename)/subdir/sound.extension
             if exist filename
@@ -528,9 +527,9 @@ LookupFallbackSound (sound) {
   return none
 }
 
-DirectoryMatchesSoundSystem(subdir, system) {
-  read SoundSystem from subdir
-  if SoundSystem == system
+DirectoryMatchesOutputProfile(subdir, profile) {
+  read OutputProfile from subdir
+  if OutputProfile == profile
     return true
   return false
 }
@@ -554,12 +553,12 @@ Directories=stereo/alert/fr notifications/long/5.1
 
 [stereo/alert/fr]
 Context=Alert
-SoundSystem=stereo
+OutputProfile=stereo
 Locale=fr
 
 [notifications/long/5.1]
 Context=Notification
-SoundSystem=5.1
+OutputProfile=5.1
 </programlisting>
 
 The corresponding directory tree in the /usr/share/sounds

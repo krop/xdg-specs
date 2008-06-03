@@ -90,7 +90,7 @@ usage.
 	      have a major impact on the system or their current use,
 	      such as <action>dialog-error</action>.
 	    </entry>
-	    <entry>altert</entry>
+	    <entry>alert</entry>
 	  </row>
 	  <row>
 	    <entry>Notification</entry>

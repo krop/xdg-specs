@@ -453,18 +453,20 @@ FindSoundHelper(sound, locale, outputprofile, theme) {
      With the following helper functions:
 
      <programlisting>
-LookupSound (sound, locale, requestedoutputprofile, requestedtheme) {
+LookupSound (soundname, locale, requestedoutputprofile, requestedtheme) {
   // lookup localized version
   for theme in (requestedtheme, "freedesktop", "") {
-    for each locale in ($locale, truncate($locale, "@"), truncate($locale, "_"), "C", "")
-      for profile in (requestedoutputprofile, "stereo", "") {
-        for each subdir in $(theme subdir list) {
-          if DirectoryMatchesOutputProfile(subdir, profile) {
-            for each directory in $(basename list) {
-              for extension in ("wav", "ogg") {
-	        filename = directory/$theme/subdir/locale/sound.extension
-                if exist filename
-                  return filename
+    for each locale in ($locale, truncateprefix($locale, "@"), truncateprefix($locale, "_"), "C", "")
+      for each subname in (soundname, truncatesuffix(soundname), truncatesuffix(truncatesuffix(soundname)), ...)
+        for profile in (requestedoutputprofile, "stereo", "") {
+          for each subdir in $(theme subdir list) {
+            if DirectoryMatchesOutputProfile(subdir, profile) {
+              for each directory in $(basename list) {
+                for extension in ("wav", "ogg") {
+	          filename = directory/$theme/subdir/locale/subname.extension
+                  if exist filename
+                    return filename
+                }
               }
             }
           }

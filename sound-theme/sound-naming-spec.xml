@@ -68,7 +68,7 @@ usage.
     <title>Context</title>
 
     <para>
-      The list of default Contexts for the sound theme are:
+      The list of default contexts for the sound theme are:
     </para>
 
     <table>
@@ -132,8 +132,8 @@ usage.
 	<listitem>
 	  <para>
 	    Sound names are in the en_US.US_ASCII locale. This means
-	    that the allowable characters in the sound names, must
-	    fall withing the US-ASCII character set. As a further
+	    that the characters allowed in the sound names must
+	    fall within the US-ASCII character set. As a further
 	    restriction, all sound names may only contain lowercase
 	    letters, numbers, underscore, dash, or period
 	    characters. Spaces, colons, slashes, and backslashes are
@@ -178,7 +178,7 @@ usage.
       <title>Alerts</title>
       <para>
 	This is to notify the user of an action or event which may
-	have a major imact on the system or their current use case.
+	have a major impact on the system or their current use case.
       </para>
 
       <table id="alerts-table">

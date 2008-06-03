@@ -451,18 +451,6 @@
     (if the implementation supports OGG) is:
 
     <programlisting>
-FindSound(sound, locale) {
-  filename = FindSoundHelper(sound, locale, outputprofile, user selected theme);
-  if filename != none
-    return filename
-
-  filename = FindSoundHelper(sound, locale, outputprofile, "freedesktop");
-  if filename != none
-    return filename
-
-  return LookupFallbackSound (sound)
-}
-
 FindSoundHelper(sound, locale, outputprofile, theme) {
   filename = LookupSound (sound, locale, outputprofile, theme)
   if filename != none
@@ -472,7 +460,7 @@ FindSoundHelper(sound, locale, outputprofile, theme) {
     parents = theme.parents
 
   for parent in parents {
-    filename = FindSoundHelper (sound, locale, outputprofile, parent)
+    filename = LookupSound (sound, locale, outputprofile, parent)
     if filename != none
       return filename
   }
@@ -483,47 +471,26 @@ FindSoundHelper(sound, locale, outputprofile, theme) {
      With the following helper functions:
 
      <programlisting>
-LookupSound (sound, locale, outputprofile, theme) {
+LookupSound (sound, locale, requestedoutputprofile, requestedtheme) {
   // lookup localized version
-  for each subdir in $(theme subdir list) {
-    for each directory in $(basename list) {
-      for profile in (outputprofile, "stereo") {
-        if DirectoryMatchesOutputProfile(subdir, profile) {
-          for extension in ("wav", "ogg") {
-	    filename = directory/$(themename)/subdir/$locale/sound.extension
-            if exist filename
-              return filename
+  for theme in (requestedtheme, "freedesktop", "") {
+    for each locale in ($locale, truncate($locale, "@"), truncate($locale, "_"), "C", "")
+      for profile in (requestedoutputprofile, "stereo", "") {
+        for each subdir in $(theme subdir list) {
+          if DirectoryMatchesOutputProfile(subdir, profile) {
+            for each directory in $(basename list) {
+              for extension in ("wav", "ogg") {
+	        filename = directory/$theme/subdir/locale/sound.extension
+                if exist filename
+                  return filename
+              }
+            }
           }
         }
       }
     }
   }
 
- // lookup unlocalized version
-  for each subdir in $(theme subdir list) {
-    for each directory in $(basename list) {
-      for profile in (outputprofile, "stereo") {
-        if DirectoryMatchesOutputProfile(subdir, profile) {
-          for extension in ("wav", "ogg") {
-	    filename = directory/$(themename)/subdir/sound.extension
-            if exist filename
-              return filename
-          }
-        }
-      }
-    }
-  }
-
-  return none
-}
-
-LookupFallbackSound (sound) {
-  for each directory in $(basename list) {
-    for extension in ("wav", "ogg") {
-      if exists directory/sound.extension
-        return directory/sound.extension
-    }
-  }
   return none
 }
 

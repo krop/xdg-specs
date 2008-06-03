@@ -148,7 +148,7 @@
     In the theme directory are also a set of subdirectories containing
     sound files. The subdirectories are allowed to be several levels
     deep, e.g. the subdirectory "stereo/alerts" in the theme "freedesktop"
-    would end up at $basedir/freedesktop/stereo/alerts. (FIXME)
+    would end up at $basedir/freedesktop/stereo/alerts.
     </para>
     <para>
     The sounds files must be one of the types: WAV/PCM 48kHz, 16 bits
@@ -291,24 +291,6 @@
 	      Define the sound system for which the sounds are made
 	      for. It can be "stereo" or "5.1", or whatever system
 	      suits the configuration in which they are recorded.
-	    </entry>
-	    <entry>string</entry>
-	    <entry>NO</entry>
-	  </row>
-	  <row>
-	    <entry>Length</entry>
-	    <entry>
-              Nominal length in seconds of the sounds in this directory. (FIXME)
-	    </entry>
-	    <entry>integer</entry>
-	    <entry>NO</entry>
-	  </row>
-	  <row>
-	    <entry>Locale</entry>
-	    <entry>
-              Locale name, if applicable. (FIXME: not usable since
-              transaltions would have to update the index.. instead
-              subdirectoy locale seems more efficient...)
 	    </entry>
 	    <entry>string</entry>
 	    <entry>NO</entry>
@@ -631,4 +613,4 @@ Loop=yes
   </appendix>
 </article>
 
-http://replaygain.khydrogenaudio.orc/calculationg_rg.html
+http://replaygain.hydrogenaudio.orc/calculationg_rg.html

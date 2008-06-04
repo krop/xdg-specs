@@ -163,7 +163,10 @@
     </para>
     <para>
      The sound samples must be normalized with a suitable average
-     replay level, in order to be properly mixed down.
+     replay level, in order to be properly mixed down. For more
+     informations, please read
+     http://replaygain.hydrogenaudio.orc/calculationg_rg.html and
+     check that your volume level is reasonable.
     </para>
   </sect1>
 
@@ -505,7 +508,6 @@ Directories=stereo/alert/fr notifications/long/5.1
 [stereo/alert/fr]
 Context=Alert
 OutputProfile=stereo
-Locale=fr
 
 [notifications/long/5.1]
 Context=Notification
@@ -614,5 +616,3 @@ Loop=yes
     </formalpara>
   </appendix>
 </article>
-
-http://replaygain.hydrogenaudio.orc/calculationg_rg.html

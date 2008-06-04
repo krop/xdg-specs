@@ -5,8 +5,8 @@
 <article id="index">
   <articleinfo>
     <title>Sound Theme Specification</title>
-    <releaseinfo>Version 0.1</releaseinfo>
-    <date>February 11 2008</date>
+    <releaseinfo>Version 0.2</releaseinfo>
+    <date>4 June 2008 2008</date>
     <authorgroup>
       <author>
 	<firstname>Marc-Andre</firstname>
@@ -165,7 +165,7 @@
      The sound samples must be normalized with a suitable average
      replay level, in order to be properly mixed down. For more
      informations, please read
-     http://replaygain.hydrogenaudio.orc/calculationg_rg.html and
+     http://replaygain.hydrogenaudio.org/calculationg_rg.html and
      check that your volume level is reasonable.
     </para>
   </sect1>
@@ -602,6 +602,33 @@ Loop=yes
 
   <appendix id="changes">
     <title>Change history</title>
+    <formalpara>
+      <title>Version 0.2, 4 June 2008, Marc-Andre Lureau and Lennart Poettering</title>
+      <para>
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      Updated the Lookup algorithm.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Remove Length and Locale from directory property.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Use OutputProfile instead of SoundSystem.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Add ReplayGain note.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
     <formalpara>
       <title>Version 0.1, 11 February 2008, Marc-Andre Lureau</title>
       <para>

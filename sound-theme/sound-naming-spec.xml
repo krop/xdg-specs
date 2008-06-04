@@ -5,8 +5,8 @@
 <article id="index">
   <articleinfo>
     <title>Sound Naming Specification</title>
-    <releaseinfo>Version 0.1</releaseinfo>
-    <date>February 12 2008</date>
+    <releaseinfo>Version 0.2</releaseinfo>
+    <date>4 June 2008</date>
     <authorgroup>
       <author>
 	<firstname>Marc-Andre</firstname>
@@ -840,6 +840,18 @@ usage.
 
   <appendix id="changelog">
     <title>Change History</title>
+    <formalpara>
+      <title>Version 0.2, 4 June 2008, Marc-Andre Lureau  and Lennart Poettering</title>
+      <para>
+        <itemizedlist>
+          <listitem>
+	    <para>
+              Naming changes.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
     <formalpara>
       <title>Version 0.1, February 12 2008, Marc-Andre Lureau</title>
       <para>

@@ -19,6 +19,16 @@
 	</affiliation>
       </author>
       <author>
+	<firstname>Lennart</firstname>
+	<surname>Poettering</surname>
+	<authorblurb><para>PulseAudio Project</para></authorblurb>
+	<affiliation>
+	  <address>
+	    <email>lennart@poettering.net</email>
+	  </address>
+	</affiliation>
+      </author>
+      <author>
 	<firstname>Patryk</firstname>
 	<surname>Zawadzki</surname>
 	<authorblurb><para>Initial Sound Theme Specification draft proposal</para></authorblurb>
@@ -56,14 +66,12 @@
     <para>
     A sound theme is a set of sounds that share a common feel, or
     instrument set.  The user can then select the sound theme that
-    they want to use, and all apps use sounds from the theme. The
-    initial user of sounds themes is the desktop notification
-    service. But it can have other uses.
+    they want to use, and all applications use sounds from the theme.
     </para>
     <para>
     From a programmer perspective a sound theme is just a
     mapping. Given a set of directories to look for sounds in and a
-    theme name it maps from sound name to an sound filename.
+    theme name it maps from sound name to a sound filename.
     </para>
   </sect1>
 
@@ -84,16 +92,12 @@
 	<term>Sound file</term>
 	<listitem>
 	  <para>
-          The supported sound file formats are WAV/PCM 44.1-48kHz,
-          16bits, and OGG/Vorbis.  WAV at 48kHz, stereo is the
-          recommended uncompressed format, and OGG/Vorbis is the
-          recommended compressed format. Support for OGGs is optional.
-	  <footnote><para>
-	    FIXME: give a rationale about those
-	    choice
-	  </para></footnote>
-	  The sample must be normalized, in order to be mixed down
-	  nicely with a suitable average replay level.
+          The mandatory supported sound file formats are WAV/PCM
+          8-48kHz, 8/16bits, and OGG/Vorbis. WAV at 48kHz/Stereo is
+          the recommended uncompressed format, and OGG/Vorbis is the
+          recommended compressed format.  The sample must be
+          normalized, in order to be mixed down nicely with a suitable
+          average replay level.
 	  </para>
 	</listitem>
       </varlistentry>
@@ -114,7 +118,7 @@
     <title>Directory Layout</title>
     <para>
     Sounds and themes are looked for in a set of directories. By
-    default, apps should look in $XDG_DATA_DIRS/sounds.  Applications
+    default, applications should look in $XDG_DATA_DIRS/sounds.  Applications
     may further add their own sound directories to this list, and
     users may extend or change the list (in application/desktop
     specific ways). In each of these directories themes are stored as
@@ -151,22 +155,27 @@
     would end up at $basedir/freedesktop/stereo/alerts.
     </para>
     <para>
-    The sounds files must be one of the types: WAV/PCM 48kHz, 16 bits
-    or OGG/Vorbis.  The extension must be ".wav", or ".ogg"
-    respectively (lower case). The support for OGG files is
-    optional. Implementations that do not support OGGs should just
-    ignore any ".ogg" files. In addition to this there may be an
-    additional file with extra sound-data for each file. It should
-    have the same basename as the sound file, with the extension
-    ".sound". e.g. if the sound file is called "system-log-out.wav"
-    the corresponding file would be named "system-log-out.sound".
+    The sounds files must be one of the types: WAV/PCM 8-48kHz, 8/16
+    bits or OGG/Vorbis.  The extension must be ".wav", or ".ogg"
+    respectively (lower case).In addition to the sound files there may
+    be an additional file with extra sound data for each file. It
+    should have the same basename as the sound file, with the
+    extension ".sound". e.g. if the sound file is called
+    "system-shutdown.wav" the corresponding file would be named
+    "system-shutdown.sound".
     </para>
     <para>
-     The sound samples must be normalized with a suitable average
-     replay level, in order to be properly mixed down. For more
-     informations, please read
-     http://replaygain.hydrogenaudio.org/calculationg_rg.html and
-     check that your volume level is reasonable.
+    The sound samples must be normalized with a suitable average
+    replay level, in order to be properly mixed down. For more
+    informations, please read
+    http://replaygain.hydrogenaudio.org/calculationg_rg.html and
+    check that your volume level is reasonable.
+    </para>
+    <para>
+    Sounds for different output profiles (i.e. for Stereo, Surround
+    4.1, Surround 5.1 and so on) may be part of a theme. All
+    implementations are required to fallback to the "stereo" output
+    profile as last resort.
     </para>
   </sect1>
 
@@ -175,7 +184,7 @@
     <para>
     Both the sound theme description file and the sound data files are
     ini-style text files, as described in the desktop file
-    specification. They don't have any encoding field. Instead, they
+    specification. They don't have an encoding field. Instead, they
     must always be stored in UTF-8 encoding.
     </para>
     <para>
@@ -197,7 +206,7 @@
 	  <row>
 	    <entry>Name</entry>
 	    <entry>
-              short name of the sound theme, used in e.g. lists when
+              Short name of the sound theme, used in e.g. lists when
               selecting themes.
 	    </entry>
 	    <entry>localestring</entry>
@@ -206,7 +215,7 @@
 	  <row>
 	    <entry>Comment</entry>
 	    <entry>
-              longer string describing the theme
+              Longer string describing the theme
 	    </entry>
 	    <entry>localestring</entry>
 	    <entry>YES</entry>
@@ -232,7 +241,7 @@
 	  <row>
 	    <entry>Directories</entry>
 	    <entry>
-             list of subdirectories for this theme. For every
+             List of subdirectories for this theme. For every
              subdirectory there must be a section in the index.theme
              file describing that directory.
 	    </entry>
@@ -291,9 +300,8 @@
 	  <row>
 	    <entry>OutputProfile</entry>
 	    <entry>
-	      Define the sound system for which the sounds are made
-	      for. It can be "stereo" or "5.1", or whatever system
-	      suits the configuration in which they are recorded.
+	      Define the output profile for which the sounds are made
+	      for. It can be "stereo" or "5.1", or any other output configuration.
 	    </entry>
 	    <entry>string</entry>
 	    <entry>NO</entry>
@@ -310,7 +318,7 @@
     Sound Theme" or "X-Gnome Sound Theme".
     </para>
     <para>
-    The optional filename.sound file contains a group called "Sound
+    The optional file filename.sound contains a group "Sound
     Data", with the content listed in table 3.
     <table>
       <title>Sound Data Keys</title>
@@ -333,22 +341,12 @@
 	    <entry>localestring</entry>
 	    <entry>NO</entry>
 	  </row>
-	  <row>
-	    <entry>Loop</entry>
-	    <entry>
-	      Indicates if the sound is appropriate in loop-mode
-	      playing. This can be useful for ringing tones,
-	      environment, instruments...
-	    </entry>
-	    <entry>boolean</entry>
-	    <entry>NO</entry>
-	  </row>
 	</tbody>
       </tgroup>
     </table>
     </para>
     <para>
-    Extensions to the filename.sound file are allowed, but the
+    Extensions to filename.sound are allowed, but the
     keys must be begin with "X-" to avoid collisions with future
     standardized extensions to this format.
     </para>
@@ -356,7 +354,7 @@
     <sect2 id="context">
 	<title>Context</title>
 
-	<para>The <systemitem>Context</systemitem> allows
+	<para>The <systemitem>context</systemitem> allows
     	  the designer to group sounds on a conceptual level.
 	  It doesn't act as a namespace in the file system, such
 	  that sounds can have identical names, but allows
@@ -370,8 +368,8 @@
 	    <formalpara>
 	    <title>Alert</title>
 	    <para>Sounds to alert the user of an action or event
-	    which may have a major imact on the system or their
-	    current use case, such as
+	    which may have a major impact on the system or their
+	    current use, such as
 	    <action>dialog-error</action>.</para>
 	    </formalpara>
 	  </listitem>
@@ -380,8 +378,8 @@
 	    <formalpara>
 	    <title>Notification</title>
 	    <para>Sounds to notify the user that the system, or their
-	    current use case has changed state in some way, e.g. new email
-	    arriving, new non-critical update available...</para>
+	    current use has changed state in some way, e.g. new email
+	    arriving, new non-critical updates available...</para>
 	    </formalpara>
 	  </listitem>
 
@@ -389,7 +387,7 @@
 	    <formalpara>
 	      <title>Support</title>
 	      <para>Sounds that give the user feedback on their
-	      actions. Sounds on window opening / closing for
+	      actions. Sounds on window opening/closing for
 	      example.</para>
 	    </formalpara>
 	  </listitem>
@@ -411,7 +409,7 @@
     <para>
     The sound lookup mechanism has two global settings, the list of
     base directories and the internal name of the current theme. Given
-    these we need to specify how to look up  sound file from the sound
+    these we specify how to look up sound file from the sound
     name.
     </para>
     <para>
@@ -419,36 +417,47 @@
     recursively in each of the current theme's parents, and finally in
     the default theme called "freedesktop" (implementations may add
     more default themes before "freedesktop", but "freedesktop" must
-    be last). As soon as there is a sound that matches in a theme, the
-    search is stopped.
+    be last). A last fallback is unthemed sound. As soon as there is
+    a sound that matches in a theme, the search is stopped.
     </para>
     <para>
-    The lookup inside a theme is done in three phases. First all the
-    directories are scanned for an exact match, e.g. one where the
-    locale of the sound match what was looked up. Then all
-    the directories are scanned for any sound that matches the name. If
-    that fails we finally fall back on unthemed sound. If we fail to
-    find any sound at all it is up to the application to pick a good
-    fallback, as the correct choice depends on the context.
+    To support localized sounds we first lookup the sound in the
+    LC_MESSAGES locale setting of the program. If that fails, the
+    locale string is truncated at the "@" if it includes it and it is
+    tried again. Then, the locale string is truncated at the "_" if it
+    includes it and it is tried again. Then it is looked for a sound
+    in the "C" locale. Finally non-localized sound files are searched.
     </para>
     <para>
-    The exact algorithm (in pseudocode) for looking up a sound in a theme
-    (if the implementation supports OGG) is:
+    If a sound name is not found, it is truncated at the last "-" and
+    it is tried again. This is done again until no further "-" are
+    present in the name string. This is useful to define common sounds
+    for similar events. i.e. instead of defining two seperate sounds
+    for "new-message-im" and "new-message-email" it might make sense
+    to define just "new-message" instead.
+    </para>
+    <para>
+    The lookup is done first in the requested output profile, followed
+    by a lookup in "stereo" on failure and then without any output
+    profile.
+    </para>
+    <para>
+    The exact algorithm (in pseudocode) for looking up a sound in a
+    theme is:
 
     <programlisting>
-FindSoundHelper(sound, locale, outputprofile, theme) {
+FindSound(sound, locale, outputprofile, theme) {
   filename = LookupSound (sound, locale, outputprofile, theme)
   if filename != none
     return filename
 
   if theme has parents
-    parents = theme.parents
+    for parent in theme.parents {
+      filename = LookupSound (sound, locale, outputprofile, parent)
+      if filename != none
+        return filename
+    }
 
-  for parent in parents {
-    filename = LookupSound (sound, locale, outputprofile, parent)
-    if filename != none
-      return filename
-  }
   return none
 }
      </programlisting>
@@ -456,17 +465,26 @@ FindSoundHelper(sound, locale, outputprofile, theme) {
      With the following helper functions:
 
      <programlisting>
-LookupSound (soundname, locale, requestedoutputprofile, requestedtheme) {
-  // lookup localized version
-  for theme in (requestedtheme, "freedesktop", "") {
-    for each locale in ($locale, truncateprefix($locale, "@"), truncateprefix($locale, "_"), "C", "")
-      for each subname in (soundname, truncatesuffix(soundname), truncatesuffix(truncatesuffix(soundname)), ...)
+LookupSound (requestedname, requestedlocale, requestedoutputprofile, requestedtheme) {
+  for theme in (requestedtheme,
+                "freedesktop",
+                "") {
+    for each locale in (requestedlocale,
+                        truncatesuffix(requestedlocale, "@"),
+                        truncatesuffix(requestedlocale, "_"),
+                        "C",
+                        "") {
+      for each name in (requestedname,
+                        truncatesuffix(requestedname, "-"),
+                        truncatesuffix(truncatesuffix(requestedname, "-"), "-"),
+                        truncatesuffix(truncatesuffix(truncatesuffix(requestedname, "-"), "-"), "-"),
+                        ...) {
         for profile in (requestedoutputprofile, "stereo", "") {
           for each subdir in $(theme subdir list) {
             if DirectoryMatchesOutputProfile(subdir, profile) {
               for each directory in $(basename list) {
                 for extension in ("wav", "ogg") {
-	          filename = directory/$theme/subdir/locale/subname.extension
+	          filename = directory/theme/subdir/locale/name.extension
                   if exist filename
                     return filename
                 }
@@ -547,17 +565,19 @@ Loop=yes
   <sect1 id="install_sounds">
     <title>Installing Application Sounds</title>
     <para>
-    So, you're an application author, and you want to install sounds
-    so that they can be used by your application. Minimally you should
-    install the sound file in the "freedesktop" theme. This means
+    If you're an application author and you want to install sounds
+    so that they can be used by your application, you should
+    at least install the sound file in the "freedesktop" theme. This means
     installing a stereo WAV file in
     $XDG_DATA_DIRS/sounds/freedesktop/stereo/$context.
-
+    </para>
+    <para>
     Optionally you can install sounds in different formats and
-    language. For example, installing a localized OGG/Vorbis 5.1 game
+    languages. For example, installing a localized OGG/Vorbis 5.1 game
     sound in $prefix/share/sounds/freedesktop/5.1/game/fr.
-
-    You might even want to install sounds that matches other well
+    </para>
+    <para>
+    You might even want to install sounds that match other well
     known themes so your application will fit in with some specific
     desktop environment.
     </para>

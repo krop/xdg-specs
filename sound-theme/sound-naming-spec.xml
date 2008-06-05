@@ -19,7 +19,7 @@
 	</affiliation>
       </author>
       <author>
-	<firstname>Lennart Poettering</firstname>
+	<firstname>Lennart</firstname>
 	<surname>Poettering</surname>
 	<authorblurb><para>PulseAudio Project</para></authorblurb>
 	<affiliation>
@@ -368,20 +368,21 @@ usage.
 	    <row>
 	      <entry>service-login</entry>
 	      <entry>
-		The sound used when a user logs out of a service
-		(i.e. Gaim logout)
+		The sound used when a user logs into a service
+		(i.e. Gaim login)
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>service-logout</entry>
 	      <entry>
-		The sound used when a user logs out of a service (i.e. Gaim logout)
+		The sound used when a user logs out of a service
+		(i.e. Gaim logout)
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>battery-caution</entry>
 	      <entry>
-		The sound used when the battery is nearing depletion (below 40%, for
+		The sound used when the battery is nearing exhaustion (below 40%, for
 		example).
 	      </entry>
 	    </row>
@@ -571,7 +572,7 @@ usage.
 	    <row>
 	      <entry>drag-start</entry>
 	      <entry>
-		The sound used when drag of a file/item i started
+		The sound used when drag of a file/item is started
 	      </entry>
 	    </row>
 	    <row>
@@ -777,9 +778,7 @@ usage.
     <sect2 id="games">
       <title>Game</title>
       <para>
-	This is to alert the user that the system, or their current
-	use case has changed state in some way - mew email arriving,
-	new non-critical update to an application available.
+      Sounds for usage in games.
       </para>
 
       <table id="games-table">

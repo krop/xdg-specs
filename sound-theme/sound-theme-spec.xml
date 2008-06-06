@@ -64,8 +64,8 @@
   <sect1 id="overview">
     <title>Overview</title>
     <para>
-    A sound theme is a set of sounds that share a common feel, or
-    instrument set.  The user can then select the sound theme that
+    A sound theme is a set of event sounds that share a common feel,
+    or instrument set.  The user can then select the sound theme that
     they want to use, and all applications use sounds from the theme.
     </para>
     <para>

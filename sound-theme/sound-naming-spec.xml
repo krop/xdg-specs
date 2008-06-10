@@ -158,7 +158,7 @@ usage.
           <para>
 	    Sounds for branded applications should be named the same
 	    as the binary executable for the application, prefixed by
-	    the string <quote>x-</quot>, to avoid name space clashes with future
+	    the string <quote>x-</quote>, to avoid name space clashes with future
 	    standardized names. Example: <quote>x-openoffice-foobar</quote>.
 	  </para>
 	</listitem>

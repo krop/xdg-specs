@@ -343,7 +343,7 @@ usage.
 	    <row>
 	      <entry>system-ready</entry>
 	      <entry>
-		The sound used when the computer is booted up and shows the login screen
+		The sound used when the computer is booted up and shows the login screen.
 	      </entry>
 	    </row>
 	    <row>
@@ -374,7 +374,7 @@ usage.
 	    <row>
 	      <entry>desktop-logout</entry>
 	      <entry>
-		The sound used when a user logs out of the system
+		The sound used when a user logs out of the system.
 	      </entry>
 	    </row>
 	    <row>
@@ -402,7 +402,7 @@ usage.
 	      <entry>battery-caution</entry>
 	      <entry>
 		The sound used when the battery is nearing exhaustion (below 40%, for
-		example).
+		example)
 	      </entry>
 	    </row>
 	    <row>
@@ -591,25 +591,25 @@ usage.
 	    <row>
 	      <entry>window-move-start</entry>
 	      <entry>
-		A window move started
+		A window move started.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>window-move-end</entry>
 	      <entry>
-		A window move ended
+		A window move ended.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>window-resize-start</entry>
 	      <entry>
-		A window resize started
+		A window resize started.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>window-resize-end</entry>
 	      <entry>
-		A window resize ended
+		A window resize ended.
 	      </entry>
 	    </row>
 	    <row>
@@ -663,7 +663,7 @@ usage.
 	    <row>
 	      <entry>drag-start</entry>
 	      <entry>
-		The sound used when drag of a file/item is started
+		The sound used when drag of a file/item is started.
 	      </entry>
 	    </row>
 	    <row>
@@ -804,7 +804,7 @@ usage.
 	    <row>
 	      <entry>screen-capture</entry>
 	      <entry>
-		A screenshot was made
+		A screenshot was made.
 	      </entry>
 	    </row>
 	    <row>
@@ -957,13 +957,13 @@ usage.
 	    <row>
 	      <entry>game-human-move</entry>
 	      <entry>
-		When the user makes a move
+		When the user makes a move.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>game-computer-move</entry>
 	      <entry>
-		When the a computer makes a move
+		When the a computer makes a move.
 	      </entry>
 	    </row>
 	  </tbody>

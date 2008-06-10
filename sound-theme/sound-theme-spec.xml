@@ -165,6 +165,9 @@
     "system-shutdown.sound".
     </para>
     <para>
+    To save disk space Vorbis encoded sound files are recommended.
+    </para>
+    <para>
     The sound samples must be normalized with a suitable average
     replay level, in order to be properly mixed down. For more
     informations, please read

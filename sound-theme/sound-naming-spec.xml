@@ -157,9 +157,16 @@ usage.
         <listitem>
           <para>
 	    Sounds for branded applications should be named the same
-	    as the binary executable for the application.
+	    as the binary executable for the application, prefixed by
+	    the string <quote>x-</quot>, to avoid name space clashes with future
+	    standardized names. Example: <quote>x-openoffice-foobar</quote>.
 	  </para>
 	</listitem>
+        <listitem>
+          <para>
+            Please send suggestions for new standardized names to the XDG mailing list: <email>xdg@lists.freedesktop.org</email>
+          </para>
+        </listitem>
       </itemizedlist>
     </para>
   </sect1>
@@ -182,7 +189,7 @@ usage.
       </para>
 
       <table id="alerts-table">
-	<title>Standard Alerts Sounds</title>
+	<title>Standard Alert Sounds</title>
 	<tgroup cols="2">
 	  <thead>
 	    <row>
@@ -282,7 +289,13 @@ usage.
 	    <row>
 	      <entry>download-complete</entry>
 	      <entry>
-		The sound used when an file completed downloading..
+		The sound used when a file completed downloading.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>copy-complete</entry>
+	      <entry>
+		The sound used when a file completed copying.
 	      </entry>
 	    </row>
 	    <row>
@@ -349,7 +362,7 @@ usage.
 	    <row>
 	      <entry>desktop-login</entry>
 	      <entry>
-		The sound used when a user logs into the system.
+		The sound used when a user logs into the system, played as a welcome sound immediately after the login screen disappeared.
 	      </entry>
 	    </row>
 	    <row>
@@ -482,7 +495,7 @@ usage.
       </para>
 
       <table id="support-table">
-	<title>Standard Support Sounds</title>
+	<title>Standard Action Sounds</title>
 	<tgroup cols="2">
 	  <thead>
 	    <row>
@@ -549,6 +562,24 @@ usage.
 	      <entry>window-unmaximized</entry>
 	      <entry>
 		The sound used when an existing window is unmaximized.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-inactive-click</entry>
+	      <entry>
+		The sound used when the user clicks on an inactive window.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>desktop-switch-left</entry>
+	      <entry>
+		The sound used when the window manager switches to another desktop which is located to the left of the current screen.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>desktop-switch-right</entry>
+	      <entry>
+		The sound used when the window manager switches to another desktop which is located to the right of the current screen.
 	      </entry>
 	    </row>
 	    <row>
@@ -657,6 +688,18 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>expander-toggle-on</entry>
+	      <entry>
+		The sound used when an expander is activated.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>expander-toggle-off</entry>
+	      <entry>
+		The sound used when an expander is deactivated.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>menu-popup</entry>
 	      <entry>
 		The sound used when a menu is popped up.
@@ -675,15 +718,33 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>tooltip-popup</entry>
+	      <entry>
+		The sound used when a tooltip is popped up.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>tooltip-popdown</entry>
+	      <entry>
+		The sound used when a tooltip is popped down.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>camera-shutter</entry>
 	      <entry>
 		A photo has been shot.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>focus-camera</entry>
+	      <entry>camera-focus</entry>
 	      <entry>
 		A camera has the focus.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>screen-capture</entry>
+	      <entry>
+		A screenshot was made
 	      </entry>
 	    </row>
 	    <row>

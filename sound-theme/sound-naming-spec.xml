@@ -299,6 +299,12 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>complete-scan</entry>
+	      <entry>
+		The sound used when a scanner completed image acquisition and software completed image processing.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>phone-incoming-call</entry>
 	      <entry>
 		The sound used when an phone/voip call is coming in. Usually some kind of ring sound.

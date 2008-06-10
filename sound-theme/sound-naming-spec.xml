@@ -84,7 +84,7 @@ usage.
 	</thead>
 	<tbody>
 	  <row>
-	    <entry>Alert</entry>
+	    <entry>Alerts</entry>
 	    <entry>
 	      Sounds to alert the user of an action or event which may
 	      have a major impact on the system or their current use,
@@ -93,7 +93,7 @@ usage.
 	    <entry>alert</entry>
 	  </row>
 	  <row>
-	    <entry>Notification</entry>
+	    <entry>Notifications</entry>
 	    <entry>
 	      Sounds to notify the user that the system, or their
 	      current use case has changed state in some way, e.g. new
@@ -263,37 +263,37 @@ usage.
 	  </thead>
 	  <tbody>
 	    <row>
-	      <entry>instant-message-new</entry>
+	      <entry>message-new-instant</entry>
 	      <entry>
 		The sound used when a new IM is recieved.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>email-message-new</entry>
+	      <entry>message-new-email</entry>
 	      <entry>
 		The sound used when a new email is recieved.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>media-burn-complete</entry>
+	      <entry>complete-media-burn</entry>
 	      <entry>
 		The sound used when an optical medium completed burning.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>media-rip-complete</entry>
+	      <entry>complete-media-rip</entry>
 	      <entry>
 		The sound used when an optical medium completed ripping.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>download-complete</entry>
+	      <entry>complete-download</entry>
 	      <entry>
 		The sound used when a file completed downloading.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>copy-complete</entry>
+	      <entry>complete-copy</entry>
 	      <entry>
 		The sound used when a file completed copying.
 	      </entry>
@@ -331,7 +331,7 @@ usage.
 	    <row>
 	      <entry>system-bootup</entry>
 	      <entry>
-		The sound used when the computer is being booted up.
+		The sound used when the computer is being booted up, played as as early in bootup as possible.
 	      </entry>
 	    </row>
 	    <row>
@@ -372,7 +372,7 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>desktop-lock-screen</entry>
+	      <entry>desktop-screen-lock</entry>
 	      <entry>
 		The sound used when the user locks their current
 		session.
@@ -511,13 +511,13 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>instant-message-sent</entry>
+	      <entry>message-sent-instant</entry>
 	      <entry>
 		The sound used when a new IM is sent.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>email-message-sent</entry>
+	      <entry>message-sent-email</entry>
 	      <entry>
 		The sound used when a new email is sent.
 	      </entry>

@@ -577,6 +577,42 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>window-attention-active</entry>
+	      <entry>
+		An active/visible window demands attention.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-attention-inactive</entry>
+	      <entry>
+		An inactive/invisible window demands attention.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-move-start</entry>
+	      <entry>
+		A window move started
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-move-end</entry>
+	      <entry>
+		A window move ended
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-resize-start</entry>
+	      <entry>
+		A window resize started
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-resize-end</entry>
+	      <entry>
+		A window resize ended
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>desktop-switch-left</entry>
 	      <entry>
 		The sound used when the window manager switches to another desktop which is located to the left of the current screen.
@@ -589,9 +625,27 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>window-switch</entry>
+	      <entry>
+		The sound used when the window manager switches to another window.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>notebook-tab-changed</entry>
 	      <entry>
 		The sound used when a notebook tab is changed.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>bell-terminal</entry>
+	      <entry>
+		The sound to use as a terminal bell.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>bell-window-system</entry>
+	      <entry>
+		The sound to use as a generic bell for X11 or other window systems.
 	      </entry>
 	    </row>
 	    <row>
@@ -757,6 +811,30 @@ usage.
 	      <entry>count-down</entry>
 	      <entry>
 		A countdown (e.g. for a photo shooting) sound that is repeated each second.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-sucess</entry>
+	      <entry>
+                A text completion was attempted and was successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-fail</entry>
+	      <entry>
+                A text completion was attempted and was not successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-partial</entry>
+	      <entry>
+                A text completion was attempted and was partially successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-rotation</entry>
+	      <entry>
+                A text completion was attempted and the list of available options reached the end and completion started from the beginning.
 	      </entry>
 	    </row>
 	    <row>

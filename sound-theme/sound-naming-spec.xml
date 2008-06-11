@@ -299,6 +299,12 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>complete-scan</entry>
+	      <entry>
+		The sound used when a scanner completed image acquisition and software completed image processing.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>phone-incoming-call</entry>
 	      <entry>
 		The sound used when an phone/voip call is coming in. Usually some kind of ring sound.
@@ -337,7 +343,7 @@ usage.
 	    <row>
 	      <entry>system-ready</entry>
 	      <entry>
-		The sound used when the computer is booted up and shows the login screen
+		The sound used when the computer is booted up and shows the login screen.
 	      </entry>
 	    </row>
 	    <row>
@@ -368,7 +374,7 @@ usage.
 	    <row>
 	      <entry>desktop-logout</entry>
 	      <entry>
-		The sound used when a user logs out of the system
+		The sound used when a user logs out of the system.
 	      </entry>
 	    </row>
 	    <row>
@@ -396,7 +402,7 @@ usage.
 	      <entry>battery-caution</entry>
 	      <entry>
 		The sound used when the battery is nearing exhaustion (below 40%, for
-		example).
+		example)
 	      </entry>
 	    </row>
 	    <row>
@@ -571,6 +577,42 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>window-attention-active</entry>
+	      <entry>
+		An active/visible window demands attention.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-attention-inactive</entry>
+	      <entry>
+		An inactive/invisible window demands attention.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-move-start</entry>
+	      <entry>
+		A window move started.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-move-end</entry>
+	      <entry>
+		A window move ended.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-resize-start</entry>
+	      <entry>
+		A window resize started.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-resize-end</entry>
+	      <entry>
+		A window resize ended.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>desktop-switch-left</entry>
 	      <entry>
 		The sound used when the window manager switches to another desktop which is located to the left of the current screen.
@@ -583,9 +625,27 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>window-switch</entry>
+	      <entry>
+		The sound used when the window manager switches to another window.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>notebook-tab-changed</entry>
 	      <entry>
 		The sound used when a notebook tab is changed.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>bell-terminal</entry>
+	      <entry>
+		The sound to use as a terminal bell.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>bell-window-system</entry>
+	      <entry>
+		The sound to use as a generic bell for X11 or other window systems.
 	      </entry>
 	    </row>
 	    <row>
@@ -603,7 +663,7 @@ usage.
 	    <row>
 	      <entry>drag-start</entry>
 	      <entry>
-		The sound used when drag of a file/item is started
+		The sound used when drag of a file/item is started.
 	      </entry>
 	    </row>
 	    <row>
@@ -744,13 +804,37 @@ usage.
 	    <row>
 	      <entry>screen-capture</entry>
 	      <entry>
-		A screenshot was made
+		A screenshot was made.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>count-down</entry>
 	      <entry>
 		A countdown (e.g. for a photo shooting) sound that is repeated each second.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-sucess</entry>
+	      <entry>
+                A text completion was attempted and was successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-fail</entry>
+	      <entry>
+                A text completion was attempted and was not successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-partial</entry>
+	      <entry>
+                A text completion was attempted and was partially successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-rotation</entry>
+	      <entry>
+                A text completion was attempted and the list of available options reached the end and completion started from the beginning.
 	      </entry>
 	    </row>
 	    <row>
@@ -873,13 +957,13 @@ usage.
 	    <row>
 	      <entry>game-human-move</entry>
 	      <entry>
-		When the user makes a move
+		When the user makes a move.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>game-computer-move</entry>
 	      <entry>
-		When the a computer makes a move
+		When the a computer makes a move.
 	      </entry>
 	    </row>
 	  </tbody>

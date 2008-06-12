@@ -837,6 +837,54 @@ usage.
                 A text completion was attempted and the list of available options reached the end and completion started from the beginning.
 	      </entry>
 	    </row>
+            <row>
+              <entry>scroll-up</entry>
+	      <entry>
+                Some window was scrolled up.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-down</entry>
+	      <entry>
+                Some window was scrolled down.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-left</entry>
+	      <entry>
+                Some window was scrolled left.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-right</entry>
+	      <entry>
+                Some window was scrolled right.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-up-end</entry>
+	      <entry>
+                Some window was scrolled up and reached the end of the scrollbar.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-down-end</entry>
+	      <entry>
+                Some window was scrolled down and reached the end of the scrollbar.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-left-end</entry>
+	      <entry>
+                Some window was scrolled left and reached the end of the scrollbar.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-right-end</entry>
+	      <entry>
+                Some window was scrolled right and reached the end of the scrollbar.
+	      </entry>
+	    </row>
 	    <row>
 	      <entry>audio-volume-change</entry>
 	      <entry>

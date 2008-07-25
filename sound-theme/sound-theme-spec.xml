@@ -645,6 +645,33 @@ DisplayName[fr]=Message urgent dans Evolution
   <appendix id="changes">
     <title>Change history</title>
     <formalpara>
+      <title>Version 0.3, 25 July 2008, Lennart Poettering</title>
+      <para>
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      Reordered lookup algorithm, to allow easy overwriting of sounds from inherited themes.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Document "__custom" theme.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Document ".disabled" sound files.
+	    </para>
+	  </listitem>
+	  <listitem>
+	    <para>
+	      Other fixes
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
+    <formalpara>
       <title>Version 0.2, 4 June 2008, Marc-Andre Lureau and Lennart Poettering</title>
       <para>
 	<itemizedlist>

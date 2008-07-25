@@ -546,14 +546,12 @@ Name[fr]=Bouleau
 Comment=Sound theme using wooden instruments
 Comment[fr]=Theme utilisant des instruments en bois
 Inherits=wood,default
-Directories=stereo/alert/fr notifications/long/5.1
+Directories=stereo 5.1
 
-[stereo/alert/fr]
-Context=Alert
+[stereo]
 OutputProfile=stereo
 
-[notifications/long/5.1]
-Context=Notification
+[5.1]
 OutputProfile=5.1
 </programlisting>
 
@@ -562,27 +560,26 @@ directory could look like this:
 
 <programlisting>
 birch/index.theme
-birch/stereo/alert/evolution-urgent-message.ogg
-birch/stereo/alert/evolution-urgent-message.wav
-birch/stereo/alert/fr/evolution-urgent-message.ogg
-birch/stereo/alert/evolution-urgent-message.sound
-birch/5.1/alert/evolution-urgent-message.ogg
+birch/stereo/evolution-urgent-message.ogg
+birch/stereo/evolution-urgent-message.wav
+birch/stereo/fr/evolution-urgent-message.ogg
+birch/stereo/evolution-urgent-message.sound
+birch/5.1/evolution-urgent-message.ogg
 </programlisting>
 
-Where birch/stereo/alert/evolution-urgent-message.sound contains:
+Where birch/stereo/evolution-urgent-message.sound contains:
 
 <programlisting>
 [Sound Data]
 DisplayName=Evolution urgent message
 DisplayName[fr]=Message urgent dans Evolution
-Loop=yes
 </programlisting>
 
     </para>
     <para>
     In this example a lookup of "evolution-urgent-message", with a 5.1
     system preference and no localization, would get the
-    "birch/5.1/alert/evolution-urgent-message.ogg" sound file.
+    "birch/5.1/evolution-urgent-message.ogg" sound file.
     </para>
 
   </sect1>
@@ -594,12 +591,12 @@ Loop=yes
     so that they can be used by your application, you should
     at least install the sound file in the "freedesktop" theme. This means
     installing a stereo WAV file in
-    $XDG_DATA_DIRS/sounds/freedesktop/stereo/$context.
+    $XDG_DATA_DIRS/sounds/freedesktop/stereo/.
     </para>
     <para>
     Optionally you can install sounds in different formats and
     languages. For example, installing a localized OGG/Vorbis 5.1 game
-    sound in $prefix/share/sounds/freedesktop/5.1/game/fr.
+    sound in $prefix/share/sounds/freedesktop/5.1/fr.
     </para>
     <para>
     You might even want to install sounds that match other well

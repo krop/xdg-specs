@@ -1077,7 +1077,24 @@ usage.
   <appendix id="changelog">
     <title>Change History</title>
     <formalpara>
-      <title>Version 0.2, 4 June 2008, Marc-Andre Lureau  and Lennart Poettering</title>
+      <title>Version 0.3, 25 July 2008, Lennart Poettering</title>
+      <para>
+        <itemizedlist>
+          <listitem>
+	    <para>
+              Split out section about "Input Feedback" sounds.
+	    </para>
+	  </listitem>
+          <listitem>
+	    <para>
+              Document the logic behind choosing "dialog-error" instead of "error-dialog".
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
+    <formalpara>
+      <title>Version 0.2, 4 June 2008, Marc-Andre Lureau and Lennart Poettering</title>
       <para>
         <itemizedlist>
           <listitem>

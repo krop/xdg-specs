@@ -157,12 +157,20 @@
     <para>
     The sounds files must be one of the types: WAV/PCM 8-48kHz, 8/16
     bits or OGG/Vorbis.  The extension must be ".wav", or ".ogg"
-    respectively (lower case).In addition to the sound files there may
+    respectively (lower case). In addition to the sound files there may
     be an additional file with extra sound data for each file. It
     should have the same basename as the sound file, with the
     extension ".sound". e.g. if the sound file is called
     "system-shutdown.wav" the corresponding file would be named
     "system-shutdown.sound".
+    </para>
+    <para>
+    An additional pseudo file format ".disabled" is supported for
+    disabling sounds in a theme that inherits from another theme. If
+    the sound lookup algorithms detects a file with the suffix
+    ".disabled" it shall immediately terminate the lookup logic and
+    consider the sound not available. All files with ".disabled"
+    suffix should be of length zero.
     </para>
     <para>
     To save disk space Vorbis encoded sound files are recommended.
@@ -445,6 +453,9 @@
     profile.
     </para>
     <para>
+    The lookup algorithm should check for ".disabled" files first, followed by ".ogg" and finally for ".wav".
+    </para>
+    <para>
     The exact algorithm (in pseudocode) for looking up a sound in a
     theme is:
 
@@ -472,21 +483,21 @@ LookupSound (requestedname, requestedlocale, requestedoutputprofile, requestedth
   for theme in (requestedtheme,
                 "freedesktop",
                 "") {
-    for each locale in (requestedlocale,
-                        truncatesuffix(requestedlocale, "@"),
-                        truncatesuffix(requestedlocale, "_"),
-                        "C",
-                        "") {
-      for each name in (requestedname,
-                        truncatesuffix(requestedname, "-"),
-                        truncatesuffix(truncatesuffix(requestedname, "-"), "-"),
-                        truncatesuffix(truncatesuffix(truncatesuffix(requestedname, "-"), "-"), "-"),
-                        ...) {
-        for profile in (requestedoutputprofile, "stereo", "") {
-          for each subdir in $(theme subdir list) {
-            if DirectoryMatchesOutputProfile(subdir, profile) {
-              for each directory in $(basename list) {
-                for extension in ("wav", "ogg") {
+    for profile in (requestedoutputprofile, "stereo", "") {
+      for each subdir in $(theme subdir list) {
+        if DirectoryMatchesOutputProfile(subdir, profile) {
+          for each directory in $(basename list) {
+            for each name in (requestedname,
+                              truncatesuffix(requestedname, "-"),
+                              truncatesuffix(truncatesuffix(requestedname, "-"), "-"),
+                              truncatesuffix(truncatesuffix(truncatesuffix(requestedname, "-"), "-"), "-"),
+                              ...) {
+              for each locale in (requestedlocale,
+                                  truncatesuffix(requestedlocale, "@"),
+                                  truncatesuffix(requestedlocale, "_"),
+                                  "C",
+                                  "") {
+                for extension in ("disabled", "wav", "ogg") {
 	          filename = directory/theme/subdir/locale/name.extension
                   if exist filename
                     return filename

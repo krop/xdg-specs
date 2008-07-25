@@ -456,6 +456,17 @@
     The lookup algorithm should check for ".disabled" files first, followed by ".ogg" and finally for ".wav".
     </para>
     <para>
+    Configuration programs that allow limited user manipulation of the
+    selected sound theme (i.e. for disabling or replacing certain
+    sounds), should create a dynamicly created theme "__custom" that
+    inherits from the selected theme and store it in the
+    "~/.local/share/sounds/__custom" directory. Its index.theme should
+    list a single directory ".". The sounds defined in that theme
+    should not be attached to any output profile and should not be
+    localized. The overwritten sounds should thus be stored directly
+    below the aforementioned directory.
+    </para>
+    <para>
     The exact algorithm (in pseudocode) for looking up a sound in a
     theme is:
 

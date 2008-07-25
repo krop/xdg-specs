@@ -158,7 +158,17 @@ usage.
 	    result. However, if the more specific item does not exist
 	    in the current theme, and does exist in a parent theme,
 	    the generic sound from the current theme is preferred, in
-	    order to keep consistent style.
+	    order to keep consistent style. From left to right the
+	    words in a sound name become more specific. In some cases
+	    what word in a name is more specific is
+	    ambiguous. (i.e. "dialog-error" and "error-dialog" both
+	    make sense, the former would ease defining the same sound
+	    for all dialogs popping up, regardless of its context, the
+	    latter would ease defining the same sound for all errors,
+	    regardless of how it is presented to the user). In such
+	    cases it is generally preferred to put the UI element noun
+	    left -- if there is one --, however exceptions of this
+	    rule are acceptable.
 	  </para>
 	</listitem>
         <listitem>

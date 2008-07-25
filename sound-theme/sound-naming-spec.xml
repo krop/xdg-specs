@@ -105,7 +105,14 @@ usage.
 	    <entry>Actions</entry>
 	    <entry>
 	      Sounds that give the user feedback on their
-	      actions. Sounds on window opening / closing for example.
+	      actions.
+	    </entry>
+	    <entry>action</entry>
+	  </row>
+	  <row>
+	    <entry>Input Feedback</entry>
+	    <entry>
+	      Sounds that give direct response to input events from the user, such as mouse clicks or key presses.
 	    </entry>
 	    <entry>action</entry>
 	  </row>
@@ -489,6 +496,18 @@ usage.
 		A user configured alarm elapsed.
 	      </entry>
 	    </row>
+	    <row>
+	      <entry>window-attention-active</entry>
+	      <entry>
+		An active/visible window demands attention.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>window-attention-inactive</entry>
+	      <entry>
+		An inactive/invisible window demands attention.
+	      </entry>
+	    </row>
 	  </tbody>
 	</tgroup>
       </table>
@@ -497,10 +516,10 @@ usage.
     <sect2 id="actions">
       <title>Actions</title>
       <para>
-	Actions sounds are used as feedback for an immediate user operation.
+	Action sounds are used as feedback for user operations.
       </para>
 
-      <table id="support-table">
+      <table id="actions-table">
 	<title>Standard Action Sounds</title>
 	<tgroup cols="2">
 	  <thead>
@@ -528,6 +547,189 @@ usage.
 		The sound used when a new email is sent.
 	      </entry>
 	    </row>
+	    <row>
+	      <entry>bell-terminal</entry>
+	      <entry>
+		The sound to use as a terminal bell.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>bell-window-system</entry>
+	      <entry>
+		The sound to use as a generic bell for X11 or other window systems.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>trash-empty</entry>
+	      <entry>
+		The sound used when the user empties the trash.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>item-deleted</entry>
+	      <entry>
+		The sound used when a item is deleted.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>file-trash</entry>
+	      <entry>
+		The sound used when a file or folder is sent to the
+		trash.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>camera-shutter</entry>
+	      <entry>
+		A photo has been shot.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>camera-focus</entry>
+	      <entry>
+		A camera has the focus.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>screen-capture</entry>
+	      <entry>
+		A screenshot was made.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>count-down</entry>
+	      <entry>
+		A countdown (e.g. for a photo shooting) sound that is repeated each second.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-sucess</entry>
+	      <entry>
+                A text completion was attempted and was successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-fail</entry>
+	      <entry>
+                A text completion was attempted and was not successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-partial</entry>
+	      <entry>
+                A text completion was attempted and was partially successful.
+	      </entry>
+	    </row>
+            <row>
+              <entry>completion-rotation</entry>
+	      <entry>
+                A text completion was attempted and the list of available options reached the end and completion started from the beginning.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-volume-change</entry>
+	      <entry>
+		The test sound that is used to make volume changes noticeable by the user when he uses a volume slider.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-left</entry>
+	      <entry>
+		The test sound for identifying the left speaker. A mono file with a voice saying "left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-right</entry>
+	      <entry>
+		The test sound for identifying the right speaker. A mono file with a voice saying "right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-front-left</entry>
+	      <entry>
+		The test sound for identifying the front-left speaker. A mono file with a voice saying "front left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-front-right</entry>
+	      <entry>
+		The test sound for identifying the front-right speaker. A mono file with a voice saying "front right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-front-center</entry>
+	      <entry>
+		The test sound for identifying the front-center speaker. A mono file with a voice saying "front center".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-rear-left</entry>
+	      <entry>
+		The test sound for identifying the front-left speaker. A mono file with a voice saying "rear left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-rear-right</entry>
+	      <entry>
+		The test sound for identifying the front-right speaker. A mono file with a voice saying "rear right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-rear-center</entry>
+	      <entry>
+		The test sound for identifying the front-center speaker. A mono file with a voice saying "rear center".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-lfe</entry>
+	      <entry>
+		The test sound for identifying the lfe/subwoofer speaker. A mono file with a voice saying "subwoofer", alternatively a low frequency noise.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-side-left</entry>
+	      <entry>
+		The test sound for identifying the side-left speaker. A mono file with a voice saying "side left".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-channel-side-right</entry>
+	      <entry>
+		The test sound for identifying the side-right speaker. A mono file with a voice saying "side right".
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>audio-test-signal</entry>
+	      <entry>
+		The test sound for testing audio.
+	      </entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </table>
+    </sect2>
+
+    <sect2 id="inputfeedback">
+      <title>Input Feedback</title>
+      <para>
+	Actions sounds are used as feedback for user input events,
+	such as mouse clicks, or key presses. In contrast to the
+	sounds listed as "Actions" these sounds contain much less
+	context information are are solely used to give the user
+	audible feedback to input events the user himself directly
+	caused.
+      </para>
+
+      <table id="inputfeedback-table">
+	<title>Standard Input Feedback Sounds</title>
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Name</entry>
+	      <entry>Description</entry>
+	    </row>
+	  </thead>
+	  <tbody>
 	    <row>
 	      <entry>window-close</entry>
 	      <entry>
@@ -574,18 +776,6 @@ usage.
 	      <entry>window-inactive-click</entry>
 	      <entry>
 		The sound used when the user clicks on an inactive window.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>window-attention-active</entry>
-	      <entry>
-		An active/visible window demands attention.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>window-attention-inactive</entry>
-	      <entry>
-		An inactive/invisible window demands attention.
 	      </entry>
 	    </row>
 	    <row>
@@ -636,16 +826,52 @@ usage.
 		The sound used when a notebook tab is changed.
 	      </entry>
 	    </row>
-	    <row>
-	      <entry>bell-terminal</entry>
+            <row>
+              <entry>scroll-up</entry>
 	      <entry>
-		The sound to use as a terminal bell.
+                Some window was scrolled up.
 	      </entry>
 	    </row>
-	    <row>
-	      <entry>bell-window-system</entry>
+            <row>
+              <entry>scroll-down</entry>
 	      <entry>
-		The sound to use as a generic bell for X11 or other window systems.
+                Some window was scrolled down.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-left</entry>
+	      <entry>
+                Some window was scrolled left.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-right</entry>
+	      <entry>
+                Some window was scrolled right.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-up-end</entry>
+	      <entry>
+                Some window was scrolled up and reached the end of the scrollbar.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-down-end</entry>
+	      <entry>
+                Some window was scrolled down and reached the end of the scrollbar.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-left-end</entry>
+	      <entry>
+                Some window was scrolled left and reached the end of the scrollbar.
+	      </entry>
+	    </row>
+            <row>
+              <entry>scroll-right-end</entry>
+	      <entry>
+                Some window was scrolled right and reached the end of the scrollbar.
 	      </entry>
 	    </row>
 	    <row>
@@ -678,31 +904,6 @@ usage.
 	      <entry>
 		The sound used when a file/item drag is not accepted by a window,
 		such as a folder or IM conversation.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>trash-empty</entry>
-	      <entry>
-		The sound used when the user empties the trash.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>item-deleted</entry>
-	      <entry>
-		The sound used when a item is deleted.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>item-selected</entry>
-	      <entry>
-		The sound used when an item is selected.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>file-trash</entry>
-	      <entry>
-		The sound used when a file or folder is sent to the
-		trash.
 	      </entry>
 	    </row>
 	    <row>
@@ -790,183 +991,16 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
-	      <entry>camera-shutter</entry>
+	      <entry>item-selected</entry>
 	      <entry>
-		A photo has been shot.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>camera-focus</entry>
-	      <entry>
-		A camera has the focus.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>screen-capture</entry>
-	      <entry>
-		A screenshot was made.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>count-down</entry>
-	      <entry>
-		A countdown (e.g. for a photo shooting) sound that is repeated each second.
-	      </entry>
-	    </row>
-            <row>
-              <entry>completion-sucess</entry>
-	      <entry>
-                A text completion was attempted and was successful.
-	      </entry>
-	    </row>
-            <row>
-              <entry>completion-fail</entry>
-	      <entry>
-                A text completion was attempted and was not successful.
-	      </entry>
-	    </row>
-            <row>
-              <entry>completion-partial</entry>
-	      <entry>
-                A text completion was attempted and was partially successful.
-	      </entry>
-	    </row>
-            <row>
-              <entry>completion-rotation</entry>
-	      <entry>
-                A text completion was attempted and the list of available options reached the end and completion started from the beginning.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-up</entry>
-	      <entry>
-                Some window was scrolled up.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-down</entry>
-	      <entry>
-                Some window was scrolled down.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-left</entry>
-	      <entry>
-                Some window was scrolled left.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-right</entry>
-	      <entry>
-                Some window was scrolled right.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-up-end</entry>
-	      <entry>
-                Some window was scrolled up and reached the end of the scrollbar.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-down-end</entry>
-	      <entry>
-                Some window was scrolled down and reached the end of the scrollbar.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-left-end</entry>
-	      <entry>
-                Some window was scrolled left and reached the end of the scrollbar.
-	      </entry>
-	    </row>
-            <row>
-              <entry>scroll-right-end</entry>
-	      <entry>
-                Some window was scrolled right and reached the end of the scrollbar.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-volume-change</entry>
-	      <entry>
-		The test sound that is used to make volume changes noticeable by the user when he uses a volume slider.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-left</entry>
-	      <entry>
-		The test sound for identifying the left speaker. A mono file with a voice saying "left".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-right</entry>
-	      <entry>
-		The test sound for identifying the right speaker. A mono file with a voice saying "right".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-front-left</entry>
-	      <entry>
-		The test sound for identifying the front-left speaker. A mono file with a voice saying "front left".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-front-right</entry>
-	      <entry>
-		The test sound for identifying the front-right speaker. A mono file with a voice saying "front right".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-front-center</entry>
-	      <entry>
-		The test sound for identifying the front-center speaker. A mono file with a voice saying "front center".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-rear-left</entry>
-	      <entry>
-		The test sound for identifying the front-left speaker. A mono file with a voice saying "rear left".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-rear-right</entry>
-	      <entry>
-		The test sound for identifying the front-right speaker. A mono file with a voice saying "rear right".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-rear-center</entry>
-	      <entry>
-		The test sound for identifying the front-center speaker. A mono file with a voice saying "rear center".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-lfe</entry>
-	      <entry>
-		The test sound for identifying the lfe/subwoofer speaker. A mono file with a voice saying "subwoofer", alternatively a low frequency noise.
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-side-left</entry>
-	      <entry>
-		The test sound for identifying the side-left speaker. A mono file with a voice saying "side left".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-channel-side-right</entry>
-	      <entry>
-		The test sound for identifying the side-right speaker. A mono file with a voice saying "side right".
-	      </entry>
-	    </row>
-	    <row>
-	      <entry>audio-test-signal</entry>
-	      <entry>
-		The test sound for testing audio.
+		The sound used when an item is selected.
 	      </entry>
 	    </row>
 	  </tbody>
 	</tgroup>
       </table>
     </sect2>
+
 
     <sect2 id="games">
       <title>Game</title>

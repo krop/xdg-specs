@@ -1,7 +1,7 @@
 DOCS = sound-naming-spec.html sound-theme-spec.html
 
 %.html: %.xml
-	xsltproc /usr/share/sgml/docbook/xsl-stylesheets/xhtml/docbook.xsl $< > $@
+	xsltproc http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl $< > $@
 
 all: $(DOCS)
 

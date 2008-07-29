@@ -611,6 +611,12 @@ DisplayName[fr]=Message urgent dans Evolution
     whatever sound you have in the freedesktop theme so that all your
     application can at least produce some sounds in all themes.
     </para>
+    <para>
+    After installing/updating a sound in a theme directory, make sure
+    to update the mtime of the theme directory itself (i.e. touch
+    $XDG_DATA_DIRS/sounds/freedesktop or similar), so that caches can
+    be kept up-to-date.
+    </para>
   </sect1>
 
   <sect1 id="implementation_notes">
@@ -623,13 +629,14 @@ DisplayName[fr]=Message urgent dans Evolution
     information.
     </para>
     <para>
-    This caching can make it impossible for users to add sounds without
-    having to restart applications. In order to handle this, any
-    implementation that does caching is required to look at the mtime
-    of the toplevel sound directories when doing a cache lookup, unless
-    it already did so less than 5 seconds ago. This means that any
-    sound editor or theme installation program need only to change the
-    mtime of the the toplevel directory where it changed the theme to
+    This caching can make it impossible for users to add sounds
+    without having to restart applications. In order to handle this,
+    any implementation that does caching is required to look at the
+    mtime of the toplevel sound theme directories when doing a cache
+    lookup, unless it already did so less than 5 seconds ago. This
+    means that any sound editor or theme installation program may
+    change the mtime of the the toplevel theme directory (such as
+    $XDG_DATA_DIRS/sounds/freedesktop) where it changed the theme to
     make sure that the new sounds will eventually get used.
     </para>
   </sect1>
@@ -644,6 +651,18 @@ DisplayName[fr]=Message urgent dans Evolution
 
   <appendix id="changes">
     <title>Change history</title>
+    <formalpara>
+      <title>Version 0.4, 29 July 2008, Lennart Poettering</title>
+      <para>
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      Document that every time a theme is updated to changed the directory needs to be touched.
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
     <formalpara>
       <title>Version 0.3, 25 July 2008, Lennart Poettering</title>
       <para>

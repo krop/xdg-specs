@@ -130,7 +130,9 @@
     In order to have a place for third party applications to install
     their sounds there should always exist a theme called
     "freedesktop". The data for the freedesktop theme is available for
-    download at: http://www.freedesktop.org/software/sound-theme/.
+    download
+    at: <ulink url="http://www.freedesktop.org/software/sound-theme/"><citetitle>freedesktop.org
+    sound theme specification page</citetitle></ulink>.
     Implementations are required to look in the "freedesktop" theme if
     a sound was not found in the current theme.
     </para>
@@ -160,6 +162,7 @@
     respectively (in lower case). It is not recommended to use ".ogg"
     extension, but it is also supported for legacy reasons.
     </para>
+    <para>
     Besides the sound files, there may be an additional file with
     extra sound data for each file. It should have the same basename
     as the sound file, with the extension ".sound". e.g. if the sound
@@ -181,7 +184,8 @@
     The sound samples must be normalized with a suitable average
     replay level, in order to be properly mixed down. For more
     informations, please read
-    http://replaygain.hydrogenaudio.org/calculationg_rg.html and
+    <ulink url="http://replaygain.hydrogenaudio.org/calculating_rg.html"><citetitle>Replay
+    Gain Calculation from hydrogenaudio.org</citetitle></ulink> and
     check that your volume level is reasonable.
     </para>
     <para>
@@ -662,7 +666,9 @@ DisplayName[fr]=Message urgent dans Evolution
 	  <listitem>
 	    <para>
 	      Deprecate usage of ".ogg" extension in favor of ".oga"
-	      (according to http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions)
+	      (according
+	      to <ulink url="http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions"><citetitle>MIME
+	      Types and File Extensions from xiph.org</citetitle></ulink>)
 	    </para>
 	  </listitem>
 	</itemizedlist>

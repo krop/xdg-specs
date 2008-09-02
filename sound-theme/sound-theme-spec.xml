@@ -93,8 +93,8 @@
 	<listitem>
 	  <para>
           The mandatory supported sound file formats are WAV/PCM
-          8-48kHz, 8/16bits, and OGG/Vorbis. WAV at 48kHz/Stereo is
-          the recommended uncompressed format, and OGG/Vorbis is the
+          8-48kHz, 8/16bits, and OGG/Vorbis I. WAV at 48kHz/Stereo is
+          the recommended uncompressed format, and OGG/Vorbis I is the
           recommended compressed format.  The sample must be
           normalized, in order to be mixed down nicely with a suitable
           average replay level.
@@ -156,24 +156,26 @@
     </para>
     <para>
     The sounds files must be one of the types: WAV/PCM 8-48kHz, 8/16
-    bits or OGG/Vorbis.  The extension must be ".wav", or ".ogg"
-    respectively (lower case). In addition to the sound files there may
-    be an additional file with extra sound data for each file. It
-    should have the same basename as the sound file, with the
-    extension ".sound". e.g. if the sound file is called
-    "system-shutdown.wav" the corresponding file would be named
-    "system-shutdown.sound".
+    bits or OGG/Vorbis I.  The extension must be ".wav", or ".oga"
+    respectively (in lower case). It is not recommended to use ".ogg"
+    extension, but it is also supported for legacy reasons.
+    </para>
+    Besides the sound files, there may be an additional file with
+    extra sound data for each file. It should have the same basename
+    as the sound file, with the extension ".sound". e.g. if the sound
+    file is called "system-shutdown.wav" the corresponding file would
+    be named "system-shutdown.sound".
     </para>
     <para>
-    An additional pseudo file format ".disabled" is supported for
-    disabling sounds in a theme that inherits from another theme. If
-    the sound lookup algorithms detects a file with the suffix
-    ".disabled" it shall immediately terminate the lookup logic and
-    consider the sound not available. All files with ".disabled"
-    suffix should be of length zero.
+    Finally, a pseudo file format ".disabled" is used for disabling
+    sounds in a theme that inherits from another theme. If the sound
+    lookup algorithms detects a file with the suffix ".disabled" it
+    shall immediately terminate the lookup logic and consider the
+    sound not available. All files with ".disabled" suffix should be
+    of length zero.
     </para>
     <para>
-    To save disk space Vorbis encoded sound files are recommended.
+    To save disk space Vorbis I encoded sound files are recommended.
     </para>
     <para>
     The sound samples must be normalized with a suitable average
@@ -453,7 +455,9 @@
     profile.
     </para>
     <para>
-    The lookup algorithm should check for ".disabled" files first, followed by ".ogg" and finally for ".wav".
+    The lookup algorithm should check for ".disabled" files first,
+    followed by ".oga" (then ".ogg", although this might be removed
+    later) and finally for ".wav".
     </para>
     <para>
     Configuration programs that allow limited user manipulation of the
@@ -508,7 +512,7 @@ LookupSound (requestedname, requestedlocale, requestedoutputprofile, requestedth
                                   truncatesuffix(requestedlocale, "_"),
                                   "C",
                                   "") {
-                for extension in ("disabled", "wav", "ogg") {
+                for extension in ("disabled", "oga", "ogg", "wav") {
 	          filename = directory/theme/subdir/locale/name.extension
                   if exist filename
                     return filename
@@ -560,11 +564,11 @@ directory could look like this:
 
 <programlisting>
 birch/index.theme
-birch/stereo/evolution-urgent-message.ogg
+birch/stereo/evolution-urgent-message.oga
 birch/stereo/evolution-urgent-message.wav
-birch/stereo/fr/evolution-urgent-message.ogg
+birch/stereo/fr/evolution-urgent-message.oga
 birch/stereo/evolution-urgent-message.sound
-birch/5.1/evolution-urgent-message.ogg
+birch/5.1/evolution-urgent-message.oga
 </programlisting>
 
 Where birch/stereo/evolution-urgent-message.sound contains:
@@ -579,7 +583,7 @@ DisplayName[fr]=Message urgent dans Evolution
     <para>
     In this example a lookup of "evolution-urgent-message", with a 5.1
     system preference and no localization, would get the
-    "birch/5.1/evolution-urgent-message.ogg" sound file.
+    "birch/5.1/evolution-urgent-message.oga" sound file.
     </para>
 
   </sect1>
@@ -651,6 +655,19 @@ DisplayName[fr]=Message urgent dans Evolution
 
   <appendix id="changes">
     <title>Change history</title>
+    <formalpara>
+      <title>Version 0.5, 2 September 2008, Marc-Andre Lureau</title>
+      <para>
+	<itemizedlist>
+	  <listitem>
+	    <para>
+	      Deprecate usage of ".ogg" extension in favor of ".oga"
+	      (according to http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions)
+	    </para>
+	  </listitem>
+	</itemizedlist>
+      </para>
+    </formalpara>
     <formalpara>
       <title>Version 0.4, 29 July 2008, Lennart Poettering</title>
       <para>

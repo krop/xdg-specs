@@ -244,6 +244,12 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>suspend-error</entry>
+	      <entry>
+		The machine failed to suspend.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>software-update-urgent</entry>
 	      <entry>
 		The sound used when an urgent update is available
@@ -486,6 +492,18 @@ usage.
 	      <entry>power-unplug</entry>
 	      <entry>
 		The power cable has been unplugged.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>suspend-start</entry>
+	      <entry>
+		The machine is about to suspend.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>suspend-resume</entry>
+	      <entry>
+		The machine has returned from suspended state.
 	      </entry>
 	    </row>
 	    <row>

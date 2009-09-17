@@ -304,7 +304,19 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>complete-media-burn-test</entry>
+	      <entry>
+		The sound used when an optical medium completed a dummy burn run.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>complete-media-rip</entry>
+	      <entry>
+		The sound used when an optical medium completed ripping.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>complete-media-format</entry>
 	      <entry>
 		The sound used when an optical medium completed ripping.
 	      </entry>
@@ -730,6 +742,16 @@ usage.
 	      <entry>audio-test-signal</entry>
 	      <entry>
 		The test sound for testing audio.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>theme-demo</entry>
+	      <entry>
+                A sound that should be played for demoing this
+                theme. Usually this should just be an alias for a very
+                representative sound (such as desktop-login) of a theme that would work nicely
+                as a demo sound for a theme in the theme selector
+                dialog.
 	      </entry>
 	    </row>
 	  </tbody>

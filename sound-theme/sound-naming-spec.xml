@@ -5,8 +5,8 @@
 <article id="index">
   <articleinfo>
     <title>Sound Naming Specification</title>
-    <releaseinfo>Version 0.2</releaseinfo>
-    <date>4 June 2008</date>
+    <releaseinfo>Post-0.3 Snapshot</releaseinfo>
+    <date>2009</date>
     <authorgroup>
       <author>
 	<firstname>Marc-Andre</firstname>
@@ -312,13 +312,13 @@ usage.
 	    <row>
 	      <entry>complete-media-rip</entry>
 	      <entry>
-		The sound used when an optical medium completed ripping.
+		The sound used when an (optical) medium completed ripping.
 	      </entry>
 	    </row>
 	    <row>
 	      <entry>complete-media-format</entry>
 	      <entry>
-		The sound used when an optical medium completed ripping.
+		The sound used when a disk/medium completed formatting/blanking.
 	      </entry>
 	    </row>
 	    <row>
@@ -483,9 +483,33 @@ usage.
 	      </entry>
 	    </row>
 	    <row>
+	      <entry>device-added-audio</entry>
+	      <entry>
+		The sound used when an audio device has become available to the desktop, i.e. due to USB plugging.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>device-added-media</entry>
+	      <entry>
+		The sound used when a disk/medium has become available to the desktop, i.e. due to USB plugging.
+	      </entry>
+	    </row>
+	    <row>
 	      <entry>device-removed</entry>
 	      <entry>
 		The sound used when a device has become unavailable to the desktop, i.e. due to USB unplug.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>device-removed-media</entry>
+	      <entry>
+		The sound used when a disk/medium has become unavailable to the desktop, i.e. due to USB unplug.
+	      </entry>
+	    </row>
+	    <row>
+	      <entry>device-removed-audio</entry>
+	      <entry>
+		The sound used when an audio device has become unavailable to the desktop, i.e. due to USB unplug.
 	      </entry>
 	    </row>
 	    <row>

@@ -1,0 +1,500 @@
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass docbook
+\use_default_options false
+\language english
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Free Media Player Specifications
+\end_layout
+
+\begin_layout Date
+10/14/2009
+\end_layout
+
+\begin_layout Author
+\begin_inset Flex Element:Firstname
+status collapsed
+
+\begin_layout Plain Layout
+Jeff
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex Element:Surname
+status collapsed
+
+\begin_layout Plain Layout
+Mitchell
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+This specification describes various metadata and behavioral items intended
+ to reduce complexity and enhance functionality for users of free music
+ and media players.
+ It does this by proposing standards for common functionality needs where
+ none currently exist, and doing so in a way that is easily adoptable cross-play
+er and cross-format, when applicable.
+\end_layout
+
+\begin_layout Section
+Metadata Tags
+\end_layout
+
+\begin_layout Standard
+The metadata tag ideas evolved from Quod Libet's VorbisComments suggestions
+ at 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://code.google.com/p/quodlibet/wiki/Specs_VorbisComments
+\end_layout
+
+\end_inset
+
+, however this attempts to not only address ambiguities and incompatibilities
+ with the specification at that URL, but also to define how this functionality
+ should be applied cross-format.
+ It is intended that as usable ways of inserting the metadata described
+ become available for formats not currently specified, that this document
+ will be updated to meet those needs.
+\end_layout
+
+\begin_layout Standard
+All newly-specified tags carry an identifier 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_
+\begin_inset Quotes erd
+\end_inset
+
+ to tie the tags to this specification.
+ The reason is simple.
+ Since the official metadata specifications either fail to define or define
+ unusable tags, these value are only official to the extent that this specificat
+ion is adopted.
+ Without an identifier to give context to the meanings and limitations of
+ the values, there can be no certainty that a noncompliant media player
+ will use the same tag names in an incompatible fashion, whether intentionally
+ or not, nor any way to determine whether a seemingly compatible use of
+ the tags by a noncompliant player actually results in user-intended behavior.
+ As these identifiers are read and modified only by players and advanced
+ users, it is not expected to be a hindrance to adoption or to cause undue
+ burden on either.
+\end_layout
+
+\begin_layout Subsection
+Song Rating Tags
+\end_layout
+
+\begin_layout Standard
+Most media players support the notion of rating content, however standards
+ for storing ratings in files do not exist.
+ Some file metadata formats completely lack rating fields; others require
+ personal information to be used as an identifier (such as a user's email
+ address) or an organizational identifier (which reduces cross-player compatibil
+ity).
+ The goal therefore is simple: to avoid any personal identifying information
+ but avoid tying the rating to a specific player.
+\end_layout
+
+\begin_layout Standard
+There are benefits to both integers and floating point values for ratings.
+ Users are more naturally able to understand integer ratings; float values
+ are useful in many algorithmic rating situations.
+ Therefore, both are defined in this specification.
+ It is expected that any user-defined rating value is stored in the integer
+ rating tag, with the floating-point tag reserved for automatic rating algorithm
+s and special-purpose needs.
+ As a result, while all players should implement the integer rating tag,
+ only players needing or able to use such functionality need implement the
+ float rating tag.
+\end_layout
+
+\begin_layout Standard
+If both tags exist when a file is being imported or read into a player's
+ library, the integer rating takes precedence.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined for both integer and float
+ ratings:
+\end_layout
+
+\begin_layout Itemize
+All identifers and values are strings in UTF-8 encoding.
+\end_layout
+
+\begin_layout Itemize
+A file that has no such tag is to be considered unrated for that purpose
+ (user or algorithm).
+ Removing ratings from a track in the media player should cause the rating
+ tag to be removed as well.
+\end_layout
+
+\begin_layout Itemize
+The identifier for the integer rating is 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Rating
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The identifier for the float rating is 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_FloatRating
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined for the integer rating:
+\end_layout
+
+\begin_layout Itemize
+Ratings are integers between 0 and 100, inclusive.
+ Zero is the lowest possible rating; 100 is the highest possible rating.
+\end_layout
+
+\begin_layout Itemize
+The 0-100 value range should be mapped appropriately into the application.
+ For instance, for an application that allows one to five stars, with no
+ stars for unrated tracks, one star corresponds to 20, three stars to 60,
+ and so on.
+ Unrated tracks would simply remove the tag, and would not set a value of
+ zero.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined for the float rating:
+\end_layout
+
+\begin_layout Itemize
+Ratings are a float value between 0.0 and 1.0, inclusive.
+ 0.0 is the lowest possible rating; 1.0 is the highest possible rating.
+\end_layout
+
+\begin_layout Itemize
+Float values should be limited to six decimal places.
+\end_layout
+
+\begin_layout Subsubsection
+MP3
+\end_layout
+
+\begin_layout Standard
+MP3 ratings should be stored in a TXXX frame with the Description set to
+ the specified identifier and the Text set to the string value of the float
+ rating.
+\end_layout
+
+\begin_layout Subsubsection
+VorbisComments
+\end_layout
+
+\begin_layout Standard
+Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) should
+ use the specified identifier as the Key and the string value of the float
+ rating as the Value.
+\end_layout
+
+\begin_layout Subsection
+Playcount Tags
+\end_layout
+
+\begin_layout Standard
+As with ratings, there are benefits to both integer and floating point playcount
+ tags.
+ While a user can easily understand the notion of an integer-based playcount
+ of a file, interesting data can be displayed to the user by keeping track
+ of how much of a file a user consumes each time it is played, in order
+ to give precise calculations of data such as exact amount of time spent
+ listening to a file.
+ Therefore, like ratings, both integer and float values are defined.
+\end_layout
+
+\begin_layout Standard
+If both tags exist when a file is being imported or read into a player's
+ library, the integer playcount takes precedence.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined for both integer and float
+ playcounts:
+\end_layout
+
+\begin_layout Itemize
+All identifers and values are strings in UTF-8 encoding.
+\end_layout
+
+\begin_layout Itemize
+A file that has no such tag is to be considered unplayed for that purpose
+ (user or algorithm).
+ Removing playcount information from a track in the media player should
+ cause the playcount tag to be removed as well.
+\end_layout
+
+\begin_layout Itemize
+The identifier for the integer rating is 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Playcount
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The identifier for the float rating is 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_FloatPlaycount
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined for the integer playcount:
+\end_layout
+
+\begin_layout Itemize
+The miminum value is zero, where zero is an acceptable value but indicates
+ that a track has not been played (the same as if the track had no integer
+ playcount tag).
+\end_layout
+
+\begin_layout Itemize
+The maximum value is the largest value able to be stored in a 32-bit unsigned
+ integer, uint32_t: 4,294,967,295.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined for the float playcount:
+\end_layout
+
+\begin_layout Itemize
+Playcounts are a float value with a minimum of 0.0, where 0.0 is an acceptable
+ value but indicates that a track has not been played (the same as if the
+ track had no float playcount tag).
+\end_layout
+
+\begin_layout Itemize
+Float values should be limited to six decimal places.
+\end_layout
+
+\begin_layout Itemize
+The maximum value is 0.000001 less than the largest value able to be stored
+ in a 32-bit unsigned integer: 4,294,967,294.999999.
+ This is so that the float playcount value can be rounded to an integer
+ equivalent, if necessary.
+\end_layout
+
+\begin_layout Subsubsection
+MP3
+\end_layout
+
+\begin_layout Standard
+MP3 playcounts should be stored in a TXXX frame with the Description set
+ to the specified identifier and the Text set to the string value of the
+ integer playcount.
+\end_layout
+
+\begin_layout Subsubsection
+VorbisComments
+\end_layout
+
+\begin_layout Standard
+Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) should
+ use the specified identifier as the Key and the string value of the float
+ playcount as the Value.
+\end_layout
+
+\begin_layout Subsection
+Performer Roles
+\end_layout
+
+\begin_layout Standard
+Performer roles allow you to describe the performers in a track.
+ Current support for these roles in tag formats is sporadic or difficult
+ to parse.
+ As many of these tags as desired can be specified, to include all relevant
+ performer information.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined:
+\end_layout
+
+\begin_layout Itemize
+All identifiers and values are of strings in UTF-8 encoding.
+\end_layout
+
+\begin_layout Itemize
+The identifier used is 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Performer:X
+\begin_inset Quotes erd
+\end_inset
+
+, where X is the user-defined role (
+\begin_inset Quotes eld
+\end_inset
+
+Guitar
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Guitar (Backup)
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Vocals
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+The value of each identifier is the role performer's name.
+\end_layout
+
+\begin_layout Subsubsection
+MP3
+\end_layout
+
+\begin_layout Standard
+MP3 performer role information should be stored in a TXXX frame with the
+ Description set to the specified identifier/role and the Text set to the
+ role performer.
+\end_layout
+
+\begin_layout Subsubsection
+VorbisComments
+\end_layout
+
+\begin_layout Standard
+Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) should
+ use the specified identifier/role as the Key and the role performer as
+ the Value.
+\end_layout
+
+\begin_layout Section
+Filesystem Directives
+\end_layout
+
+\begin_layout Standard
+Common functionality for many media players is the notion of a library or
+ collection as a store of media objects that can be played.
+ Generally, users specify or drag-n-drop directories or files that they
+ wish to have added to this store.
+ These subsections contain files that can be present on a user's filesystem
+ to allow for more fine-grained control over import.
+\end_layout
+
+\begin_layout Subsection
+Ignore Directive
+\end_layout
+
+\begin_layout Standard
+When a directory is being parsed, it should first be checked for a file
+ with the name 
+\begin_inset Quotes eld
+\end_inset
+
+fmps_ignore
+\begin_inset Quotes erd
+\end_inset
+
+.
+ If present and empty, the parser should recursively ignore that directory's
+ files and subdirectories, if recursive parsing was already enabled.
+ If the file is not empty, it may contain control statements, one statement
+ per line, in UTF-8 encoding, as described in the following subsubsections.
+\end_layout
+
+\begin_layout Subsubsection
+nonrecursive
+\end_layout
+
+\begin_layout Standard
+If the file contains a line with the text 
+\begin_inset Quotes eld
+\end_inset
+
+nonrecursive
+\begin_inset Quotes erd
+\end_inset
+
+, the parser should interpret this to mean that the current directory's
+ files should be ignored but that it should still scan subdirectories, if
+ recusive parsing was already enabled.
+\end_layout
+
+\end_body
+\end_document

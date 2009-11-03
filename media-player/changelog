@@ -1,3 +1,13 @@
+Second Draft
+
+November 3, 2009:
+    * Removed integer/float. Everything uses float now.
+    * Clarify many things, including calculation of playcount.
+    * Reduced complexity of ignore files. Now they are just checked for
+      existence, not contents.
+
+First Draft
+
 October 14, 2009:
     * Initial proposed draft.
 

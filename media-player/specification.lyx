@@ -46,10 +46,11 @@ Free Media Player Specifications
 \end_layout
 
 \begin_layout Date
-10/14/2009
+November 3rd, 2009
 \end_layout
 
 \begin_layout Author
+Copyright 2009 by 
 \begin_inset Flex Element:Firstname
 status collapsed
 
@@ -59,7 +60,7 @@ Jeff
 
 \end_inset
 
-
+ 
 \begin_inset Flex Element:Surname
 status collapsed
 
@@ -70,6 +71,10 @@ Mitchell
 \end_inset
 
 
+\end_layout
+
+\begin_layout Author
+To be released under an appropriate license when one is selected
 \end_layout
 
 \begin_layout Abstract
@@ -121,10 +126,11 @@ FMPS_
  unusable tags, these value are only official to the extent that this specificat
 ion is adopted.
  Without an identifier to give context to the meanings and limitations of
- the values, there can be no certainty that a noncompliant media player
+ the values, there is a real possibility that a noncompliant media player
  will use the same tag names in an incompatible fashion, whether intentionally
- or not, nor any way to determine whether a seemingly compatible use of
- the tags by a noncompliant player actually results in user-intended behavior.
+ or not, and there is no way to determine whether a seemingly compatible
+ use of the tags by a noncompliant player actually results in user-intended
+ behavior.
  As these identifiers are read and modified only by players and advanced
  users, it is not expected to be a hindrance to adoption or to cause undue
  burden on either.
@@ -146,26 +152,33 @@ ity).
 \end_layout
 
 \begin_layout Standard
-There are benefits to both integers and floating point values for ratings.
- Users are more naturally able to understand integer ratings; float values
- are useful in many algorithmic rating situations.
- Therefore, both are defined in this specification.
- It is expected that any user-defined rating value is stored in the integer
- rating tag, with the floating-point tag reserved for automatic rating algorithm
-s and special-purpose needs.
- As a result, while all players should implement the integer rating tag,
- only players needing or able to use such functionality need implement the
- float rating tag.
+Two types of ratings are defined: user ratings, and automatic (or algorithmic)
+ ratings.
+\end_layout
+
+\begin_layout Standard
+Although users are more naturally able to understand integer ratings, only
+ advanced users will interact with these tags directly; otherwise they will
+ be presented to the user via a conforming application.
+ Meanwhile, there are tangible benefits to storing ratings as floating-point
+ numbers, mainly due to the fact that the increased precision allows for
+ a number of interesting and useful algorithmic rating schemes to be used.
+ However, using both integer and floating-point values unnecessarily increases
+ complexity of both this spec and application code.
+ Therefore, both values are stored as floating-point numbers.
+ Conversion to and from these and an integer scale presented to the user
+ in an application is easily accomplished in the application's code if it
+ is so desired.
 \end_layout
 
 \begin_layout Standard
 If both tags exist when a file is being imported or read into a player's
- library, the integer rating takes precedence.
+ library, the user rating takes precedence, meaning that if only a single
+ value is being shown to the user it should be the user-defined value.
 \end_layout
 
 \begin_layout Standard
-For all tag formats, the following is defined for both integer and float
- ratings:
+For all tag formats, the following is defined:
 \end_layout
 
 \begin_layout Itemize
@@ -175,51 +188,33 @@ All identifers and values are strings in UTF-8 encoding.
 \begin_layout Itemize
 A file that has no such tag is to be considered unrated for that purpose
  (user or algorithm).
- Removing ratings from a track in the media player should cause the rating
- tag to be removed as well.
 \end_layout
 
 \begin_layout Itemize
-The identifier for the integer rating is 
+If a user removes ratings from a track in the media player, the user rating
+ tag should be removed as well.
+ The algorithmic rating tag does not have to be removed in this instance.
+\end_layout
+
+\begin_layout Itemize
+The identifier for the user rating is 
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Rating
+FMPS_UserRating
 \begin_inset Quotes erd
 \end_inset
 
 .
- The identifier for the float rating is 
+ The identifier for the algorithmic rating is 
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_FloatRating
+FMPS_AutoRating
 \begin_inset Quotes erd
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-For all tag formats, the following is defined for the integer rating:
-\end_layout
-
-\begin_layout Itemize
-Ratings are integers between 0 and 100, inclusive.
- Zero is the lowest possible rating; 100 is the highest possible rating.
-\end_layout
-
-\begin_layout Itemize
-The 0-100 value range should be mapped appropriately into the application.
- For instance, for an application that allows one to five stars, with no
- stars for unrated tracks, one star corresponds to 20, three stars to 60,
- and so on.
- Unrated tracks would simply remove the tag, and would not set a value of
- zero.
-\end_layout
-
-\begin_layout Standard
-For all tag formats, the following is defined for the float rating:
 \end_layout
 
 \begin_layout Itemize
@@ -228,7 +223,32 @@ Ratings are a float value between 0.0 and 1.0, inclusive.
 \end_layout
 
 \begin_layout Itemize
+A period/full stop is used to separate the digits from the fractional part
+ of the float.
+\end_layout
+
+\begin_layout Itemize
 Float values should be limited to six decimal places.
+\end_layout
+
+\begin_layout Itemize
+Ratings should only be rounded when necessary, in order to increase cross-player
+ compatibility.
+\end_layout
+
+\begin_layout Standard
+A note on that last point: some players may only allow users to rate in
+ increments of whole numbers between 1 and 5; others 0 and 10; and so on.
+ However, players should try to ensure that the rating they display and
+ use for any purposes adheres to that saved in the tag when possible.
+ For instance, if a track has a rating of 0.9 and an application only shows
+ ratings using five star icons in full-star increments, this would be rounded
+ within the application to five stars.
+ However, the user may in fact have set the rating to 9/10 in another applicatio
+n.
+ If the rating was being shown numerically, ideally the application would
+ only round this number when absolutely necessary and display 4.5 instead
+ of 5, which would more accurately reflect the user's set rating.
 \end_layout
 
 \begin_layout Subsubsection
@@ -256,24 +276,23 @@ Playcount Tags
 \end_layout
 
 \begin_layout Standard
-As with ratings, there are benefits to both integer and floating point playcount
- tags.
- While a user can easily understand the notion of an integer-based playcount
- of a file, interesting data can be displayed to the user by keeping track
- of how much of a file a user consumes each time it is played, in order
- to give precise calculations of data such as exact amount of time spent
- listening to a file.
- Therefore, like ratings, both integer and float values are defined.
+As with ratings, there are both user and automatic playcount tags.
+ The user tag is intended to be used in the normal sense, tracking how many
+ times a song has been played, which is defined below.
+ The auto/algorithmic value can be used in an application-specific way to
+ do interesting things; for instance, to cumulatively track exact percentages
+ of tracks played, in order to display to the user the number of days/hous/minut
+es/seconds they have spent listening to a particular song.
+ 
 \end_layout
 
 \begin_layout Standard
-If both tags exist when a file is being imported or read into a player's
- library, the integer playcount takes precedence.
+As with ratings, if both tags exist when a file is being imported or read
+ into a player's library, the user playcount takes precedence for display.
 \end_layout
 
 \begin_layout Standard
-For all tag formats, the following is defined for both integer and float
- playcounts:
+For all tag formats, the following is defined:
 \end_layout
 
 \begin_layout Itemize
@@ -284,7 +303,8 @@ All identifers and values are strings in UTF-8 encoding.
 A file that has no such tag is to be considered unplayed for that purpose
  (user or algorithm).
  Removing playcount information from a track in the media player should
- cause the playcount tag to be removed as well.
+ cause the user playcount tag to be removed as well.
+ The algorithmic playcount tag does not have to be removed in this instance.
 \end_layout
 
 \begin_layout Itemize
@@ -292,7 +312,7 @@ The identifier for the integer rating is
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Playcount
+FMPS_UserPlaycount
 \begin_inset Quotes erd
 \end_inset
 
@@ -301,36 +321,33 @@ FMPS_Playcount
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_FloatPlaycount
+FMPS_AutoPlaycount
 \begin_inset Quotes erd
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Standard
-For all tag formats, the following is defined for the integer playcount:
+\begin_layout Itemize
+Playcounts are a float value with a minimum of 0 (or 0.0), where 0 is an
+ acceptable value but indicates that a track has not been played (the same
+ as if the track had no float playcount tag).
+ Integer values are acceptable, i.e.
+ it is not a requirement that the value contains a full stop/period.
 \end_layout
 
 \begin_layout Itemize
-The miminum value is zero, where zero is an acceptable value but indicates
- that a track has not been played (the same as if the track had no integer
- playcount tag).
+For the user playcount, playing a track (subject to the criteria below)
+ increases the user playcount value by 1.0.
+ For the algorithmic playcount, a track's length should be considered to
+ be worth 1.0; the user skipping parts of the track may decrease the value
+ below 1.0, and the user repeating parts of the track may increase this value
+ past 1.0.
 \end_layout
 
 \begin_layout Itemize
-The maximum value is the largest value able to be stored in a 32-bit unsigned
- integer, uint32_t: 4,294,967,295.
-\end_layout
-
-\begin_layout Standard
-For all tag formats, the following is defined for the float playcount:
-\end_layout
-
-\begin_layout Itemize
-Playcounts are a float value with a minimum of 0.0, where 0.0 is an acceptable
- value but indicates that a track has not been played (the same as if the
- track had no float playcount tag).
+A period/full stop is used to separate the digits and fractional portions
+ of the float.
 \end_layout
 
 \begin_layout Itemize
@@ -342,6 +359,31 @@ The maximum value is 0.000001 less than the largest value able to be stored
  in a 32-bit unsigned integer: 4,294,967,294.999999.
  This is so that the float playcount value can be rounded to an integer
  equivalent, if necessary.
+\end_layout
+
+\begin_layout Standard
+For the user playcount, a file is to be considered 
+\begin_inset Quotes eld
+\end_inset
+
+played
+\begin_inset Quotes erd
+\end_inset
+
+ if it meets the following criteria, inspired by Last.fm's scrobbling rules:
+\end_layout
+
+\begin_layout Itemize
+If the track is less than 30 seconds long, the entire song must be played.
+\end_layout
+
+\begin_layout Itemize
+If the track is more than 30 seconds long, at least fifty percent of the
+ file must be played, calculated via length of track.
+ For instance, if a track is one minute long, at least thirty seconds of
+ the track must have been played, although if the user skips backwards multiple
+ times and listens to the same ten seconds of the track three times in a
+ row, this may be considered a valid playcount.
 \end_layout
 
 \begin_layout Subsubsection
@@ -472,28 +514,7 @@ fmps_ignore
 \end_inset
 
 .
- If present and empty, the parser should recursively ignore that directory's
- files and subdirectories, if recursive parsing was already enabled.
- If the file is not empty, it may contain control statements, one statement
- per line, in UTF-8 encoding, as described in the following subsubsections.
-\end_layout
-
-\begin_layout Subsubsection
-nonrecursive
-\end_layout
-
-\begin_layout Standard
-If the file contains a line with the text 
-\begin_inset Quotes eld
-\end_inset
-
-nonrecursive
-\begin_inset Quotes erd
-\end_inset
-
-, the parser should interpret this to mean that the current directory's
- files should be ignored but that it should still scan subdirectories, if
- recusive parsing was already enabled.
+ If present, the parser should ignore that directory's files.
 \end_layout
 
 \end_body

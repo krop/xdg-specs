@@ -1,13 +1,23 @@
+Third Draft
+
+November 13, 2009:
+  * Clarified that full stops/periods must be used at all times for float
+    values.
+  * Moved tag sections up top and consolidated redundant information.
+  * Added WMA/APEv2/MP4 information.
+  * Implemented suggestions regarding naming of canonical and non-canonical
+    identifiers.
+
 Second Draft
 
 November 3, 2009:
-    * Removed integer/float. Everything uses float now.
-    * Clarify many things, including calculation of playcount.
-    * Reduced complexity of ignore files. Now they are just checked for
-      existence, not contents.
+  * Removed integer/float. Everything uses float now.
+  * Clarify many things, including calculation of playcount.
+  * Reduced complexity of ignore files. Now they are just checked for
+    existence, not contents.
 
 First Draft
 
 October 14, 2009:
-    * Initial proposed draft.
+  * Initial proposed draft.
 

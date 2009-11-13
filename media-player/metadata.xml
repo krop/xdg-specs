@@ -2,9 +2,9 @@
 <description>This specification describes various metadata and behavioral items intended to reduce complexity and enhance functionality for users of free music and media players. It does this by proposing standards for common functionality needs where none currently exist.</description>
 
 <versions>
-    <version name="0.1draft">
+    <version name="0.3draft">
         <description>Free Music Player Specifications</description>
-        <date>14-10-2009<date>
+        <date>13-11-2009<date>
         <current/>
     </version>
 </versions>
@@ -15,31 +15,31 @@
 
 <adopters>
     <organization name="Amarok" status="Participating">
-        <version name="Amarok" status="Participating" specversion="0.1draft"/>
+        <version name="Amarok" status="Participating" specversion="0.3draft"/>
     </organization>
 
     <organization name="Ampache" status="Participating">
-        <version name="Ampache" status="Participating" specversion="0.1draft"/>
+        <version name="Ampache" status="Participating" specversion="0.3draft"/>
     </organization>
 
     <organization name="Banshee" status="Participating">
-        <version name="Banshee" status="Participating" specversion="0.1draft"/>
+        <version name="Banshee" status="Participating" specversion="0.3draft"/>
     </organization>
 
     <organization name="Songbird" status="Participating">
-        <version name="Songbird" status="Participating" specversion="0.1draft"/>
+        <version name="Songbird" status="Participating" specversion="0.3draft"/>
     </organization>
 
     <organization name="VideoLAN" status="Participating">
-        <version name="VideoLAN" status="Participating" specversion="0.1draft"/>
+        <version name="VideoLAN" status="Participating" specversion="0.3draft"/>
     </organization>
 
     <organization name="XMMS2" status="Participating">
-        <version name="XMMS2" status="Participating" specversion="0.1draft"/>
+        <version name="XMMS2" status="Participating" specversion="0.3draft"/>
     </organization>
 
     <organization name="Youki" status="Participating">
-        <version name="Youki" status="Participating" specversion="0.1draft"/>
+        <version name="Youki" status="Participating" specversion="0.3draft"/>
     </organization>
 
 </adopters>

@@ -1,6 +1,6 @@
 Free Media Player Specifications
 
-November 3rd, 2009
+November 13th, 2009
 
 Copyright 2009 by Jeff Mitchell
 
@@ -17,7 +17,7 @@ cross-player and cross-format, when applicable.
 
 1 Metadata Tags
 
-The metadata tag ideas evolved from Quod Libet's VorbisComments 
+The metadata tag formats evolved from Quod Libet's VorbisComments 
 suggestions at http://code.google.com/p/quodlibet/wiki/Specs_VorbisComments
 , however this attempts to not only address ambiguities and 
 incompatibilities with the specification at that URL, but also to 
@@ -41,7 +41,67 @@ and modified only by players and advanced users, it is not
 expected to be a hindrance to adoption or to cause undue burden 
 on either.
 
-1.1 Song Rating Tags
+1.1 Common Data and Tag Information
+
+This section provides “up-front” information that is pertinent to 
+all tags described below, such as what encoding to use and which 
+tags to use in various formats.
+
+For all tag formats, the following is defined:
+
+• All identifers and values are strings in UTF-8 encoding.
+
+• A period/full stop is used to separate the digits in a float 
+  value from the fractional part of the float. All float values 
+  must include a period/full stop (1 is not acceptable; 1.0 is 
+  correct).
+
+• Float values should be limited to six decimal places.
+
+• Any spaces in identifiers should be represented using 
+  underscores ( _ ) instead, although this can be converted to 
+  spaces for display to the user.
+
+The following sections describe where the information should be 
+stored in specific tag formats.
+
+1.1.1 MP3
+
+MP3 values should be stored in a TXXX frame with the Description 
+set to the specified identifier and the Text set to the string 
+representation of the value. The Description should be in 
+CamelCase as specified in the following sections, e.g. 
+FMPS_Rating.
+
+1.1.2 VorbisComments
+
+Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) 
+should add a comment with the Key set to the specified identifier 
+and the Value set to the string representation of the value. The 
+Key should be in all upper-case, e.g. FMPS_RATING.
+
+1.1.3 APEv2
+
+Any file supporting APEv2 should add a comment with the Key set 
+to the specified identifier and the Value set to the string 
+representation of the value. The Key should be in all upper-case, 
+e.g. FMPS_RATING.
+
+1.1.4 MP4
+
+MP4 values should be stored at ----:com.apple.iTunes:Identifier 
+with the value a string representation of the tag's value. The 
+Identifier should be in CamelCase as specified in the following 
+sections, e.g. FMPS_Rating.
+
+1.1.5 Windows Media
+
+Windows Media values should be stored in the FMPS/Identifier 
+namespace with the value a string representation of the tag's 
+value. The Identifier should be in CamelCase as specified in the 
+following sections, e.g. FMPS_Rating.
+
+1.2 Song Rating Tags
 
 Most media players support the notion of rating content, however 
 standards for storing ratings in files do not exist. Some file 
@@ -52,8 +112,8 @@ reduces cross-player compatibility). The goal therefore is
 simple: to avoid any personal identifying information but avoid 
 tying the rating to a specific player.
 
-Two types of ratings are defined: user ratings, and automatic (or 
-algorithmic) ratings.
+Three types of ratings are currently defined: user ratings, 
+critic ratings, and automatic (or algorithmic) ratings.
 
 Although users are more naturally able to understand integer 
 ratings, only advanced users will interact with these tags 
@@ -69,14 +129,13 @@ and from these and an integer scale presented to the user in an
 application is easily accomplished in the application's code if 
 it is so desired.
 
-If both tags exist when a file is being imported or read into a 
-player's library, the user rating takes precedence, meaning that 
-if only a single value is being shown to the user it should be 
-the user-defined value.
+If a combination of rating tags exist when a file is being 
+imported or read into a player's library, the user rating is 
+considered canonical and takes precedence, meaning that if only a 
+single value is being shown to the user it should be the 
+user-defined value.
 
 For all tag formats, the following is defined:
-
-• All identifers and values are strings in UTF-8 encoding.
 
 • A file that has no such tag is to be considered unrated for 
   that purpose (user or algorithm).
@@ -85,17 +144,21 @@ For all tag formats, the following is defined:
   user rating tag should be removed as well. The algorithmic 
   rating tag does not have to be removed in this instance.
 
-• The identifier for the user rating is “FMPS_UserRating”. The 
-  identifier for the algorithmic rating is “FMPS_AutoRating”.
+• The identifier for the (canonical) user rating is “FMPS_Rating”
+  .
+
+• The identifier for critic ratings is “
+  FMPS_Rating_Critic_Identifier” where Identifier names either a 
+  publication/site (“Rolling_Stone”, “Metacritic”) or a person in 
+  Firstname=Lastname format (“Ralph=Gleason”).
+
+• The identifier for the algorithmic rating is “
+  FMPS_Rating_Algorithm_Identifier” where Identifier names an 
+  arbitrary algorithm name.
 
 • Ratings are a float value between 0.0 and 1.0, inclusive. 0.0 
   is the lowest possible rating; 1.0 is the highest possible 
   rating.
-
-• A period/full stop is used to separate the digits from the 
-  fractional part of the float.
-
-• Float values should be limited to six decimal places.
 
 • Ratings should only be rounded when necessary, in order to 
   increase cross-player compatibility.
@@ -113,24 +176,12 @@ being shown numerically, ideally the application would only round
 this number when absolutely necessary and display 4.5 instead of 
 5, which would more accurately reflect the user's set rating.
 
-1.1.1 MP3
-
-MP3 ratings should be stored in a TXXX frame with the Description 
-set to the specified identifier and the Text set to the string 
-value of the float rating.
-
-1.1.2 VorbisComments
-
-Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) 
-should use the specified identifier as the Key and the string 
-value of the float rating as the Value.
-
-1.2 Playcount Tags
+1.3 Playcount Tags
 
 As with ratings, there are both user and automatic playcount 
-tags. The user tag is intended to be used in the normal sense, 
-tracking how many times a song has been played, which is defined 
-below. The auto/algorithmic value can be used in an 
+tags. The user tag is canonical and intended to be used in the 
+normal sense, tracking how many times a song has been played (as 
+defined below). The auto/algorithmic value can be used in an 
 application-specific way to do interesting things; for instance, 
 to cumulatively track exact percentages of tracks played, in 
 order to display to the user the number of 
@@ -143,22 +194,24 @@ precedence for display.
 
 For all tag formats, the following is defined:
 
-• All identifers and values are strings in UTF-8 encoding.
-
 • A file that has no such tag is to be considered unplayed for 
   that purpose (user or algorithm). Removing playcount 
   information from a track in the media player should cause the 
   user playcount tag to be removed as well. The algorithmic 
   playcount tag does not have to be removed in this instance.
 
-• The identifier for the integer rating is “FMPS_UserPlaycount”. 
-  The identifier for the float rating is “FMPS_AutoPlaycount”.
+• The identifier for the (canonical) user playcount is “
+  FMPS_Playcount”.
 
-• Playcounts are a float value with a minimum of 0 (or 0.0), 
-  where 0 is an acceptable value but indicates that a track has 
-  not been played (the same as if the track had no float 
-  playcount tag). Integer values are acceptable, i.e. it is not a 
-  requirement that the value contains a full stop/period.
+• The identifier for an algorithmic rating is “
+  FMPS_Playcount_Algorithm_Identifier” where Identifier names an 
+  arbitrary algorithm name.
+
+• Playcounts are a float value with a minimum of 0.0, where 0.0 
+  is an acceptable value but indicates that a track has not been 
+  played (the same as if the track had no playcount tag). 
+  Playcounts (especially the user playcount) can be shown the 
+  user as integers but must always be stored as a float.
 
 • For the user playcount, playing a track (subject to the 
   criteria below) increases the user playcount value by 1.0. For 
@@ -167,19 +220,15 @@ For all tag formats, the following is defined:
   track may decrease the value below 1.0, and the user repeating 
   parts of the track may increase this value past 1.0.
 
-• A period/full stop is used to separate the digits and 
-  fractional portions of the float.
-
-• Float values should be limited to six decimal places.
-
 • The maximum value is 0.000001 less than the largest value able 
   to be stored in a 32-bit unsigned integer: 
   4,294,967,294.999999. This is so that the float playcount value 
   can be rounded to an integer equivalent, if necessary.
 
-For the user playcount, a file is to be considered “played” if it 
-meets the following criteria, inspired by Last.fm's scrobbling 
-rules:
+The user playcount isn't meant to be set by the user, but rather 
+to follow these rules that define user behavior. A file is to be 
+considered “played” if it meets the following criteria, inspired 
+by Last.fm's scrobbling rules:
 
 • If the track is less than 30 seconds long, the entire song must 
   be played.
@@ -192,19 +241,7 @@ rules:
   ten seconds of the track three times in a row, this may be 
   considered a valid playcount.
 
-1.2.1 MP3
-
-MP3 playcounts should be stored in a TXXX frame with the 
-Description set to the specified identifier and the Text set to 
-the string value of the integer playcount.
-
-1.2.2 VorbisComments
-
-Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) 
-should use the specified identifier as the Key and the string 
-value of the float playcount as the Value.
-
-1.3 Performer Roles
+1.4 Performer Roles
 
 Performer roles allow you to describe the performers in a track. 
 Current support for these roles in tag formats is sporadic or 
@@ -213,24 +250,10 @@ specified, to include all relevant performer information.
 
 For all tag formats, the following is defined:
 
-• All identifiers and values are of strings in UTF-8 encoding.
-
 • The identifier used is “FMPS_Performer:X”, where X is the 
   user-defined role (“Guitar”, “Guitar (Backup)”, “Vocals”).
 
 • The value of each identifier is the role performer's name.
-
-1.3.1 MP3
-
-MP3 performer role information should be stored in a TXXX frame 
-with the Description set to the specified identifier/role and the 
-Text set to the role performer.
-
-1.3.2 VorbisComments
-
-Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) 
-should use the specified identifier/role as the Key and the role 
-performer as the Value.
 
 2 Filesystem Directives
 

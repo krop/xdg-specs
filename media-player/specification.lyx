@@ -211,6 +211,27 @@ Although identifier case is specified for the different types of tags, it
  to the user.
 \end_layout
 
+\begin_layout Itemize
+Variable parts of identifiers should use equal signs (
+\begin_inset Quotes eld
+\end_inset
+
+=
+\begin_inset Quotes erd
+\end_inset
+
+) to denote spaces when the variable is a person's name, and underscores
+ (
+\begin_inset Quotes eld
+\end_inset
+
+_
+\begin_inset Quotes erd
+\end_inset
+
+) to denote spaces when the variable is the name of a publication or site.
+\end_layout
+
 \begin_layout Standard
 The following sections describe where the information should be stored in
  specific tag formats.
@@ -343,6 +364,32 @@ FMPS_Rating
 \end_inset
 
 .
+ This should be set whenever a user rates the track, regardless of whether
+ they are also using user-specific ratings as described below.
+\end_layout
+
+\begin_layout Itemize
+If a player supports the notion of multiple users (perhaps from discovery
+ of the current user from the operating system) and wishes to allow the
+ users to keep separate ratings, the identifier should be in the form 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Rating_User_Identifier
+\begin_inset Quotes erd
+\end_inset
+
+ where identifier is a user-defined value.
+ Any spaces in the username should be converted to = signs, e.g.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Rating_User_Jeff=Mitchell
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -350,11 +397,11 @@ The identifier for critic ratings is
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Rating_Critic_Identifier
+FMPS_Rating_Critic_X
 \begin_inset Quotes erd
 \end_inset
 
- where Identifier names either a publication/site (
+ where X names either a publication/site (
 \begin_inset Quotes eld
 \end_inset
 
@@ -386,11 +433,11 @@ The identifier for the algorithmic rating is
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Rating_Algorithm_Identifier
+FMPS_Rating_Algorithm_X
 \begin_inset Quotes erd
 \end_inset
 
- where Identifier names an arbitrary algorithm name.
+ where X names an arbitrary algorithm name.
 \end_layout
 
 \begin_layout Itemize
@@ -460,6 +507,33 @@ FMPS_Playcount
 \end_inset
 
 .
+ This should be incremented every time a user plays the track, regardless
+ of whether they are also using user-specific playcounts as described below.
+\end_layout
+
+\begin_layout Itemize
+If a player supports the notion of multiple users (perhaps from discovery
+ of the current user from the operating system) and wishes to allow the
+ users to keep separate playcounts, the identifier should be in the form
+ 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Playcount_User_X
+\begin_inset Quotes erd
+\end_inset
+
+ where X is a user-defined value.
+ Any spaces in the username should be converted to = signs, e.g.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Playcount_User_Jeff=Mitchell
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -467,19 +541,19 @@ The identifier for an algorithmic rating is
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Playcount_Algorithm_Identifier
+FMPS_Playcount_Algorithm_X
 \begin_inset Quotes erd
 \end_inset
 
- where Identifier names an arbitrary algorithm name.
+ where X names an arbitrary algorithm name.
 \end_layout
 
 \begin_layout Itemize
 Playcounts are a float value with a minimum of 0.0, where 0.0 is an acceptable
  value but indicates that a track has not been played (the same as if the
  track had no playcount tag).
- Playcounts (especially the user playcount) can be shown the user as integers
- but must always be stored as a float.
+ Playcounts (especially the user playcount) can be shown to the user as
+ integers but must always be stored as a float.
 \end_layout
 
 \begin_layout Itemize
@@ -581,35 +655,68 @@ Vocals
 The value of each identifier is the role performer's name.
 \end_layout
 
-\begin_layout Section
-Filesystem Directives
-\end_layout
-
-\begin_layout Standard
-Common functionality for many media players is the notion of a library or
- collection as a store of media objects that can be played.
- Generally, users specify or drag-n-drop directories or files that they
- wish to have added to this store.
- These subsections contain files that can be present on a user's filesystem
- to allow for more fine-grained control over import.
-\end_layout
-
 \begin_layout Subsection
-Ignore Directive
+Lyrics
 \end_layout
 
 \begin_layout Standard
-When a directory is being parsed, it should first be checked for a file
- with the name 
+Embedding lyrics into a file allows users to save custom lyrics and to still
+ see the lyrics when not connected to the Internet.
+ Since different users may wish to have different sets of lyrics (for example,
+ if customizing lyrics against a music-only track) and different Internet
+ sources may have different lyrics, it is possible to store multiple lyrics
+ values by specifying a source.
+\end_layout
+
+\begin_layout Standard
+For all tag formats, the following is defined:
+\end_layout
+
+\begin_layout Itemize
+The identifier for the (canonical) lyrics text is 
 \begin_inset Quotes eld
 \end_inset
 
-fmps_ignore
+FMPS_Lyrics
 \begin_inset Quotes erd
 \end_inset
 
 .
- If present, the parser should ignore that directory's files.
+ The data must be a UTF-8 string of arbitrary length.
+ Spaces, tabs, and newlines should be preserved when saving the string and
+ displayed properly to the user.
+\end_layout
+
+\begin_layout Itemize
+Lyrics identifiers may contain information as to the source: 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_Lyrics_From_X
+\begin_inset Quotes erd
+\end_inset
+
+ where X names either a publication/site (
+\begin_inset Quotes eld
+\end_inset
+
+Lyrics_Magazine
+\begin_inset Quotes erd
+\end_inset
+
+) or a person in Firstname=Lastname format (
+\begin_inset Quotes eld
+\end_inset
+
+Jeff=Mitchell
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Section
+Examples
 \end_layout
 
 \end_body

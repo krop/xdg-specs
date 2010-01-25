@@ -1,19 +1,23 @@
 Free Media Player Specifications
 
-November 13th, 2009
+Tag Specification
 
-Copyright 2009 by Jeff Mitchell
+January 25th, 2010
+
+Copyright 2009-2010 by Jeff Mitchell
 
 To be released under an appropriate license when one is selected
 
 Abstract
 
-This specification describes various metadata and behavioral 
-items intended to reduce complexity and enhance functionality for 
-users of free music and media players. It does this by proposing 
-standards for common functionality needs where none currently 
-exist, and doing so in a way that is easily adoptable 
-cross-player and cross-format, when applicable.
+This specification describes various audio file tag metadata 
+intended to increase interoperability between free music players 
+for things such as ratings, playcounts, performer roles, and 
+more. It does this by proposing standards for common 
+functionality needs where none currently exist, and doing so in a 
+way that is easily adoptable cross-player and cross-format. It is 
+designed to be robust against future needs and to prevent 
+possible conflicts with other tag identifiers and values.
 
 1 Metadata Tags
 
@@ -36,10 +40,13 @@ real possibility that a noncompliant media player will use the
 same tag names in an incompatible fashion, whether intentionally 
 or not, and there is no way to determine whether a seemingly 
 compatible use of the tags by a noncompliant player actually 
-results in user-intended behavior. As these identifiers are read 
-and modified only by players and advanced users, it is not 
-expected to be a hindrance to adoption or to cause undue burden 
-on either.
+results in user-intended behavior. The “FMPS_” identifier and 
+this specification document is therefore used in a similar 
+fashion to XML schema declarations.
+
+As these identifiers are read and modified only by players and 
+advanced users, it is not expected to be a hindrance to adoption 
+or to cause undue burden on either.
 
 1.1 Common Data and Tag Information
 
@@ -49,7 +56,11 @@ tags to use in various formats.
 
 For all tag formats, the following is defined:
 
-• All identifers and values are strings in UTF-8 encoding.
+• All identifers and values are strings in UTF-8 encoding. To 
+  keep the specification simple, no ranges of control characters 
+  are defined which should never be included in a string. It is 
+  assumed that the used string-handling library will properly 
+  handle any such characters encountered.
 
 • A period/full stop is used to separate the digits in a float 
   value from the fractional part of the float. All float values 
@@ -61,6 +72,20 @@ For all tag formats, the following is defined:
 • Any spaces in identifiers should be represented using 
   underscores ( _ ) instead, although this can be converted to 
   spaces for display to the user.
+
+• Although identifier case is specified for the different types 
+  of tags, it is probably a good idea to do comparisons against 
+  identifier strings converted to all upper- or lower-case in 
+  case some implementations do not properly adhere to the case 
+  specified. Note that where identifiers also store other 
+  information (for instance FMPS_RATING_CRITIC_Metacritic), 
+  proper capitalization for the variable part of the identifier 
+  should be used, as this should be displayed as-is to the user.
+
+• Variable parts of identifiers should use equal signs (“=”) to 
+  denote spaces when the variable is a person's name, and 
+  underscores (“_”) to denote spaces when the variable is the 
+  name of a publication or site.
 
 The following sections describe where the information should be 
 stored in specific tag formats.
@@ -145,16 +170,26 @@ For all tag formats, the following is defined:
   rating tag does not have to be removed in this instance.
 
 • The identifier for the (canonical) user rating is “FMPS_Rating”
-  .
+  . This should be set whenever a user rates the track, 
+  regardless of whether they are also using user-specific ratings 
+  as described below.
 
-• The identifier for critic ratings is “
-  FMPS_Rating_Critic_Identifier” where Identifier names either a 
-  publication/site (“Rolling_Stone”, “Metacritic”) or a person in 
-  Firstname=Lastname format (“Ralph=Gleason”).
+• If a player supports the notion of multiple users (perhaps from 
+  discovery of the current user from the operating system) and 
+  wishes to allow the users to keep separate ratings, the 
+  identifier should be in the form “FMPS_Rating_User_Identifier” 
+  where identifier is a user-defined value. Any spaces in the 
+  username should be converted to = signs, e.g. “
+  FMPS_Rating_User_Jeff=Mitchell”.
+
+• The identifier for critic ratings is “FMPS_Rating_Critic_X” 
+  where X names either a publication/site (“Rolling_Stone”, “
+  Metacritic”) or a person in Firstname=Lastname format (“
+  Ralph=Gleason”).
 
 • The identifier for the algorithmic rating is “
-  FMPS_Rating_Algorithm_Identifier” where Identifier names an 
-  arbitrary algorithm name.
+  FMPS_Rating_Algorithm_X” where X names an arbitrary algorithm 
+  name.
 
 • Ratings are a float value between 0.0 and 1.0, inclusive. 0.0 
   is the lowest possible rating; 1.0 is the highest possible 
@@ -201,16 +236,25 @@ For all tag formats, the following is defined:
   playcount tag does not have to be removed in this instance.
 
 • The identifier for the (canonical) user playcount is “
-  FMPS_Playcount”.
+  FMPS_Playcount”. This should be incremented every time a user 
+  plays the track, regardless of whether they are also using 
+  user-specific playcounts as described below.
+
+• If a player supports the notion of multiple users (perhaps from 
+  discovery of the current user from the operating system) and 
+  wishes to allow the users to keep separate playcounts, the 
+  identifier should be in the form “FMPS_Playcount_User_X” where 
+  X is a user-defined value. Any spaces in the username should be 
+  converted to = signs, e.g. “FMPS_Playcount_User_Jeff=Mitchell”.
 
 • The identifier for an algorithmic rating is “
-  FMPS_Playcount_Algorithm_Identifier” where Identifier names an 
-  arbitrary algorithm name.
+  FMPS_Playcount_Algorithm_X” where X names an arbitrary 
+  algorithm name.
 
 • Playcounts are a float value with a minimum of 0.0, where 0.0 
   is an acceptable value but indicates that a track has not been 
   played (the same as if the track had no playcount tag). 
-  Playcounts (especially the user playcount) can be shown the 
+  Playcounts (especially the user playcount) can be shown to the 
   user as integers but must always be stored as a float.
 
 • For the user playcount, playing a track (subject to the 
@@ -255,18 +299,26 @@ For all tag formats, the following is defined:
 
 • The value of each identifier is the role performer's name.
 
-2 Filesystem Directives
+1.5 Lyrics
 
-Common functionality for many media players is the notion of a 
-library or collection as a store of media objects that can be 
-played. Generally, users specify or drag-n-drop directories or 
-files that they wish to have added to this store. These 
-subsections contain files that can be present on a user's 
-filesystem to allow for more fine-grained control over import.
+Embedding lyrics into a file allows users to save custom lyrics 
+and to still see the lyrics when not connected to the Internet. 
+Since different users may wish to have different sets of lyrics 
+(for example, if customizing lyrics against a music-only track) 
+and different Internet sources may have different lyrics, it is 
+possible to store multiple lyrics values by specifying a source.
 
-2.1 Ignore Directive
+For all tag formats, the following is defined:
 
-When a directory is being parsed, it should first be checked for 
-a file with the name “fmps_ignore”. If present, the parser should 
-ignore that directory's files.
+• The identifier for the (canonical) lyrics text is “FMPS_Lyrics”
+  . The data must be a UTF-8 string of arbitrary length. Spaces, 
+  tabs, and newlines should be preserved when saving the string 
+  and displayed properly to the user.
+
+• Lyrics identifiers may contain information as to the source: “
+  FMPS_Lyrics_From_X” where X names either a publication/site (“
+  Lyrics_Magazine”) or a person in Firstname=Lastname format (“
+  Jeff=Mitchell”).
+
+2 Examples
 

@@ -45,12 +45,16 @@
 Free Media Player Specifications
 \end_layout
 
+\begin_layout Title
+Tag Specification
+\end_layout
+
 \begin_layout Date
-November 13th, 2009
+January 25th, 2010
 \end_layout
 
 \begin_layout Author
-Copyright 2009 by 
+Copyright 2009-2010 by 
 \begin_inset Flex Element:Firstname
 status collapsed
 
@@ -78,12 +82,14 @@ To be released under an appropriate license when one is selected
 \end_layout
 
 \begin_layout Abstract
-This specification describes various metadata and behavioral items intended
- to reduce complexity and enhance functionality for users of free music
- and media players.
+This specification describes various audio file tag metadata intended to
+ increase interoperability between free music players for things such as
+ ratings, playcounts, performer roles, and more.
  It does this by proposing standards for common functionality needs where
  none currently exist, and doing so in a way that is easily adoptable cross-play
-er and cross-format, when applicable.
+er and cross-format.
+ It is designed to be robust against future needs and to prevent possible
+ conflicts with other tag identifiers and values.
 \end_layout
 
 \begin_layout Section
@@ -131,7 +137,20 @@ ion is adopted.
  or not, and there is no way to determine whether a seemingly compatible
  use of the tags by a noncompliant player actually results in user-intended
  behavior.
- As these identifiers are read and modified only by players and advanced
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+FMPS_
+\begin_inset Quotes erd
+\end_inset
+
+ identifier and this specification document is therefore used in a similar
+ fashion to XML schema declarations.
+\end_layout
+
+\begin_layout Standard
+As these identifiers are read and modified only by players and advanced
  users, it is not expected to be a hindrance to adoption or to cause undue
  burden on either.
 \end_layout
@@ -159,6 +178,10 @@ For all tag formats, the following is defined:
 
 \begin_layout Itemize
 All identifers and values are strings in UTF-8 encoding.
+ To keep the specification simple, no ranges of control characters are defined
+ which should never be included in a string.
+ It is assumed that the used string-handling library will properly handle
+ any such characters encountered.
 \end_layout
 
 \begin_layout Itemize
@@ -175,6 +198,17 @@ Float values should be limited to six decimal places.
 \begin_layout Itemize
 Any spaces in identifiers should be represented using underscores ( _ )
  instead, although this can be converted to spaces for display to the user.
+\end_layout
+
+\begin_layout Itemize
+Although identifier case is specified for the different types of tags, it
+ is probably a good idea to do comparisons against identifier strings converted
+ to all upper- or lower-case in case some implementations do not properly
+ adhere to the case specified.
+ Note that where identifiers also store other information (for instance
+ FMPS_RATING_CRITIC_Metacritic), proper capitalization for the variable
+ part of the identifier should be used, as this should be displayed as-is
+ to the user.
 \end_layout
 
 \begin_layout Standard

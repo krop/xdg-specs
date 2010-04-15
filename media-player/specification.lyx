@@ -176,8 +176,11 @@ For all tag formats, the following is defined:
 \end_layout
 
 \begin_layout Itemize
-All identifers may consist of ASCII 0x20 through 0x7D, 0x3D ('=') excluded.
- All values are strings in UTF-8 encoding.
+All identifiers are ASCII strings, and defined in the sections below.
+\end_layout
+
+\begin_layout Itemize
+All values are strings in UTF-8 encoding.
  To keep the specification simple, no ranges of control characters are defined
  which should never be included in a string.
  It is assumed that the used string-handling library will properly handle
@@ -218,8 +221,8 @@ For any lists, entries are separated with a double semicolon ';;' and fields
 :
 \backslash
 :').
- It is not expected that there will be a need to escape these particular
- sequences of characters and thus further escaping is not currently defined.
+ It is not expected that there will be a need to escape these escape sequences
+ and thus further escaping is not currently defined.
 \end_layout
 
 \begin_layout Standard
@@ -288,7 +291,7 @@ Windows Media values should be stored in the FMPS/Identifier namespace with
 \end_layout
 
 \begin_layout Subsection
-Song Rating Tags
+Rating Tags
 \end_layout
 
 \begin_layout Standard
@@ -330,8 +333,8 @@ ithm; and FMPS_Rating (the canonical value).
  unrated for that purpose (user, critic or algorithm).
 \end_layout
 
-\begin_layout Standard
-All tags:
+\begin_layout Subsubsection
+All Rating Tags
 \end_layout
 
 \begin_layout Itemize
@@ -344,8 +347,8 @@ Ratings should only be rounded when necessary, in order to increase cross-player
  compatibility.
 \end_layout
 
-\begin_layout Standard
-FMPS_Rating:
+\begin_layout Subsubsection
+FMPS_Rating
 \end_layout
 
 \begin_layout Itemize
@@ -361,8 +364,8 @@ If a user removes ratings from a track in the media player's database, the
  value of the FMPS_Rating tag should be cleared as well.
 \end_layout
 
-\begin_layout Standard
-FMPS_Rating_User:
+\begin_layout Subsubsection
+FMPS_Rating_User
 \end_layout
 
 \begin_layout Itemize
@@ -396,8 +399,8 @@ Alice Abba::0.6;;Bob Beatles::0.8
 .
 \end_layout
 
-\begin_layout Standard
-FMPS_Rating_Critic:
+\begin_layout Subsection
+FMPS_Rating_Critic
 \end_layout
 
 \begin_layout Itemize
@@ -428,21 +431,19 @@ MPS_Nothing::0.8;;FMPS_Nothing::Some Dude::0.9
 
 \end_layout
 
-\begin_layout Standard
-FMPS_Rating_Algorithm:
+\begin_layout Subsubsection
+FMPS_Rating_Algorithm
 \end_layout
 
 \begin_layout Itemize
 The values are in the form of a list as defined in the first section, with
  list entries in the format of Application::Algorithm::Rating.
- All fields must be defined; 
+ All fields must be defined; no fields may be left empty.
 \end_layout
 
 \begin_layout Itemize
-For algorithms intended to be global/collaborative/cross-application, the
- Application value may be FMPS_Nothing.
- However, it is strongly suggested that in this case the Application is
- set to some agreed-upon value.
+In cases where the algorithm is intended to be global/collaborative/cross-applic
+ation, the Application value should be set to some agreed-upon value.
  In other words, it is suggested to use the application name for the Application
  part of the identifier, but it may also be used to identify a 
 \begin_inset Quotes eld
@@ -490,10 +491,9 @@ Playcount Tags
 \end_layout
 
 \begin_layout Standard
-As with ratings, there are multiple kinds of playcount tags: user and algorithmi
-c.
- The user tag is canonical and intended to be used in the normal sense,
- tracking how many times a song has been played (as defined below).
+As with ratings, there are multiple kinds of playcount tags (user and algorithmi
+c) in addition to a canonical value.
+ The user tag tracks how many times a song has been played for a user.
  The auto/algorithmic value can be used in an application-specific way to
  do interesting things; for instance, to cumulatively track exact percentages
  of tracks played, in order to display to the user the number of days/hous/minut
@@ -502,98 +502,15 @@ es/seconds they have spent listening to a particular song.
 \end_layout
 
 \begin_layout Standard
-Three tags are defined, corresponding to the two types of defined ratings,
+Three tags are defined, corresponding to the two types of defined playcounts,
  plus a canonical value: FMPS_Playcount_User; FMPS_Playcount_Algorithm;
  and FMPS_Playcount (the canonical value).
  A file that has no playcount tag for a specific purpose is to be considered
  unplayed for that purpose (user or algorithm).
 \end_layout
 
-\begin_layout Standard
-For all tags:
-\end_layout
-
-\begin_layout Itemize
-A file that has no such tag is to be considered unplayed for that purpose
- (user or algorithm).
- Removing playcount information from a track in the media player should
- cause the user playcount tag to be removed as well.
- The algorithmic playcount tag does not have to be removed in this instance.
-\end_layout
-
-\begin_layout Itemize
-The identifier for the (canonical) user playcount is 
-\begin_inset Quotes eld
-\end_inset
-
-FMPS_Playcount
-\begin_inset Quotes erd
-\end_inset
-
-.
- This should be incremented every time a user plays the track, regardless
- of whether they are also using user-specific playcounts as described below.
-\end_layout
-
-\begin_layout Itemize
-If a player supports the notion of multiple users (perhaps from discovery
- of the current user from the operating system) and wishes to allow the
- users to keep separate playcounts, the identifier should be in the form
- 
-\begin_inset Quotes eld
-\end_inset
-
-FMPS_Playcount_User_X
-\begin_inset Quotes erd
-\end_inset
-
- where X is a user-defined value.
- Any spaces in the username should be converted to = signs, e.g.
- 
-\begin_inset Quotes eld
-\end_inset
-
-FMPS_Playcount_User_Jeff=Mitchell
-\begin_inset Quotes erd
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-The identifier for an algorithmic rating is 
-\begin_inset Quotes eld
-\end_inset
-
-FMPS_Playcount_Algorithm_X
-\begin_inset Quotes erd
-\end_inset
-
- where X names an arbitrary algorithm name.
-\end_layout
-
-\begin_layout Itemize
-Playcounts are a float value with a minimum of 0.0, where 0.0 is an acceptable
- value but indicates that a track has not been played (the same as if the
- track had no playcount tag).
- Playcounts (especially the user playcount) can be shown to the user as
- integers but must always be stored as a float.
-\end_layout
-
-\begin_layout Itemize
-For the user playcount, playing a track (subject to the criteria below)
- increases the user playcount value by 1.0.
- For the algorithmic playcount, a track's length should be considered to
- be worth 1.0; the user skipping parts of the track may decrease the value
- below 1.0, and the user repeating parts of the track may increase this value
- past 1.0.
-\end_layout
-
-\begin_layout Itemize
-The maximum value is 0.000001 less than the largest value able to be stored
- in a 32-bit unsigned integer: 4,294,967,294.999999.
- This is so that the float playcount value can be rounded to an integer
- equivalent, if necessary.
+\begin_layout Subsubsection
+User Playcount Criteria
 \end_layout
 
 \begin_layout Standard
@@ -611,16 +528,171 @@ played
 \end_layout
 
 \begin_layout Itemize
-If the track is less than 30 seconds long, the entire song must be played.
+If the track is less than thirty seconds long, the entire song must be played.
 \end_layout
 
 \begin_layout Itemize
-If the track is more than 30 seconds long, at least fifty percent of the
- file must be played, calculated via length of track.
+If the track is more than thirty seconds long but less than eight minutes
+ long, at least fifty percent of the file must be played, calculated via
+ length of track.
  For instance, if a track is one minute long, at least thirty seconds of
  the track must have been played, although if the user skips backwards multiple
  times and listens to the same ten seconds of the track three times in a
  row, this may be considered a valid playcount.
+\end_layout
+
+\begin_layout Itemize
+If the track is longer than eight minutes, at least four minutes of the
+ track must be played.
+\end_layout
+
+\begin_layout Standard
+User playcounts are float values representing integers (1.0, 141.0, etc.).
+ They are never fractional values; a song was either played, or it wasn't.
+\end_layout
+
+\begin_layout Subsubsection
+All Playcount Tags
+\end_layout
+
+\begin_layout Itemize
+Playcounts are a float value not less than 0.0.
+ 0.0 is valid and means unplayed.
+\end_layout
+
+\begin_layout Itemize
+The maximum value is 0.000001 less than the largest value able to be stored
+ in a 32-bit unsigned integer: 4,294,967,294.999999.
+ This is so that playcount values can be rounded to an integer equivalent,
+ if necessary.
+\end_layout
+
+\begin_layout Subsubsection
+FMPS_Playcount
+\end_layout
+
+\begin_layout Itemize
+The canonical playcount value in FMPS_Playcount should be set whenever a
+ user plays a track.
+ This is in addition to any value stored for that user in FMPS_Playcount_User.
+ This value is canonical because if a player does not support multiple users
+ (or if no user identifier is set) this is the value that should be returned.
+\end_layout
+
+\begin_layout Itemize
+If a user has an identifier set to store per-user playcounts, when this
+ value is set it should be set to the value of that user's playcount.
+ In other words, the last value held in FMPS_Playcount will be equivalent
+ to the latest user's personal playcount, if any.
+\end_layout
+
+\begin_layout Itemize
+If a user resets the playcount for a track in the media player's database,
+ the value of the FMPS_Playcount tag should be cleared as well.
+\end_layout
+
+\begin_layout Itemize
+FMPS_Playcount stores 
+\begin_inset Quotes eld
+\end_inset
+
+full plays
+\begin_inset Quotes erd
+\end_inset
+
+ of a track according to the rules in Section 1.3.1.
+\end_layout
+
+\begin_layout Subsubsection
+FMPS_Playcount_User
+\end_layout
+
+\begin_layout Itemize
+If a player supports the notion of multiple users (perhaps from discovery
+ of the current user from the operating system) and wishes to allow the
+ users to keep separate playcounts, it stores these values in the FMPS_Playcount
+_User tag.
+\end_layout
+
+\begin_layout Itemize
+Applications supporting multiple user playcounts should have a way for users
+ to define their preferred identifier.
+ 
+\end_layout
+
+\begin_layout Itemize
+The values are in the form of a list as defined in the first section, with
+ list entries in the format of UserIdentifier::Value.
+ There may not be empty strings.
+\end_layout
+
+\begin_layout Itemize
+FMPS_Playcount_User stores 
+\begin_inset Quotes eld
+\end_inset
+
+full plays
+\begin_inset Quotes erd
+\end_inset
+
+ of a track according to the rules in Section 1.3.1.
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Quotes eld
+\end_inset
+
+Alice Abba::1.0;;Bob Beatles::133.0
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+FMPS_Playcount_Algorithm
+\end_layout
+
+\begin_layout Itemize
+The values are in the form of a list as defined in the first section, with
+ list entries in the format of Application::Algorithm::Playcount.
+ All fields must be defined; no fields may be empty.
+\end_layout
+
+\begin_layout Itemize
+In cases where the algorithm is intended to be global/collaborative/cross-applic
+ation, the Application value should be set to some agreed-upon value.
+ In other words, it is suggested to use the application name for the Application
+ part of the identifier, but it may also be used to identify a 
+\begin_inset Quotes eld
+\end_inset
+
+group
+\begin_inset Quotes erd
+\end_inset
+
+ of algorithms, or some arbitrary other value that can be used for identificatio
+n.
+\end_layout
+
+\begin_layout Itemize
+For algorithms, a track's length should be considered to be worth 1.0 playcounts;
+ the user skipping parts of the track may decrease the value below 1.0, and
+ the user repeating parts of the track may increase this value past 1.0.
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Quotes eld
+\end_inset
+
+Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::RatingPluginX::165
+2.19;;The Music Player Alliance::Rating Algorithm 1::0.5
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -635,20 +707,14 @@ Performer roles allow you to describe the performers in a track.
  performer information.
 \end_layout
 
-\begin_layout Standard
-For all tag formats, the following is defined:
-\end_layout
-
 \begin_layout Itemize
 The identifier used is 
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Performer:X
-\begin_inset Quotes erd
-\end_inset
-
-, where X is the user-defined role (
+FMPS_Performers.
+ The value is a list in the form of Performer::Role, where Role is the user-defi
+ned role (
 \begin_inset Quotes eld
 \end_inset
 
@@ -676,7 +742,16 @@ Vocals
 \end_layout
 
 \begin_layout Itemize
-The value of each identifier is the role performer's name.
+Example: 
+\begin_inset Quotes eld
+\end_inset
+
+Willy Nelson::Guitar;;Eric Clapton::Backup Guitar;;B.B.
+ King::Vocals
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -690,10 +765,6 @@ Embedding lyrics into a file allows users to save custom lyrics and to still
  if customizing lyrics against a music-only track) and different Internet
  sources may have different lyrics, it is possible to store multiple lyrics
  values by specifying a source.
-\end_layout
-
-\begin_layout Standard
-For all tag formats, the following is defined:
 \end_layout
 
 \begin_layout Itemize
@@ -712,35 +783,72 @@ FMPS_Lyrics
 \end_layout
 
 \begin_layout Itemize
-Lyrics identifiers may contain information as to the source: 
-\begin_inset Quotes eld
-\end_inset
-
-FMPS_Lyrics_From_X
-\begin_inset Quotes erd
-\end_inset
-
- where X names either a publication/site (
-\begin_inset Quotes eld
-\end_inset
-
-Lyrics_Magazine
-\begin_inset Quotes erd
-\end_inset
-
-) or a person in Firstname=Lastname format (
-\begin_inset Quotes eld
-\end_inset
-
-Jeff=Mitchell
-\begin_inset Quotes erd
-\end_inset
-
-).
+Lyrics may also be stored in FMPS_Lyrics_Sources as a list (as defined in
+ Section 1.1) in the form of Source::Data.
 \end_layout
 
-\begin_layout Section
-Examples
+\begin_layout Subsection
+Compilation Identifier
+\end_layout
+
+\begin_layout Standard
+Compilations can be difficult for music players to discover.
+ Sometimes the user places all files from a compilation in one directory
+ and expects that the music player will understand this; sometimes the user
+ has them in different directories but with the same album name and expects
+ that the music player will understand this; and so on.
+\end_layout
+
+\begin_layout Standard
+Although there are existing solutions to identify albums and songs that
+ belong to the same album (such as MusicBrainz identifiers) many users have
+ not or do not want to tag their songs with MusicBrainz information.
+ This tag therefore provides a simple way for an application to assign a
+ compilation identifier to a track, indicating to what compilation a track
+ belongs.
+\end_layout
+
+\begin_layout Standard
+This enables such use-cases as allowing a user to mark multiple tracks that
+ are part of a single compilation, and then have those tracks show up as
+ being together in a compilation the next time the user adds the tracks
+ to the music player.
+\end_layout
+
+\begin_layout Standard
+This section purposefully does not define information about the compilation;
+ it is expected that the user must supply that information in appropriate
+ existing tags, e.g.
+ ALBUMARTIST for VorbisComments.
+\end_layout
+
+\begin_layout Itemize
+The identifier for the compilation tag is FMPS_Compilations.
+\end_layout
+
+\begin_layout Itemize
+Values are a list (as defined in Section 1.1) in the form of Application::Identif
+ier.
+ It is valid for applications to have more than one identifier, if the user
+ wants to mark a track as being present in multiple compilations.
+ However, each list entry must be unique.
+\end_layout
+
+\begin_layout Itemize
+The identifier fields in the value list should be alphanumeric sequences
+ of characters a-z, A-Z, and 0-9.
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Quotes eld
+\end_inset
+
+Amarok::2982ab29ef;;Banshee::ad8slpbzl229zier;;Amarok::a109b64dd1
+\begin_inset Quotes erd
+\end_inset
+
+
 \end_layout
 
 \end_body

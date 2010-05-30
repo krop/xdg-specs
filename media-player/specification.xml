@@ -9,7 +9,7 @@
 </articleinfo><articleinfo>
 <title>Tag Specification</title>
 <date>version 1.0 RC1; May 30th, 2010</date><author>
-Copyright 2009-2010 by <firstname>Jeff</firstname> <surname>Mitchell</surname> &lt;<ulink url="mitchell@kde.org"></ulink>&gt;</author><abstract>
+Copyright 2009-2010 by <firstname>Jeff</firstname> <surname>Mitchell</surname> <ulink url="mitchell@kde.org"></ulink></author><abstract>
 <para>This specification describes various audio file tag metadata intended to increase interoperability between free music players for things such as ratings, playcounts, performer roles, and more. It does this by proposing standards for common functionality needs where none currently exist, and doing so in a way that is easily adoptable cross-player and cross-format. It is designed to be robust against future needs and to prevent possible conflicts with other tag identifiers and values.</para>
 </abstract><toc></toc></articleinfo><sect1>
 <title>License</title>

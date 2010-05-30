@@ -50,7 +50,7 @@ Tag Specification
 \end_layout
 
 \begin_layout Date
-January 25th, 2010
+version 1.0 RC1; May 30th, 2010
 \end_layout
 
 \begin_layout Author
@@ -74,11 +74,15 @@ Mitchell
 
 \end_inset
 
+ <
+\begin_inset CommandInset href
+LatexCommand href
+target "mitchell@kde.org"
+type "mailto:"
 
-\end_layout
+\end_inset
 
-\begin_layout Author
-To be released under an appropriate license when one is selected
+>
 \end_layout
 
 \begin_layout Abstract
@@ -92,8 +96,51 @@ er and cross-format.
  conflicts with other tag identifiers and values.
 \end_layout
 
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Metadata Tags
+License
+\end_layout
+
+\begin_layout Standard
+This specification is licensed under the Creative Commons Attribution-No
+ Derivative Works 3.0 Unported License.
+ You are free to copy, distribute and transmit this work, provided that
+ the copyright information and full URL to the license information page
+ (
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://creativecommons.org/licenses/by-nd/3.0/
+\end_layout
+
+\end_inset
+
+) remain intact.
+ You may not alter, transform, or build upon this work.
+\end_layout
+
+\begin_layout Standard
+The reason No Derivative Works is specified is due to the status of this
+ document as a specification.
+ Specifications become useless if they go forth and multiply; the utility
+ of a specification lies in having a common shared document.
+ If there is something that you feel needs to be added, updated or changed
+ in this specification, please email the author, who will be glad to work
+ with all interested parties.
+\end_layout
+
+\begin_layout Section
+Audio Metadata Tags
 \end_layout
 
 \begin_layout Standard
@@ -180,15 +227,22 @@ All identifiers are ASCII strings, and defined in the sections below.
 \end_layout
 
 \begin_layout Itemize
-All values are strings in UTF-8 encoding.
- To keep the specification simple, no ranges of control characters are defined
+All values are strings, which must adhere to the allowed encoding and length
+ limits in the relevant specifications, but should use Unicode whenever
+ possible.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+To keep the specification simple, no ranges of control characters are defined
  which should never be included in a string.
  It is assumed that the used string-handling library will properly handle
  any such characters encountered.
  It is highly recommended, however, that no such control characters are
- used.
+ used, except when specified below.
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 Although identifier case is specified for the different types of tags, compariso
 ns against identifier strings MUST be case-insensitive.
@@ -206,7 +260,8 @@ Float values should be limited to six decimal places.
 \end_layout
 
 \begin_layout Itemize
-For any lists, entries are separated with a double semicolon ';;' and fields
+All lists are value strings.
+ For any lists, entries are separated with a double semicolon ';;' and fields
  within an entry are separated with a double colon '::' (examples in following
  sections).
  This allows for easy splitting of list entries and entry fields with most
@@ -382,8 +437,8 @@ Applications supporting multiple user ratings should have a way for users
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in the first section, with
- list entries in the format of UserIdentifier::Value.
+The values are in the form of a list as defined in Section 2.1, with list
+ entries in the format of UserIdentifier::Value.
  There may not be empty strings.
 \end_layout
 
@@ -404,8 +459,8 @@ FMPS_Rating_Critic
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in the first section, with
- list entries in the format of Publication::Critic::Rating.
+The values are in the form of a list as defined in Section 2.1, with list
+ entries in the format of Publication::Critic::Rating.
  If the critic is unaffiliated, or if the rating is by a publication with
  no byline, the special value 
 \begin_inset Quotes eld
@@ -436,8 +491,8 @@ FMPS_Rating_Algorithm
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in the first section, with
- list entries in the format of Application::Algorithm::Rating.
+The values are in the form of a list as defined in Section 2.1, with list
+ entries in the format of Application::Algorithm::Rating.
  All fields must be defined; no fields may be left empty.
 \end_layout
 
@@ -600,7 +655,7 @@ full plays
 \begin_inset Quotes erd
 \end_inset
 
- of a track according to the rules in Section 1.3.1.
+ of a track according to the rules in Section 2.3.1.
 \end_layout
 
 \begin_layout Subsubsection
@@ -621,8 +676,8 @@ Applications supporting multiple user playcounts should have a way for users
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in the first section, with
- list entries in the format of UserIdentifier::Value.
+The values are in the form of a list as defined in Section 2.1, with list
+ entries in the format of UserIdentifier::Value.
  There may not be empty strings.
 \end_layout
 
@@ -655,8 +710,8 @@ FMPS_Playcount_Algorithm
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in the first section, with
- list entries in the format of Application::Algorithm::Playcount.
+The values are in the form of a list as defined in Section 2.3.1, with list
+ entries in the format of Application::Algorithm::Playcount.
  All fields must be defined; no fields may be empty.
 \end_layout
 
@@ -777,14 +832,14 @@ FMPS_Lyrics
 \end_inset
 
 .
- The data must be a UTF-8 string of arbitrary length.
+ The value is a string.
  Spaces, tabs, and newlines should be preserved when saving the string and
  displayed properly to the user.
 \end_layout
 
 \begin_layout Itemize
 Lyrics may also be stored in FMPS_Lyrics_Sources as a list (as defined in
- Section 1.1) in the form of Source::Data.
+ Section 2.1) in the form of Source::Data.
 \end_layout
 
 \begin_layout Subsection
@@ -827,7 +882,7 @@ The identifier for the compilation tag is FMPS_Compilations.
 \end_layout
 
 \begin_layout Itemize
-Values are a list (as defined in Section 1.1) in the form of Application::Identif
+Values are a list (as defined in Section 2.1) in the form of Application::Identif
 ier.
  It is valid for applications to have more than one identifier, if the user
  wants to mark a track as being present in multiple compilations.
@@ -835,16 +890,11 @@ ier.
 \end_layout
 
 \begin_layout Itemize
-The identifier fields in the value list should be alphanumeric sequences
- of characters a-z, A-Z, and 0-9.
-\end_layout
-
-\begin_layout Itemize
 Example: 
 \begin_inset Quotes eld
 \end_inset
 
-Amarok::2982ab29ef;;Banshee::ad8slpbzl229zier;;Amarok::a109b64dd1
+Amarok::2982ab29ef;;Banshee::ad8slpbzl229zier;;Amarok::My Compilation
 \begin_inset Quotes erd
 \end_inset
 

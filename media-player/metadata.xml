@@ -1,10 +1,10 @@
-<specification title="Free Music Player Specifications">
+<specification title="Free Media Player Specifications">
 <description>This specification describes various metadata and behavioral items intended to reduce complexity and enhance functionality for users of free music and media players. It does this by proposing standards for common functionality needs where none currently exist.</description>
 
 <versions>
-    <version name="0.4draft">
+    <version name="1.0rc1">
         <description>Free Music Player Specifications</description>
-        <date>15-04-2010<date>
+        <date>30-05-2010<date>
         <current/>
     </version>
 </versions>

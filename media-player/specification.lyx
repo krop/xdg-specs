@@ -1,4 +1,4 @@
-#LyX 1.6.5 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -50,7 +50,7 @@ Tag Specification
 \end_layout
 
 \begin_layout Date
-version 1.0 RC1; May 30th, 2010
+version 1.0 RC2; July 13, 2010
 \end_layout
 
 \begin_layout Author
@@ -106,12 +106,24 @@ LatexCommand tableofcontents
 \end_layout
 
 \begin_layout Section
+Front Matter
+\end_layout
+
+\begin_layout Subsection
 License
 \end_layout
 
 \begin_layout Standard
-This specification is licensed under the Creative Commons Attribution-No
- Derivative Works 3.0 Unported License.
+You may use this specification under either of the following licenses, at
+ your discretion.
+ Most will want to use it under Creative Commons; the GPL alternative is
+ in case future versions of the spec contain e.g.
+ code snippets that you would like to use in GPL programs:
+\end_layout
+
+\begin_layout Enumerate
+This specification is licensed under the Creative Commons Attribution-Share
+ Alike 3.0 Unported License.
  You are free to copy, distribute and transmit this work, provided that
  the copyright information and full URL to the license information page
  (
@@ -126,17 +138,61 @@ http://creativecommons.org/licenses/by-nd/3.0/
 \end_inset
 
 ) remain intact.
- You may not alter, transform, or build upon this work.
+ If you alter, transform, or build upon this work, you may distribute the
+ resulting work only under the same or similar license to this one.
+ 
+\end_layout
+
+\begin_layout Enumerate
+This program is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as published by the Free
+ Software Foundation; either version 2 of the License, or (at your option)
+ any later version.
+ This program is distributed in the hope that it will be useful, but WITHOUT
+ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ FOR A PARTICULAR PURPOSE.
+ See the GNU General Public License for more details.
+ See 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.gnu.org/licenses/
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Terminology
 \end_layout
 
 \begin_layout Standard
-The reason No Derivative Works is specified is due to the status of this
- document as a specification.
- Specifications become useless if they go forth and multiply; the utility
- of a specification lies in having a common shared document.
- If there is something that you feel needs to be added, updated or changed
- in this specification, please email the author, who will be glad to work
- with all interested parties.
+Terminology follws that specified in RFC2119, 
+\begin_inset Quotes eld
+\end_inset
+
+Key words for use in RFCs to Indicate Requirement Levels
+\begin_inset Quotes erd
+\end_inset
+
+.
+ See 
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+http://www.ietf.org/rfc/rfc2119.txt
+\end_layout
+
+\end_inset
+
+ for more information.
 \end_layout
 
 \begin_layout Section
@@ -227,9 +283,9 @@ All identifiers are ASCII strings, and defined in the sections below.
 \end_layout
 
 \begin_layout Itemize
-All values are strings, which must adhere to the allowed encoding and length
- limits in the relevant specifications, but should use Unicode whenever
- possible.
+All values (including numeric values) are stored as strings, which MUST
+ adhere to the allowed encoding and length limits in the relevant tag format
+ specifications, but SHOULD use Unicode whenever possible.
 \end_layout
 
 \begin_deeper
@@ -256,18 +312,18 @@ A period/full stop is used to separate the digits in a float value from
 \end_layout
 
 \begin_layout Itemize
-Float values should be limited to six decimal places.
+Float values SHOULD be limited to six decimal places.
 \end_layout
 
 \begin_layout Itemize
 All lists are value strings.
- For any lists, entries are separated with a double semicolon ';;' and fields
- within an entry are separated with a double colon '::' (examples in following
- sections).
+ For any lists, entries MUST be separated with a double semicolon ';;' and
+ fields within an entry MUST be separated with a double colon '::' (examples
+ in following sections).
  This allows for easy splitting of list entries and entry fields with most
  string libraries.
  If any value needs to represent a double semicolon or double colon, it
- should escape each of them with a backslash ('
+ MUST escape each of them with a backslash ('
 \backslash
 ;
 \backslash
@@ -290,10 +346,10 @@ MP3
 \end_layout
 
 \begin_layout Standard
-MP3 values should be stored in a TXXX frame with the Description set to
- the specified identifier and the Text set to the string representation
- of the value.
- The Description should be in CamelCase as specified in the following sections,
+MP3 values MUST be stored in a TXXX frame with the Description set to the
+ specified identifier and the Text set to the string representation of the
+ value.
+ The Description SHOULD be in CamelCase as specified in the following sections,
  e.g.
  FMPS_Rating.
 \end_layout
@@ -303,10 +359,10 @@ VorbisComments
 \end_layout
 
 \begin_layout Standard
-Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) should
- add a comment with the Key set to the specified identifier and the Value
- set to the string representation of the value.
- The Key should be in all upper-case, e.g.
+Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) MUST use
+ a comment with the Key set to the specified identifier and the Value set
+ to the string representation of the value.
+ The Key SHOULD be in all upper-case, e.g.
  FMPS_RATING.
 \end_layout
 
@@ -315,9 +371,9 @@ APEv2
 \end_layout
 
 \begin_layout Standard
-Any file supporting APEv2 should add a comment with the Key set to the specified
+Any file supporting APEv2 MUST add a comment with the Key set to the specified
  identifier and the Value set to the string representation of the value.
- The Key should be in all upper-case, e.g.
+ The Key SHOULD be in all upper-case, e.g.
  FMPS_RATING.
 \end_layout
 
@@ -326,9 +382,9 @@ MP4
 \end_layout
 
 \begin_layout Standard
-MP4 values should be stored at ----:com.apple.iTunes:Identifier with the value
+MP4 values MUST be stored at ----:com.apple.iTunes:Identifier with the value
  a string representation of the tag's value.
- The Identifier should be in CamelCase as specified in the following sections,
+ The Identifier SHOULD be in CamelCase as specified in the following sections,
  e.g.
  FMPS_Rating.
 \end_layout
@@ -338,9 +394,9 @@ Windows Media
 \end_layout
 
 \begin_layout Standard
-Windows Media values should be stored in the FMPS/Identifier namespace with
+Windows Media values MUST be stored in the FMPS/Identifier namespace with
  the value a string representation of the tag's value.
- The Identifier should be in CamelCase as specified in the following sections,
+ The Identifier SHOULD be in CamelCase as specified in the following sections,
  e.g.
  FMPS_Rating.
 \end_layout
@@ -393,12 +449,12 @@ All Rating Tags
 \end_layout
 
 \begin_layout Itemize
-Ratings are a float value between 0.0 and 1.0, inclusive.
- 0.0 is the lowest possible rating; 1.0 is the highest possible rating.
+Ratings SHALL be a float value between 0.0 and 1.0, inclusive.
+ 0.0 SHALL be the lowest possible rating; 1.0 is the highest possible rating.
 \end_layout
 
 \begin_layout Itemize
-Ratings should only be rounded when necessary, in order to increase cross-player
+Ratings SHOULD only be rounded when necessary, in order to increase cross-player
  compatibility.
 \end_layout
 
@@ -407,16 +463,17 @@ FMPS_Rating
 \end_layout
 
 \begin_layout Itemize
-The canonical rating value in FMPS_Rating should be set whenever a user
+The canonical rating value in FMPS_Rating SHOULD be set whenever a user
  rates the track.
- This is in addition to any value stored for that user in FMPS_Rating_User.
+ This is in addition to any value stored for that particular user in FMPS_Rating
+_User.
  This value is canonical because if a player does not support multiple users
- (or if no user identifier is set) this is the value that should be returned.
+ (or if no user identifier is set), this is the value that MUST be returned.
 \end_layout
 
 \begin_layout Itemize
 If a user removes ratings from a track in the media player's database, the
- value of the FMPS_Rating tag should be cleared as well.
+ value of the FMPS_Rating tag SHOULD be cleared as well.
 \end_layout
 
 \begin_layout Subsubsection
@@ -426,12 +483,12 @@ FMPS_Rating_User
 \begin_layout Itemize
 If a player supports the notion of multiple users (perhaps from discovery
  of the current user from the operating system) and wishes to allow the
- users to keep separate ratings, it stores these values in the FMPS_Rating_User
- tag.
+ users to keep separate ratings, it MUST store these values in the FMPS_Rating_U
+ser tag.
 \end_layout
 
 \begin_layout Itemize
-Applications supporting multiple user ratings should have a way for users
+Applications supporting multiple user ratings SHOULD have a way for users
  to define their preferred identifier.
  
 \end_layout
@@ -439,10 +496,10 @@ Applications supporting multiple user ratings should have a way for users
 \begin_layout Itemize
 The values are in the form of a list as defined in Section 2.1, with list
  entries in the format of UserIdentifier::Value.
- There may not be empty strings.
+ There MUST NOT be empty value strings.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
@@ -459,8 +516,8 @@ FMPS_Rating_Critic
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in Section 2.1, with list
- entries in the format of Publication::Critic::Rating.
+The values MUST be in the form of a list as defined in Section 2.1, with
+ list entries in the format of Publication::Critic::Rating.
  If the critic is unaffiliated, or if the rating is by a publication with
  no byline, the special value 
 \begin_inset Quotes eld
@@ -470,10 +527,10 @@ FMPS_Nothing
 \begin_inset Quotes erd
 \end_inset
 
- should be used to denote this; there may not be empty strings.
+ MUST be used to denote this; there MUST NOT be empty strings.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
@@ -491,16 +548,16 @@ FMPS_Rating_Algorithm
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in Section 2.1, with list
- entries in the format of Application::Algorithm::Rating.
- All fields must be defined; no fields may be left empty.
+The values MUST be in the form of a list as defined in Section 2.1, with
+ list entries in the format of Application::Algorithm::Rating.
+ All fields MUST be defined; fields MUST NOT be left empty.
 \end_layout
 
 \begin_layout Itemize
 In cases where the algorithm is intended to be global/collaborative/cross-applic
-ation, the Application value should be set to some agreed-upon value.
- In other words, it is suggested to use the application name for the Application
- part of the identifier, but it may also be used to identify a 
+ation, the Application value SHOULD be set to some agreed-upon value.
+ In other words, it is RECOMMENDED to use the application name for the Applicati
+on part of the identifier, but it MAY also be used to identify a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -512,13 +569,13 @@ group
 n.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
 
 Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPluginX::0.35;;The
- Music Player Alliance::Rating Algorithm 1::0.5
+ Free Music Player Alliance::Rating Algorithm 1::0.5
 \begin_inset Quotes erd
 \end_inset
 
@@ -529,16 +586,18 @@ Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPluginX::0.35;;The
 A note on the floating point values: some players may only allow users to
  rate in increments of whole numbers between 1 and 5; others 0 and 10; and
  so on.
- However, players should try to ensure that the rating they display and
- use for any purposes adheres to that saved in the tag when possible.
- For instance, if a track has a rating of 0.9 and an application only shows
+ However, players SHOULD ensure that the rating they display and use for
+ any purpose adheres to that saved in the tag whenever possible, only rounding
+ this number when absolutely necessary.
+\end_layout
+
+\begin_layout Standard
+For instance, if a track has a rating of 0.9 and an application only shows
  ratings using five star icons in full-star increments, this would be rounded
  within the application to five stars.
- However, the user may in fact have set the rating to 9/10 in another applicatio
-n.
- If the rating was being shown numerically, ideally the application would
- only round this number when absolutely necessary and display 4.5 instead
- of 5, which would more accurately reflect the user's set rating.
+ Howeer, if the player also shows the rating numerically, the application
+ would display 4.5 in the numeric field instead of the same 5 shown in the
+ star icons, thus more accurately reflecting the user's set rating.
 \end_layout
 
 \begin_layout Subsection
@@ -565,6 +624,23 @@ Three tags are defined, corresponding to the two types of defined playcounts,
 \end_layout
 
 \begin_layout Subsubsection
+All Playcount Tags
+\end_layout
+
+\begin_layout Itemize
+Playcounts MUST be a float value not less than 0.0.
+ 0.0 is valid and means unplayed.
+\end_layout
+
+\begin_layout Itemize
+The maximum value SHALL be 0.000001 less than the largest value able to be
+ stored in a 32-bit unsigned integer: 4,294,967,294.999999.
+ This is so that playcount values can be rounded to an integer equivalent,
+ if necessary (e.g.
+ for display to the user).
+\end_layout
+
+\begin_layout Subsubsection
 User Playcount Criteria
 \end_layout
 
@@ -583,12 +659,12 @@ played
 \end_layout
 
 \begin_layout Itemize
-If the track is less than thirty seconds long, the entire song must be played.
+If the track is less than thirty seconds long, the entire song MUST be played.
 \end_layout
 
 \begin_layout Itemize
 If the track is more than thirty seconds long but less than eight minutes
- long, at least fifty percent of the file must be played, calculated via
+ long, at least fifty percent of the file MUST be played, calculated via
  length of track.
  For instance, if a track is one minute long, at least thirty seconds of
  the track must have been played, although if the user skips backwards multiple
@@ -598,28 +674,13 @@ If the track is more than thirty seconds long but less than eight minutes
 
 \begin_layout Itemize
 If the track is longer than eight minutes, at least four minutes of the
- track must be played.
+ track MUST be played.
 \end_layout
 
 \begin_layout Standard
-User playcounts are float values representing integers (1.0, 141.0, etc.).
+User playcounts have an additional restriction in that they MUST be float
+ values representing integers (1.0, 141.0, etc.).
  They are never fractional values; a song was either played, or it wasn't.
-\end_layout
-
-\begin_layout Subsubsection
-All Playcount Tags
-\end_layout
-
-\begin_layout Itemize
-Playcounts are a float value not less than 0.0.
- 0.0 is valid and means unplayed.
-\end_layout
-
-\begin_layout Itemize
-The maximum value is 0.000001 less than the largest value able to be stored
- in a 32-bit unsigned integer: 4,294,967,294.999999.
- This is so that playcount values can be rounded to an integer equivalent,
- if necessary.
 \end_layout
 
 \begin_layout Subsubsection
@@ -627,27 +688,27 @@ FMPS_Playcount
 \end_layout
 
 \begin_layout Itemize
-The canonical playcount value in FMPS_Playcount should be set whenever a
+The canonical playcount value in FMPS_Playcount SHOULD be set whenever a
  user plays a track.
  This is in addition to any value stored for that user in FMPS_Playcount_User.
  This value is canonical because if a player does not support multiple users
- (or if no user identifier is set) this is the value that should be returned.
+ (or if no user identifier is set) this is the value that MUST be returned.
 \end_layout
 
 \begin_layout Itemize
 If a user has an identifier set to store per-user playcounts, when this
- value is set it should be set to the value of that user's playcount.
+ value is set it MUST be set to the value of that user's playcount.
  In other words, the last value held in FMPS_Playcount will be equivalent
  to the latest user's personal playcount, if any.
 \end_layout
 
 \begin_layout Itemize
 If a user resets the playcount for a track in the media player's database,
- the value of the FMPS_Playcount tag should be cleared as well.
+ the value of the FMPS_Playcount tag SHOULD be cleared as well.
 \end_layout
 
 \begin_layout Itemize
-FMPS_Playcount stores 
+FMPS_Playcount MUST store 
 \begin_inset Quotes eld
 \end_inset
 
@@ -655,7 +716,7 @@ full plays
 \begin_inset Quotes erd
 \end_inset
 
- of a track according to the rules in Section 2.3.1.
+ of a track according to the rules in Section 2.4.2.
 \end_layout
 
 \begin_layout Subsubsection
@@ -665,24 +726,24 @@ FMPS_Playcount_User
 \begin_layout Itemize
 If a player supports the notion of multiple users (perhaps from discovery
  of the current user from the operating system) and wishes to allow the
- users to keep separate playcounts, it stores these values in the FMPS_Playcount
-_User tag.
+ users to keep separate playcounts, it MUST store these values in the FMPS_Playc
+ount_User tag.
 \end_layout
 
 \begin_layout Itemize
-Applications supporting multiple user playcounts should have a way for users
+Applications supporting multiple user playcounts SHOULD have a way for users
  to define their preferred identifier.
  
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in Section 2.1, with list
- entries in the format of UserIdentifier::Value.
- There may not be empty strings.
+The values MUST be in the form of a list as defined in Section 2.1, with
+ list entries in the format of UserIdentifier::Value.
+ There MUST NOT be empty strings.
 \end_layout
 
 \begin_layout Itemize
-FMPS_Playcount_User stores 
+FMPS_Playcount_User MUST store 
 \begin_inset Quotes eld
 \end_inset
 
@@ -690,10 +751,10 @@ full plays
 \begin_inset Quotes erd
 \end_inset
 
- of a track according to the rules in Section 1.3.1.
+ of a track according to the rules in Section 2.4.2.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
@@ -710,16 +771,16 @@ FMPS_Playcount_Algorithm
 \end_layout
 
 \begin_layout Itemize
-The values are in the form of a list as defined in Section 2.3.1, with list
- entries in the format of Application::Algorithm::Playcount.
- All fields must be defined; no fields may be empty.
+The values MUST be in the form of a list as defined in Section 2.3.1, with
+ list entries in the format of Application::Algorithm::Playcount.
+ All fields MUST be defined; fields MUST NOT be left empty.
 \end_layout
 
 \begin_layout Itemize
 In cases where the algorithm is intended to be global/collaborative/cross-applic
-ation, the Application value should be set to some agreed-upon value.
- In other words, it is suggested to use the application name for the Application
- part of the identifier, but it may also be used to identify a 
+ation, the Application value SHOULD be set to some agreed-upon value.
+ In other words, it is RECOMMENDED to use the application name for the Applicati
+on part of the identifier, but it MAY also be used to identify a 
 \begin_inset Quotes eld
 \end_inset
 
@@ -732,12 +793,12 @@ n.
 \end_layout
 
 \begin_layout Itemize
-For algorithms, a track's length should be considered to be worth 1.0 playcounts;
- the user skipping parts of the track may decrease the value below 1.0, and
- the user repeating parts of the track may increase this value past 1.0.
+For algorithms, a track's length MUST be considered to be worth 1.0 playcounts;
+ the user skipping parts of the track MAY decrease the value below 1.0, and
+ the user repeating parts of the track MAY increase this value past 1.0.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
@@ -756,20 +817,24 @@ Performer Roles
 
 \begin_layout Standard
 Performer roles allow you to describe the performers in a track.
- Current support for these roles in tag formats is sporadic or difficult
+ Current support for these roles in tag formats is often sporadic or difficult
  to parse.
  As many of these tags as desired can be specified, to include all relevant
  performer information.
 \end_layout
 
 \begin_layout Itemize
-The identifier used is 
+Performer roles use the identifier 
 \begin_inset Quotes eld
 \end_inset
 
-FMPS_Performers.
- The value is a list in the form of Performer::Role, where Role is the user-defi
-ned role (
+FMPS_Performers
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The value MUST be a list in the form of Performer::Role, where Role is
+ the user-defined role (
 \begin_inset Quotes eld
 \end_inset
 
@@ -796,12 +861,12 @@ Vocals
 ).
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
 
-Willy Nelson::Guitar;;Eric Clapton::Backup Guitar;;B.B.
+Willy Nelson::Guitar;;Eric Clapton::Guitar (Backup);;B.B.
  King::Vocals
 \begin_inset Quotes erd
 \end_inset
@@ -832,14 +897,14 @@ FMPS_Lyrics
 \end_inset
 
 .
- The value is a string.
- Spaces, tabs, and newlines should be preserved when saving the string and
- displayed properly to the user.
+ The value MUST be a string.
+ Spaces, tabs, and newlines SHOULD be preserved when saving the string,
+ and SHOULD be displayed properly to the user.
 \end_layout
 
 \begin_layout Itemize
-Lyrics may also be stored in FMPS_Lyrics_Sources as a list (as defined in
- Section 2.1) in the form of Source::Data.
+Lyrics MAY also be stored in FMPS_Lyrics_Sources as a list (as defined in
+ Section 2.1), in which case the form MUST be Source::Data.
 \end_layout
 
 \begin_layout Subsection
@@ -882,19 +947,20 @@ The identifier for the compilation tag is FMPS_Compilations.
 \end_layout
 
 \begin_layout Itemize
-Values are a list (as defined in Section 2.1) in the form of Application::Identif
-ier.
- It is valid for applications to have more than one identifier, if the user
- wants to mark a track as being present in multiple compilations.
- However, each list entry must be unique.
+Values MUST be a list (as defined in Section 2.1) in the form of Application::Ide
+ntifier.
+ Applications MAY have more than one identifier, if the user wants to mark
+ a track as being present in multiple compilations, or to give user-defined
+ names to a compilation.
+ However, each list entry MUST be unique.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
 
-Amarok::2982ab29ef;;Banshee::ad8slpbzl229zier;;Amarok::My Compilation
+Amarok::2982ab29ef;;Amarok::My Compilation;;Banshee::ad8slpbzl229zier
 \begin_inset Quotes erd
 \end_inset
 

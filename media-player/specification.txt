@@ -2,7 +2,7 @@ Free Media Player Specifications
 
 Tag Specification
 
-version 1.0 RC1; May 30th, 2010
+version 1.0 RC2; July 13, 2010
 
 Copyright 2009-2010 by Jeff Mitchell [mitchell@kde.org]
 
@@ -19,7 +19,9 @@ possible conflicts with other tag identifiers and values.
 
 Table of Contents
 
-    1 License
+    1 Front Matter
+        1.1 License
+        1.2 Terminology
     2 Audio Metadata Tags
         2.1 Common Data and Tag Information
             2.1.1 MP3
@@ -34,8 +36,8 @@ Table of Contents
         2.3 FMPS_Rating_Critic
             2.3.1 FMPS_Rating_Algorithm
         2.4 Playcount Tags
-            2.4.1 User Playcount Criteria
-            2.4.2 All Playcount Tags
+            2.4.1 All Playcount Tags
+            2.4.2 User Playcount Criteria
             2.4.3 FMPS_Playcount
             2.4.4 FMPS_Playcount_User
             2.4.5 FMPS_Playcount_Algorithm
@@ -44,22 +46,40 @@ Table of Contents
         2.7 Compilation Identifier
 
 
-1 License
+1 Front Matter
 
-This specification is licensed under the Creative Commons 
-Attribution-No Derivative Works 3.0 Unported License. You are 
-free to copy, distribute and transmit this work, provided that 
-the copyright information and full URL to the license information 
-page (http://creativecommons.org/licenses/by-nd/3.0/) remain 
-intact. You may not alter, transform, or build upon this work.
+1.1 License
 
-The reason No Derivative Works is specified is due to the status 
-of this document as a specification. Specifications become 
-useless if they go forth and multiply; the utility of a 
-specification lies in having a common shared document. If there 
-is something that you feel needs to be added, updated or changed 
-in this specification, please email the author, who will be glad 
-to work with all interested parties.
+You may use this specification under either of the following 
+licenses, at your discretion. Most will want to use it under 
+Creative Commons; the GPL alternative is in case future versions 
+of the spec contain e.g. code snippets that you would like to use 
+in GPL programs:
+
+1. This specification is licensed under the Creative Commons 
+  Attribution-Share Alike 3.0 Unported License. You are free to 
+  copy, distribute and transmit this work, provided that the 
+  copyright information and full URL to the license information 
+  page (http://creativecommons.org/licenses/by-nd/3.0/) remain 
+  intact. If you alter, transform, or build upon this work, you 
+  may distribute the resulting work only under the same or 
+  similar license to this one. 
+
+2. This program is free software; you can redistribute it and/or 
+  modify it under the terms of the GNU General Public License as 
+  published by the Free Software Foundation; either version 2 of 
+  the License, or (at your option) any later version. This 
+  program is distributed in the hope that it will be useful, but 
+  WITHOUT ANY WARRANTY; without even the implied warranty of 
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+  GNU General Public License for more details. See http://www.gnu.org/licenses/
+  . 
+
+1.2 Terminology
+
+Terminology follws that specified in RFC2119, “Key words for use 
+in RFCs to Indicate Requirement Levels”. See http://www.ietf.org/rfc/rfc2119.txt
+ for more information.
 
 2 Audio Metadata Tags
 
@@ -101,9 +121,10 @@ For all tag formats, the following is defined:
 • All identifiers are ASCII strings, and defined in the sections 
   below.
 
-• All values are strings, which must adhere to the allowed 
-  encoding and length limits in the relevant specifications, but 
-  should use Unicode whenever possible.
+• All values (including numeric values) are stored as strings, 
+  which MUST adhere to the allowed encoding and length limits in 
+  the relevant tag format specifications, but SHOULD use Unicode 
+  whenever possible.
 
   – To keep the specification simple, no ranges of control 
     characters are defined which should never be included in a 
@@ -121,15 +142,15 @@ For all tag formats, the following is defined:
   MUST include a period/full stop (1 is not acceptable; 1.0 is 
   correct).
 
-• Float values should be limited to six decimal places.
+• Float values SHOULD be limited to six decimal places.
 
-• All lists are value strings. For any lists, entries are 
+• All lists are value strings. For any lists, entries MUST be 
   separated with a double semicolon ';;' and fields within an 
-  entry are separated with a double colon '::' (examples in 
+  entry MUST be separated with a double colon '::' (examples in 
   following sections). This allows for easy splitting of list 
   entries and entry fields with most string libraries. If any 
   value needs to represent a double semicolon or double colon, it 
-  should escape each of them with a backslash ('\;\;' or '\:\:'). 
+  MUST escape each of them with a backslash ('\;\;' or '\:\:'). 
   It is not expected that there will be a need to escape these 
   escape sequences and thus further escaping is not currently 
   defined.
@@ -139,38 +160,38 @@ stored in specific tag formats.
 
 2.1.1 MP3
 
-MP3 values should be stored in a TXXX frame with the Description 
+MP3 values MUST be stored in a TXXX frame with the Description 
 set to the specified identifier and the Text set to the string 
-representation of the value. The Description should be in 
+representation of the value. The Description SHOULD be in 
 CamelCase as specified in the following sections, e.g. 
 FMPS_Rating.
 
 2.1.2 VorbisComments
 
 Any file supporting VorbisComments (Vorbis, FLAC, Theora, Speex) 
-should add a comment with the Key set to the specified identifier 
+MUST use a comment with the Key set to the specified identifier 
 and the Value set to the string representation of the value. The 
-Key should be in all upper-case, e.g. FMPS_RATING.
+Key SHOULD be in all upper-case, e.g. FMPS_RATING.
 
 2.1.3 APEv2
 
-Any file supporting APEv2 should add a comment with the Key set 
-to the specified identifier and the Value set to the string 
-representation of the value. The Key should be in all upper-case, 
+Any file supporting APEv2 MUST add a comment with the Key set to 
+the specified identifier and the Value set to the string 
+representation of the value. The Key SHOULD be in all upper-case, 
 e.g. FMPS_RATING.
 
 2.1.4 MP4
 
-MP4 values should be stored at ----:com.apple.iTunes:Identifier 
+MP4 values MUST be stored at ----:com.apple.iTunes:Identifier 
 with the value a string representation of the tag's value. The 
-Identifier should be in CamelCase as specified in the following 
+Identifier SHOULD be in CamelCase as specified in the following 
 sections, e.g. FMPS_Rating.
 
 2.1.5 Windows Media
 
-Windows Media values should be stored in the FMPS/Identifier 
+Windows Media values MUST be stored in the FMPS/Identifier 
 namespace with the value a string representation of the tag's 
-value. The Identifier should be in CamelCase as specified in the 
+value. The Identifier SHOULD be in CamelCase as specified in the 
 following sections, e.g. FMPS_Rating.
 
 2.2 Rating Tags
@@ -210,85 +231,88 @@ critic or algorithm).
 
 2.2.1 All Rating Tags
 
-• Ratings are a float value between 0.0 and 1.0, inclusive. 0.0 
-  is the lowest possible rating; 1.0 is the highest possible 
-  rating.
+• Ratings SHALL be a float value between 0.0 and 1.0, inclusive. 
+  0.0 SHALL be the lowest possible rating; 1.0 is the highest 
+  possible rating.
 
-• Ratings should only be rounded when necessary, in order to 
+• Ratings SHOULD only be rounded when necessary, in order to 
   increase cross-player compatibility.
 
 2.2.2 FMPS_Rating
 
-• The canonical rating value in FMPS_Rating should be set 
+• The canonical rating value in FMPS_Rating SHOULD be set 
   whenever a user rates the track. This is in addition to any 
-  value stored for that user in FMPS_Rating_User. This value is 
-  canonical because if a player does not support multiple users 
-  (or if no user identifier is set) this is the value that should 
-  be returned.
+  value stored for that particular user in FMPS_Rating_User. This 
+  value is canonical because if a player does not support 
+  multiple users (or if no user identifier is set), this is the 
+  value that MUST be returned.
 
 • If a user removes ratings from a track in the media player's 
-  database, the value of the FMPS_Rating tag should be cleared as 
+  database, the value of the FMPS_Rating tag SHOULD be cleared as 
   well.
 
 2.2.3 FMPS_Rating_User
 
 • If a player supports the notion of multiple users (perhaps from 
   discovery of the current user from the operating system) and 
-  wishes to allow the users to keep separate ratings, it stores 
-  these values in the FMPS_Rating_User tag.
+  wishes to allow the users to keep separate ratings, it MUST 
+  store these values in the FMPS_Rating_User tag.
 
-• Applications supporting multiple user ratings should have a way 
+• Applications supporting multiple user ratings SHOULD have a way 
   for users to define their preferred identifier. 
 
 • The values are in the form of a list as defined in Section 2.1, 
   with list entries in the format of UserIdentifier::Value. There 
-  may not be empty strings.
+  MUST NOT be empty value strings.
 
-• Example: “Alice Abba::0.6;;Bob Beatles::0.8”.
+Example: “Alice Abba::0.6;;Bob Beatles::0.8”.
 
 2.3 FMPS_Rating_Critic
 
-• The values are in the form of a list as defined in Section 2.1, 
-  with list entries in the format of Publication::Critic::Rating. 
-  If the critic is unaffiliated, or if the rating is by a 
-  publication with no byline, the special value “FMPS_Nothing” 
-  should be used to denote this; there may not be empty strings.
+• The values MUST be in the form of a list as defined in Section 
+  2.1, with list entries in the format of 
+  Publication::Critic::Rating. If the critic is unaffiliated, or 
+  if the rating is by a publication with no byline, the special 
+  value “FMPS_Nothing” MUST be used to denote this; there MUST 
+  NOT be empty strings.
 
-• Example: “Rolling Stone::Ralph 
-  Gleason::0.83;;musicOMH.com::FMPS_Nothing::0.76;;Metacritic::FMPS_Nothing::0.8;;FMPS_Nothing::Some 
-  Dude::0.9”
+Example: “Rolling Stone::Ralph 
+Gleason::0.83;;musicOMH.com::FMPS_Nothing::0.76;;Metacritic::FMPS_Nothing::0.8;;FMPS_Nothing::Some 
+Dude::0.9”
 
 2.3.1 FMPS_Rating_Algorithm
 
-• The values are in the form of a list as defined in Section 2.1, 
-  with list entries in the format of 
-  Application::Algorithm::Rating. All fields must be defined; no 
-  fields may be left empty.
+• The values MUST be in the form of a list as defined in Section 
+  2.1, with list entries in the format of 
+  Application::Algorithm::Rating. All fields MUST be defined; 
+  fields MUST NOT be left empty.
 
 • In cases where the algorithm is intended to be 
   global/collaborative/cross-application, the Application value 
-  should be set to some agreed-upon value. In other words, it is 
-  suggested to use the application name for the Application part 
-  of the identifier, but it may also be used to identify a “group”
-   of algorithms, or some arbitrary other value that can be used 
-  for identification.
+  SHOULD be set to some agreed-upon value. In other words, it is 
+  RECOMMENDED to use the application name for the Application 
+  part of the identifier, but it MAY also be used to identify a “
+  group” of algorithms, or some arbitrary other value that can be 
+  used for identification.
 
-• Example: “
-  Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPluginX::0.35;;The 
-  Music Player Alliance::Rating Algorithm 1::0.5”
+Example: “
+Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPluginX::0.35;;The 
+Free Music Player Alliance::Rating Algorithm 1::0.5”
 
 A note on the floating point values: some players may only allow 
 users to rate in increments of whole numbers between 1 and 5; 
-others 0 and 10; and so on. However, players should try to ensure 
-that the rating they display and use for any purposes adheres to 
-that saved in the tag when possible. For instance, if a track has 
-a rating of 0.9 and an application only shows ratings using five 
-star icons in full-star increments, this would be rounded within 
-the application to five stars. However, the user may in fact have 
-set the rating to 9/10 in another application. If the rating was 
-being shown numerically, ideally the application would only round 
-this number when absolutely necessary and display 4.5 instead of 
-5, which would more accurately reflect the user's set rating.
+others 0 and 10; and so on. However, players SHOULD ensure that 
+the rating they display and use for any purpose adheres to that 
+saved in the tag whenever possible, only rounding this number 
+when absolutely necessary.
+
+For instance, if a track has a rating of 0.9 and an application 
+only shows ratings using five star icons in full-star increments, 
+this would be rounded within the application to five stars. 
+Howeer, if the player also shows the rating numerically, the 
+application would display 4.5 in the numeric field instead of the 
+same 5 shown in the star icons, thus more accurately reflecting 
+the user's set rating.
 
 2.4 Playcount Tags
 
@@ -308,7 +332,18 @@ value). A file that has no playcount tag for a specific purpose
 is to be considered unplayed for that purpose (user or 
 algorithm).
 
-2.4.1 User Playcount Criteria
+2.4.1 All Playcount Tags
+
+• Playcounts MUST be a float value not less than 0.0. 0.0 is 
+  valid and means unplayed.
+
+• The maximum value SHALL be 0.000001 less than the largest value 
+  able to be stored in a 32-bit unsigned integer: 
+  4,294,967,294.999999. This is so that playcount values can be 
+  rounded to an integer equivalent, if necessary (e.g. for 
+  display to the user).
+
+2.4.2 User Playcount Criteria
 
 The user playcount isn't meant to be set by the user, but rather 
 to follow these rules that define user behavior. A file is to be 
@@ -316,10 +351,10 @@ considered “played” if it meets the following criteria, inspired
 by Last.fm's scrobbling rules:
 
 • If the track is less than thirty seconds long, the entire song 
-  must be played.
+  MUST be played.
 
 • If the track is more than thirty seconds long but less than 
-  eight minutes long, at least fifty percent of the file must be 
+  eight minutes long, at least fifty percent of the file MUST be 
   played, calculated via length of track. For instance, if a 
   track is one minute long, at least thirty seconds of the track 
   must have been played, although if the user skips backwards 
@@ -327,100 +362,91 @@ by Last.fm's scrobbling rules:
   three times in a row, this may be considered a valid playcount.
 
 • If the track is longer than eight minutes, at least four 
-  minutes of the track must be played.
+  minutes of the track MUST be played.
 
-User playcounts are float values representing integers (1.0, 
-141.0, etc.). They are never fractional values; a song was either 
-played, or it wasn't.
-
-2.4.2 All Playcount Tags
-
-• Playcounts are a float value not less than 0.0. 0.0 is valid 
-  and means unplayed.
-
-• The maximum value is 0.000001 less than the largest value able 
-  to be stored in a 32-bit unsigned integer: 
-  4,294,967,294.999999. This is so that playcount values can be 
-  rounded to an integer equivalent, if necessary.
+User playcounts have an additional restriction in that they MUST 
+be float values representing integers (1.0, 141.0, etc.). They 
+are never fractional values; a song was either played, or it 
+wasn't.
 
 2.4.3 FMPS_Playcount
 
-• The canonical playcount value in FMPS_Playcount should be set 
+• The canonical playcount value in FMPS_Playcount SHOULD be set 
   whenever a user plays a track. This is in addition to any value 
   stored for that user in FMPS_Playcount_User. This value is 
   canonical because if a player does not support multiple users 
-  (or if no user identifier is set) this is the value that should 
+  (or if no user identifier is set) this is the value that MUST 
   be returned.
 
 • If a user has an identifier set to store per-user playcounts, 
-  when this value is set it should be set to the value of that 
+  when this value is set it MUST be set to the value of that 
   user's playcount. In other words, the last value held in 
   FMPS_Playcount will be equivalent to the latest user's personal 
   playcount, if any.
 
 • If a user resets the playcount for a track in the media 
-  player's database, the value of the FMPS_Playcount tag should 
+  player's database, the value of the FMPS_Playcount tag SHOULD 
   be cleared as well.
 
-• FMPS_Playcount stores “full plays” of a track according to the 
-  rules in Section 2.3.1.
+• FMPS_Playcount MUST store “full plays” of a track according to 
+  the rules in Section 2.4.2.
 
 2.4.4 FMPS_Playcount_User
 
 • If a player supports the notion of multiple users (perhaps from 
   discovery of the current user from the operating system) and 
-  wishes to allow the users to keep separate playcounts, it 
-  stores these values in the FMPS_Playcount_User tag.
+  wishes to allow the users to keep separate playcounts, it MUST 
+  store these values in the FMPS_Playcount_User tag.
 
-• Applications supporting multiple user playcounts should have a 
+• Applications supporting multiple user playcounts SHOULD have a 
   way for users to define their preferred identifier. 
 
-• The values are in the form of a list as defined in Section 2.1, 
-  with list entries in the format of UserIdentifier::Value. There 
-  may not be empty strings.
+• The values MUST be in the form of a list as defined in Section 
+  2.1, with list entries in the format of UserIdentifier::Value. 
+  There MUST NOT be empty strings.
 
-• FMPS_Playcount_User stores “full plays” of a track according to 
-  the rules in Section 1.3.1.
+• FMPS_Playcount_User MUST store “full plays” of a track 
+  according to the rules in Section 2.4.2.
 
-• Example: “Alice Abba::1.0;;Bob Beatles::133.0”.
+Example: “Alice Abba::1.0;;Bob Beatles::133.0”.
 
 2.4.5 FMPS_Playcount_Algorithm
 
-• The values are in the form of a list as defined in Section 
+• The values MUST be in the form of a list as defined in Section 
   2.3.1, with list entries in the format of 
-  Application::Algorithm::Playcount. All fields must be defined; 
-  no fields may be empty.
+  Application::Algorithm::Playcount. All fields MUST be defined; 
+  fields MUST NOT be left empty.
 
 • In cases where the algorithm is intended to be 
   global/collaborative/cross-application, the Application value 
-  should be set to some agreed-upon value. In other words, it is 
-  suggested to use the application name for the Application part 
-  of the identifier, but it may also be used to identify a “group”
-   of algorithms, or some arbitrary other value that can be used 
-  for identification.
+  SHOULD be set to some agreed-upon value. In other words, it is 
+  RECOMMENDED to use the application name for the Application 
+  part of the identifier, but it MAY also be used to identify a “
+  group” of algorithms, or some arbitrary other value that can be 
+  used for identification.
 
-• For algorithms, a track's length should be considered to be 
-  worth 1.0 playcounts; the user skipping parts of the track may 
+• For algorithms, a track's length MUST be considered to be worth 
+  1.0 playcounts; the user skipping parts of the track MAY 
   decrease the value below 1.0, and the user repeating parts of 
-  the track may increase this value past 1.0.
+  the track MAY increase this value past 1.0.
 
-• Example: “
-  Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::RatingPluginX::1652.19;;The 
-  Music Player Alliance::Rating Algorithm 1::0.5”
+Example: “
+Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::RatingPluginX::1652.19;;The 
+Music Player Alliance::Rating Algorithm 1::0.5”
 
 2.5 Performer Roles
 
 Performer roles allow you to describe the performers in a track. 
-Current support for these roles in tag formats is sporadic or 
-difficult to parse. As many of these tags as desired can be 
+Current support for these roles in tag formats is often sporadic 
+or difficult to parse. As many of these tags as desired can be 
 specified, to include all relevant performer information.
 
-• The identifier used is “FMPS_Performers. The value is a list in 
-  the form of Performer::Role, where Role is the user-defined 
-  role (“Guitar”, “Guitar (Backup)”, “Vocals”).
+• Performer roles use the identifier “FMPS_Performers”. The value 
+  MUST be a list in the form of Performer::Role, where Role is 
+  the user-defined role (“Guitar”, “Guitar (Backup)”, “Vocals”).
 
-• Example: “Willy Nelson::Guitar;;Eric Clapton::Backup 
-  Guitar;;B.B. King::Vocals”
+Example: “Willy Nelson::Guitar;;Eric Clapton::Guitar 
+(Backup);;B.B. King::Vocals”
 
 2.6 Lyrics
 
@@ -432,12 +458,13 @@ and different Internet sources may have different lyrics, it is
 possible to store multiple lyrics values by specifying a source.
 
 • The identifier for the (canonical) lyrics text is “FMPS_Lyrics”
-  . The value is a string. Spaces, tabs, and newlines should be 
-  preserved when saving the string and displayed properly to the 
-  user.
+  . The value MUST be a string. Spaces, tabs, and newlines SHOULD 
+  be preserved when saving the string, and SHOULD be displayed 
+  properly to the user.
 
-• Lyrics may also be stored in FMPS_Lyrics_Sources as a list (as 
-  defined in Section 2.1) in the form of Source::Data.
+• Lyrics MAY also be stored in FMPS_Lyrics_Sources as a list (as 
+  defined in Section 2.1), in which case the form MUST be 
+  Source::Data.
 
 2.7 Compilation Identifier
 
@@ -467,13 +494,12 @@ VorbisComments.
 
 • The identifier for the compilation tag is FMPS_Compilations.
 
-• Values are a list (as defined in Section 2.1) in the form of 
-  Application::Identifier. It is valid for applications to have 
-  more than one identifier, if the user wants to mark a track as 
-  being present in multiple compilations. However, each list 
-  entry must be unique.
+• Values MUST be a list (as defined in Section 2.1) in the form 
+  of Application::Identifier. Applications MAY have more than one 
+  identifier, if the user wants to mark a track as being present 
+  in multiple compilations, or to give user-defined names to a 
+  compilation. However, each list entry MUST be unique.
 
-• Example: “
-  Amarok::2982ab29ef;;Banshee::ad8slpbzl229zier;;Amarok::My 
-  Compilation”
+Example: “Amarok::2982ab29ef;;Amarok::My 
+Compilation;;Banshee::ad8slpbzl229zier”
 

@@ -43,7 +43,7 @@ Table of Contents
             2.4.5 FMPS_Playcount_Algorithm
         2.5 Performer Roles
         2.6 Lyrics
-        2.7 Compilation Identifier
+        2.7 Compilation (“Various Artists”) Identifier
 
 
 1 Front Matter
@@ -466,14 +466,17 @@ possible to store multiple lyrics values by specifying a source.
   defined in Section 2.1), in which case the form MUST be 
   Source::Data.
 
-2.7 Compilation Identifier
+Example: “Alice Aardvark::[lyrics];;Bob 
+Baboon::[lyrics];;lyricssite.net::[lyrics]”
 
-Compilations can be difficult for music players to discover. 
-Sometimes the user places all files from a compilation in one 
-directory and expects that the music player will understand this; 
-sometimes the user has them in different directories but with the 
-same album name and expects that the music player will understand 
-this; and so on.
+2.7 Compilation (“Various Artists”) Identifier
+
+Compilations (or “Various Artists” albums) can be difficult for 
+music players to discover. Sometimes the user places all files 
+from a compilation in one directory and expects that the music 
+player will understand this; sometimes the user has them in 
+different directories but with the same album name and expects 
+that the music player will understand this; and so on.
 
 Although there are existing solutions to identify albums and 
 songs that belong to the same album (such as MusicBrainz 
@@ -498,8 +501,10 @@ VorbisComments.
   of Application::Identifier. Applications MAY have more than one 
   identifier, if the user wants to mark a track as being present 
   in multiple compilations, or to give user-defined names to a 
-  compilation. However, each list entry MUST be unique.
+  compilation. However, each list entry MUST be unique. Similarly 
+  to other tags in this specification, there may be significant 
+  utility in interoperating on the application names.
 
-Example: “Amarok::2982ab29ef;;Amarok::My 
-Compilation;;Banshee::ad8slpbzl229zier”
+Example: “Amarok::2982ab29ef;;AmarokUser::My 
+Compilation;;Banshee::ad8slpbzl229zier;;FMPSAlliance::de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3”
 

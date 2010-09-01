@@ -50,7 +50,7 @@ Tag Specification
 \end_layout
 
 \begin_layout Date
-version 1.0 RC2; July 13, 2010
+version 1.0 RC3; September 1, 2010
 \end_layout
 
 \begin_layout Author
@@ -920,7 +920,7 @@ Alice Aardvark::[lyrics];;Bob Baboon::[lyrics];;lyricssite.net::[lyrics]
 \end_layout
 
 \begin_layout Subsection
-Compilation (
+Album/Compilation (
 \begin_inset Quotes eld
 \end_inset
 
@@ -952,8 +952,9 @@ Although there are existing solutions to identify albums and songs that
  belong to the same album (such as MusicBrainz identifiers) many users have
  not or do not want to tag their songs with MusicBrainz information.
  This tag therefore provides a simple way for an application to assign a
- compilation identifier to a track, indicating to what compilation a track
- belongs.
+ album identifier to a track, indicating to what album a track belongs.
+ It also provides a simple way of marking the album as a compilation or
+ not.
 \end_layout
 
 \begin_layout Standard
@@ -964,19 +965,25 @@ This enables such use-cases as allowing a user to mark multiple tracks that
 \end_layout
 
 \begin_layout Standard
-This section purposefully does not define information about the compilation;
- it is expected that the user must supply that information in appropriate
+This section purposefully does not define information about the album/compilatio
+n; it is expected that the user must supply that information in appropriate
  existing tags, e.g.
- ALBUMARTIST for VorbisComments.
+ ALBUM and ALBUMARTIST for VorbisComments.
 \end_layout
 
 \begin_layout Itemize
-The identifier for the compilation tag is FMPS_Compilations.
+The identifier for the album/compilation tag is FMPS_Albums_Compilations.
+ Although this tag will be most useful for compilation/Various Artists albums,
+ there may still be significant utility for a player in using this tag to
+ identify single-artist albums.
+ As a result, players MUST NOT make assumptions about whether the presence
+ tag identifies the track as belonging to a compilation/Various Artists
+ album and MUST explicitly derive this information from the tag value.
 \end_layout
 
 \begin_layout Itemize
-Values MUST be a list (as defined in Section 2.1) in the form of Application::Ide
-ntifier.
+Values MUST be a list (as defined in Section 2.1) in the form of Application::Typ
+e::Identifier.
  Applications MAY have more than one identifier, if the user wants to mark
  a track as being present in multiple compilations, or to give user-defined
  names to a compilation.
@@ -985,13 +992,46 @@ ntifier.
  utility in interoperating on the application names.
 \end_layout
 
+\begin_layout Itemize
+Type MUST be one of the following values, without quotes: 
+\begin_inset Quotes eld
+\end_inset
+
+Album
+\begin_inset Quotes erd
+\end_inset
+
+ (indicating a general-purpose album, usually by a single artist) or 
+\begin_inset Quotes eld
+\end_inset
+
+Compilation
+\begin_inset Quotes erd
+\end_inset
+
+ (indicating a compilation album, usually by multiple/various artists).
+ Checks against this value MUST be case-insensitive.
+ More values may be added in the future; if a player encounters an unknown
+ value it SHOULD default to type 
+\begin_inset Quotes eld
+\end_inset
+
+Album
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
 \begin_layout Standard
 Example: 
 \begin_inset Quotes eld
 \end_inset
 
-Amarok::2982ab29ef;;AmarokUser::My Compilation;;Banshee::ad8slpbzl229zier;;FMPSA
-lliance::de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3
+Amarok::Album::2982ab29ef;;AmarokUser::Compilation::My Compilation;;Banshee::Com
+pilation::ad8slpbzl229zier;;FMPSAlliance::Album::de9f2c7fd25e1b3afad3e85a0bd17d9
+b100db4b3
 \begin_inset Quotes erd
 \end_inset
 

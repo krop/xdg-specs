@@ -2,7 +2,7 @@ Free Media Player Specifications
 
 Tag Specification
 
-version 1.0 RC2; July 13, 2010
+version 1.0 RC3; September 1, 2010
 
 Copyright 2009-2010 by Jeff Mitchell [mitchell@kde.org]
 
@@ -43,7 +43,7 @@ Table of Contents
             2.4.5 FMPS_Playcount_Algorithm
         2.5 Performer Roles
         2.6 Lyrics
-        2.7 Compilation (“Various Artists”) Identifier
+        2.7 Album/Compilation (“Various Artists”) Identifier
 
 
 1 Front Matter
@@ -469,7 +469,7 @@ possible to store multiple lyrics values by specifying a source.
 Example: “Alice Aardvark::[lyrics];;Bob 
 Baboon::[lyrics];;lyricssite.net::[lyrics]”
 
-2.7 Compilation (“Various Artists”) Identifier
+2.7 Album/Compilation (“Various Artists”) Identifier
 
 Compilations (or “Various Artists” albums) can be difficult for 
 music players to discover. Sometimes the user places all files 
@@ -482,8 +482,9 @@ Although there are existing solutions to identify albums and
 songs that belong to the same album (such as MusicBrainz 
 identifiers) many users have not or do not want to tag their 
 songs with MusicBrainz information. This tag therefore provides a 
-simple way for an application to assign a compilation identifier 
-to a track, indicating to what compilation a track belongs.
+simple way for an application to assign a album identifier to a 
+track, indicating to what album a track belongs. It also provides 
+a simple way of marking the album as a compilation or not.
 
 This enables such use-cases as allowing a user to mark multiple 
 tracks that are part of a single compilation, and then have those 
@@ -491,20 +492,35 @@ tracks show up as being together in a compilation the next time
 the user adds the tracks to the music player.
 
 This section purposefully does not define information about the 
-compilation; it is expected that the user must supply that 
-information in appropriate existing tags, e.g. ALBUMARTIST for 
-VorbisComments.
+album/compilation; it is expected that the user must supply that 
+information in appropriate existing tags, e.g. ALBUM and 
+ALBUMARTIST for VorbisComments.
 
-• The identifier for the compilation tag is FMPS_Compilations.
+• The identifier for the album/compilation tag is 
+  FMPS_Albums_Compilations. Although this tag will be most useful 
+  for compilation/Various Artists albums, there may still be 
+  significant utility for a player in using this tag to identify 
+  single-artist albums. As a result, players MUST NOT make 
+  assumptions about whether the presence tag identifies the track 
+  as belonging to a compilation/Various Artists album and MUST 
+  explicitly derive this information from the tag value.
 
 • Values MUST be a list (as defined in Section 2.1) in the form 
-  of Application::Identifier. Applications MAY have more than one 
-  identifier, if the user wants to mark a track as being present 
-  in multiple compilations, or to give user-defined names to a 
-  compilation. However, each list entry MUST be unique. Similarly 
-  to other tags in this specification, there may be significant 
-  utility in interoperating on the application names.
+  of Application::Type::Identifier. Applications MAY have more 
+  than one identifier, if the user wants to mark a track as being 
+  present in multiple compilations, or to give user-defined names 
+  to a compilation. However, each list entry MUST be unique. 
+  Similarly to other tags in this specification, there may be 
+  significant utility in interoperating on the application names.
 
-Example: “Amarok::2982ab29ef;;AmarokUser::My 
-Compilation;;Banshee::ad8slpbzl229zier;;FMPSAlliance::de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3”
+• Type MUST be one of the following values, without quotes: “
+  Album” (indicating a general-purpose album, usually by a single 
+  artist) or “Compilation” (indicating a compilation album, 
+  usually by multiple/various artists). Checks against this value 
+  MUST be case-insensitive. More values may be added in the 
+  future; if a player encounters an unknown value it SHOULD 
+  default to type “Album”. 
+
+Example: “Amarok::Album::2982ab29ef;;AmarokUser::Compilation::My 
+Compilation;;Banshee::Compilation::ad8slpbzl229zier;;FMPSAlliance::Album::de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3”
 

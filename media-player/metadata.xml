@@ -2,9 +2,9 @@
 <description>This specification describes various metadata and behavioral items intended to reduce complexity and enhance functionality for users of free music and media players. It does this by proposing standards for common functionality needs where none currently exist.</description>
 
 <versions>
-    <version name="1.0rc3">
+    <version name="1.0">
         <description>Free Music Player Specifications</description>
-        <date>01-09-2010<date>
+        <date>09-09-2010<date>
         <current/>
     </version>
 </versions>

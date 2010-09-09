@@ -26,9 +26,9 @@
         <version name="Banshee" status="Participating" specversion="0.4draft"/>
     </organization>
 
-	<organization name="Quod Libet" status="Participating">
-		<version name="Quod Libet" status="Participating" specversion="0.4draft"/>
-	</organization>
+    <organization name="Quod Libet" status="Participating">
+        <version name="Quod Libet" status="Participating" specversion="0.4draft"/>
+    </organization>
 
     <organization name="Songbird" status="Participating">
         <version name="Songbird" status="Participating" specversion="0.4draft"/>

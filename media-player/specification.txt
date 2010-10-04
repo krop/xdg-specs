@@ -119,7 +119,8 @@ tags to use in various formats.
 For all tag formats, the following is defined:
 
 • All identifiers are ASCII strings, and defined in the sections 
-  below.
+  below. All identifier strings must escape each colon (':'), 
+  semicolon (';') and backslash ('\') with a backslash.
 
 • All values (including numeric values) are stored as strings, 
   which MUST adhere to the allowed encoding and length limits in 
@@ -132,6 +133,9 @@ For all tag formats, the following is defined:
     will properly handle any such characters encountered. It is 
     highly recommended, however, that no such control characters 
     are used, except when specified below.
+
+  – All value strings must escape each colon (':'), semicolon 
+    (';') and backslash ('\') with a backslash. 
 
 • Although identifier case is specified for the different types 
   of tags, comparisons against identifier strings MUST be 
@@ -147,13 +151,12 @@ For all tag formats, the following is defined:
 • All lists are value strings. For any lists, entries MUST be 
   separated with a double semicolon ';;' and fields within an 
   entry MUST be separated with a double colon '::' (examples in 
-  following sections). This allows for easy splitting of list 
-  entries and entry fields with most string libraries. If any 
-  value needs to represent a double semicolon or double colon, it 
-  MUST escape each of them with a backslash ('\;\;' or '\:\:'). 
-  It is not expected that there will be a need to escape these 
-  escape sequences and thus further escaping is not currently 
-  defined.
+  following sections). These separation markers MUST NOT be 
+  escaped with backslashes. This allows for easy splitting of 
+  list entries and entry fields with most string libraries; the 
+  entries and fields can be split by double semicolon/double 
+  colon, and the ensuing fields can have any escaped values 
+  substituted.
 
 The following sections describe where the information should be 
 stored in specific tag formats.
@@ -296,7 +299,7 @@ Dude::0.9”
   used for identification.
 
 Example: “
-Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPluginX::0.35;;The 
+Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPlugin\:X::0.35;;The 
 Free Music Player Alliance::Rating Algorithm 1::0.5”
 
 A note on the floating point values: some players may only allow 
@@ -431,8 +434,8 @@ Example: “Alice Abba::1.0;;Bob Beatles::133.0”.
   the track MAY increase this value past 1.0.
 
 Example: “
-Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::RatingPluginX::1652.19;;The 
-Music Player Alliance::Rating Algorithm 1::0.5”
+Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::PlaycountPlugin\:X::1652.19;;The 
+Music Player Alliance::Playcount Algorithm 1::0.5”
 
 2.5 Performer Roles
 
@@ -467,7 +470,7 @@ possible to store multiple lyrics values by specifying a source.
   Source::Data.
 
 Example: “Alice Aardvark::[lyrics];;Bob 
-Baboon::[lyrics];;lyricssite.net::[lyrics]”
+Baboon::[lyrics];;http\://www.lyricssite.net::[lyrics]”
 
 2.7 Album/Compilation (“Various Artists”) Identifier
 
@@ -501,9 +504,9 @@ ALBUMARTIST for VorbisComments.
   for compilation/Various Artists albums, there may still be 
   significant utility for a player in using this tag to identify 
   single-artist albums. As a result, players MUST NOT make 
-  assumptions about whether the presence tag identifies the track 
-  as belonging to a compilation/Various Artists album and MUST 
-  explicitly derive this information from the tag value.
+  assumptions about whether the presence of this tag identifies 
+  the track as belonging to a compilation/Various Artists album 
+  and MUST explicitly derive this information from the tag value.
 
 • Values MUST be a list (as defined in Section 2.1) in the form 
   of Application::Type::Identifier. Applications MAY have more 

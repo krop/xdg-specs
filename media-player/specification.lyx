@@ -280,6 +280,10 @@ For all tag formats, the following is defined:
 
 \begin_layout Itemize
 All identifiers are ASCII strings, and defined in the sections below.
+ All identifier strings must escape each colon (':'), semicolon (';') and
+ backslash ('
+\backslash
+') with a backslash.
 \end_layout
 
 \begin_layout Itemize
@@ -296,6 +300,14 @@ To keep the specification simple, no ranges of control characters are defined
  any such characters encountered.
  It is highly recommended, however, that no such control characters are
  used, except when specified below.
+\end_layout
+
+\begin_layout Itemize
+All value strings must escape each colon (':'), semicolon (';') and backslash
+ ('
+\backslash
+') with a backslash.
+ 
 \end_layout
 
 \end_deeper
@@ -320,20 +332,10 @@ All lists are value strings.
  For any lists, entries MUST be separated with a double semicolon ';;' and
  fields within an entry MUST be separated with a double colon '::' (examples
  in following sections).
+ These separation markers MUST NOT be escaped with backslashes.
  This allows for easy splitting of list entries and entry fields with most
- string libraries.
- If any value needs to represent a double semicolon or double colon, it
- MUST escape each of them with a backslash ('
-\backslash
-;
-\backslash
-;' or '
-\backslash
-:
-\backslash
-:').
- It is not expected that there will be a need to escape these escape sequences
- and thus further escaping is not currently defined.
+ string libraries; the entries and fields can be split by double semicolon/doubl
+e colon, and the ensuing fields can have any escaped values substituted.
 \end_layout
 
 \begin_layout Standard
@@ -574,8 +576,9 @@ Example:
 \begin_inset Quotes eld
 \end_inset
 
-Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPluginX::0.35;;The
- Free Music Player Alliance::Rating Algorithm 1::0.5
+Amarok::AutoRate::0.52;;VLC::Standard::0.6;;QuodLibet::RatingPlugin
+\backslash
+:X::0.35;;The Free Music Player Alliance::Rating Algorithm 1::0.5
 \begin_inset Quotes erd
 \end_inset
 
@@ -803,8 +806,9 @@ Example:
 \begin_inset Quotes eld
 \end_inset
 
-Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::RatingPluginX::165
-2.19;;The Music Player Alliance::Rating Algorithm 1::0.5
+Amarok::AutoPlaycount::152.69;;VLC::Standard::198.0;;QuodLibet::PlaycountPlugin
+\backslash
+:X::1652.19;;The Music Player Alliance::Playcount Algorithm 1::0.5
 \begin_inset Quotes erd
 \end_inset
 
@@ -912,7 +916,9 @@ Example:
 \begin_inset Quotes eld
 \end_inset
 
-Alice Aardvark::[lyrics];;Bob Baboon::[lyrics];;lyricssite.net::[lyrics]
+Alice Aardvark::[lyrics];;Bob Baboon::[lyrics];;http
+\backslash
+://www.lyricssite.net::[lyrics]
 \begin_inset Quotes erd
 \end_inset
 
@@ -977,8 +983,9 @@ The identifier for the album/compilation tag is FMPS_Albums_Compilations.
  there may still be significant utility for a player in using this tag to
  identify single-artist albums.
  As a result, players MUST NOT make assumptions about whether the presence
- tag identifies the track as belonging to a compilation/Various Artists
- album and MUST explicitly derive this information from the tag value.
+ of this tag identifies the track as belonging to a compilation/Various
+ Artists album and MUST explicitly derive this information from the tag
+ value.
 \end_layout
 
 \begin_layout Itemize

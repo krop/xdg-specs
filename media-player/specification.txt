@@ -2,7 +2,7 @@ Free Media Player Specifications
 
 Tag Specification
 
-version 1.0; September 9, 2010
+version 1.1; October 16, 2010
 
 Copyright 2009-2010 by Jeff Mitchell [mitchell@kde.org]
 

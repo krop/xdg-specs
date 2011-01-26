@@ -1,0 +1,70 @@
+1.1
+
+October 16, 2010
+  * Version 1.1 released. Updates escaping of colons, backslashes, and
+    semicolons.
+
+1.0
+
+September 9, 2010
+  * Version 1.0 released
+
+1.0 RC3
+
+September 1, 2010
+  * Fleshing out of the Compilations tag to allow album identifiers.
+
+1.0 RC2
+
+July 14th, 2010
+  * Wording changes
+  * Slightly more detail about compilations
+
+July 13, 2010
+  * Change license
+  * Add RFC-style language
+
+1.0 RC1
+
+May 30, 2010:
+  * Update string language and choices
+  * Add license
+  * Some standardization
+
+Fourth Draft
+
+April 15, 2010:
+  * Near complete revamp, fitting into constraints on identifier character
+    sets.
+  * Added compilation section.
+  * More detailed fleshing out of most information.
+
+January 25, 2010:
+  * Reworded abstract.
+  * Added lyrics section.
+  * Added multiple user support.
+  * Other small fixes/changes.
+
+Third Draft
+
+November 13, 2009:
+  * Clarified that full stops/periods must be used at all times for float
+    values.
+  * Moved tag sections up top and consolidated redundant information.
+  * Added WMA/APEv2/MP4 information.
+  * Implemented suggestions regarding naming of canonical and non-canonical
+    identifiers.
+
+Second Draft
+
+November 3, 2009:
+  * Removed integer/float. Everything uses float now.
+  * Clarify many things, including calculation of playcount.
+  * Reduced complexity of ignore files. Now they are just checked for
+    existence, not contents.
+
+First Draft
+
+October 14, 2009:
+  * Initial proposed draft.
+

@@ -53,7 +53,7 @@
 			lookup attributes are not treated as secret material, and the service may choose
 			not to encrypt attributes when storing them to disk.</para>
 
-			<para>This API was desigened by GNOME and KDE developers with the goal of having
+			<para>This API was designed by GNOME and KDE developers with the goal of having
 			a common way to store secrets. Its predecessors are the desktop-specific APIs
 			used by GNOME Keyring and KWallet.</para>
 		</chapter>

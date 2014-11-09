@@ -101,23 +101,24 @@ mimetype1=foo5.desktop;</programlisting>
   <title>Default Application</title>
   <para>Indicating the default application for a given mimetype is done by writing into the group [Default Applications] in the file mimeapps.list.</para>
   <para>The [Default Applications] group indicates the default application to be used for a given mimetype. This is for instance the one that will be started when double-clicking on a file in a file manager. If the application is no longer installed, the next application in the list is attempted, and so on.</para>
-  <para>This example ensures that the application default1.desktop will be used for mimetype1, if it's installed, and otherwise default2.desktop if it's installed:
+  <para>This example ensures that the application default1.desktop will be used for mimetype1, if it's installed and associated with the type, and otherwise default2.desktop if it's installed and associated:
     <programlisting>
 [Default Applications]
 mimetype1=default1.desktop;default2.desktop;</programlisting>
   </para>
   <para>The value is a semicolon-separated list of desktop file IDs (as defined in the desktop entry spec).</para>
-  <para>In the absence of such an entry, the next mimeapps.list is checked. Once all levels have been checked, if no entry could be found, the implementations should pick the most-preferred .desktop files associated with the mimetype, taking into account added and removed associations as per the previous section.</para>
+  <para>In the absence of such an entry, the next mimeapps.list is checked. Once all levels have been checked, if no entry could be found, the implementation should pick the most-preferred .desktop files associated with the mimetype, taking into account added and removed associations as per the previous section.</para>
   <para>The suggested algorithm for determining the default application for a given mimetype is:</para>
   <itemizedlist>
     <listitem><para>get the list of desktop ids for the given mimetype under the "Default Applications" group in the first mimeapps.list</para></listitem>
     <listitem><para>for each desktop ID in the list, attempt to load the named desktop file, using the normal rules</para></listitem>
-    <listitem><para>if a valid desktop file is found, we have found the default application</para></listitem>
+    <listitem><para>if a valid desktop file is found, verify that it is associated with the type (as in the previous section)</para></listitem>
+    <listitem><para>if a valid association is found, we have found the default application</para></listitem>
     <listitem><para>if after all list items are handled, we have not yet found a default application, proceed to the next mimeapps.list file in the search order and repeat</para></listitem>
   <listitem><para>if after all files are handled, we have not yet found a default application, select the most-preferred application (according to associations) that supports the type</para></listitem>
   </itemizedlist>
   <para>Note that, unlike adding and removing associations, a desktop ID set as the default for an application can refer to a desktop file of the same name found in a directory of higher precedence.</para>
-  <para>Note as well that the default application for a given type can be an application that is not associated with this type (ie: neither by MimeType= or an added association, or even in the case that the association was specifically removed).  Such configurations should be regarded as unusual, however, and implementations should not write mimeapps.list files that create this circumstance.</para>
+  <para>Note as well that the default application for a given type must be an application that is associated with the type.  This means that implementations should either ensure that such an association exists or add one explicitly when setting an application as the default for a type.</para>
 </sect1>
 
 </article>

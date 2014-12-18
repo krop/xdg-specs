@@ -4,8 +4,8 @@
 <article id="index">
   <articleinfo>
     <title>Desktop Entry Specification</title>
-    <releaseinfo>Version 1.1</releaseinfo>
-    <pubdate>1 Apr 2014</pubdate>
+    <releaseinfo>Version 1.2alpha</releaseinfo>
+    <pubdate>2015-03-06</pubdate>
     <authorgroup>
       <author>
 	<firstname>Preston</firstname>
@@ -1583,6 +1583,39 @@ Icon=fooview-new
         If the desktop file is not installed in an <literal>applications</literal> subdirectory of one
         of the $XDG_DATA_DIRS components, it does not have an ID.
      </para>
+  </appendix>
+  <appendix>
+    <title>Changes to this Specification</title>
+    <section>
+      <title>Changes from version 1.1 to 1.2</title>
+      <para>
+        Add Implements key.
+      </para>
+      <para>
+        Specify XDG_CURRENT_DESKTOP.
+      </para>
+    </section>
+    <section>
+      <title>Changes from version 1.0 to 1.1</title>
+      <para>
+        Add DBusActivatable key.
+      </para>
+      <para>
+        Add support for Actions.
+      </para>
+      <para>
+        Add Keyword key.
+      </para>
+      <para>
+        Make Exec key mandatory.
+      </para>
+      <para>
+        Make Version key a string.
+      </para>
+      <para>
+        Make UnmountIcon key a localestring.
+      </para>
+    </section>
   </appendix>
 
 </article>

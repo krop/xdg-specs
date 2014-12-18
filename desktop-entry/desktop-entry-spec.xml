@@ -398,7 +398,7 @@
 	    <entry>
 	      Version of the Desktop Entry Specification that the
 	      desktop entry conforms with. Entries that confirm with this 
-	      version of the specification should use <literal>1.0</literal>.
+	      version of the specification should use <literal>1.1</literal>.
 	      Note that the version field is not required to be present.
 	    </entry>
 	    <entry>string</entry>

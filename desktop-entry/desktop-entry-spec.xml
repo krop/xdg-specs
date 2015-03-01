@@ -500,6 +500,12 @@
               </para>
 
               <para>
+                <envar>$XDG_CURRENT_DESKTOP</envar> should have been set by the login manager, according to the
+                value of the <varname>DesktopNames</varname> found in the session file.  The entry in the
+                session file has multiple values separated in the usual way: with a semicolon.
+              </para>
+
+              <para>
                 The same desktop name may not appear in both
                 <varname>OnlyShowIn</varname> and <varname>NotShowIn</varname> of
                 a group.

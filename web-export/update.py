@@ -26,6 +26,7 @@ import subprocess
 import urllib
 import urllib2
 import urlparse
+from distutils import spawn
 
 # True = Allow this file to differ from the committed version
 DEVELOPMENT = True
@@ -37,6 +38,9 @@ USELOCALFILES = True
 GITWEB = 'http://cgit.freedesktop.org'
 HASH = 'md5'
 
+if not spawn.find_executable("xmlto"):
+    print "ERROR: xmlto is not installed..."
+    sys.exit(1)
 
 def safe_mkdir(dir):
     if not dir:

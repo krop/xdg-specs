@@ -1,9 +1,14 @@
 This directory contains the files used to export the specifications on
   http://specifications.freedesktop.org/
 
-It's mostly two files:
+It's mostly three files:
 
  - specs.idx: information on where to fetch specific versions of different
    specifications (usually from git)
 
  - update.py: hacky script that uses specs.idx and creates html pages
+
+ - upload.sh: upload the generated files onto the website.
+
+To publish a new or updated spec, add an entry into specs.idx, commit, run ./update.py, then use ./upload.sh <username> <subdir>
+

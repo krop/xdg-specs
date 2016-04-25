@@ -53,7 +53,7 @@
 	</affiliation>
       </author>
       <author>
-        <firstname>Ryan</firstname>
+        <firstname>Allison</firstname>
         <surname>Lortie</surname>
         <affiliation>
           <address>
@@ -98,7 +98,10 @@
     </para>
     <para>
       For applications, the part of the name of the desktop file (before the <filename>.desktop</filename>)
-      should follow the "reverse DNS" convention, e.g. <literal>org.example.FooViewer.desktop</literal>.
+      should follow the "reverse DNS" convention, e.g. <literal>org.example.FooViewer.desktop</literal>.  The
+      name should be a valid D-Bus well-known bus name.  The valid characters (aside '<literal>.</literal>') are
+      <literal>[A-Z][a-z][0-9]</literal> along with dash ('<literal>-</literal>') and underscore
+      ('<literal>_</literal>').  Components may not begin with a digit.
     </para>
     <para>
       Desktop entry files are encoded in UTF-8. A file is interpreted as a
@@ -903,7 +906,8 @@
       file name with the <filename>.desktop</filename> portion removed (for our example,
       <literal>org.example.FooViewer</literal>).  The above interface must be implemented at an object path
       determined as follows: starting with the well-known D-Bus name of the application, change all dots to
-      slashes and prefix a slash.  For our example, this is <literal>/org/example/FooViewer</literal>.
+      slashes and prefix a slash.  If a dash ('<literal>-</literal>') is found, convert it to an underscore
+      ('<literal>_</literal>').  For our example, this is <literal>/org/example/FooViewer</literal>.
     </para>
     <para>
       The <literal>Activate</literal> method is called when the application is started without files to open.

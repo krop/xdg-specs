@@ -32,7 +32,10 @@ git:xdg/default-icon-theme:spec/icon-naming-spec.xml    1dc55c9db340a7d0a9ac84e1
 
 git:xdg/xdg-specs:idle-inhibit/specification.xml       master                                            0.1   idle-inhibit-spec
 
-git:xdg/default-icon-theme:spec/icon-theme-spec.xml    e54ef4b65ae0eab72ffe23e18a470072e1719471          0.12  icon-theme-spec
+git:xdg/default-icon-theme:spec/icon-theme-spec.xml    bc263f72aa2b7393fdf0ea1fcf3fef6f4f7cdc1b          0.15  icon-theme-spec
+git:xdg/default-icon-theme:spec/icon-theme-spec.xml    261b0018580a9932b8565f4a507da0b4be043eb7          0.14  icon-theme-spec
+git:xdg/default-icon-theme:spec/icon-theme-spec.xml    fca8fecff452ed188584f22e99e9b96458f697f9          0.13  icon-theme-spec
+git:xdg/default-icon-theme:spec/icon-theme-spec.xml    7d2735da96abf7e1d2ce9a56e38240498e2f5e67          0.12  icon-theme-spec
 git:xdg/default-icon-theme:spec/icon-theme-spec.xml    f09150e444382a18d147ef45afa9310e2e27c713          0.11  icon-theme-spec
 git:xdg/default-icon-theme:spec/icon-theme-spec.xml    37f3118e81954b2171a333614901a0b74c295edc          0.10  icon-theme-spec
 git:xdg/default-icon-theme:spec/icon-theme-spec.xml    400de5cb3e4f8046763ce816fb93a9ec287e6e39          0.9  icon-theme-spec

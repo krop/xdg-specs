@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Dependencies to run this:
-#  - xmlto in $PATH
+#  - xmlto and docbook2html in $PATH
 
 # FIXME:
 #  - correctly handle all exceptions
@@ -32,7 +32,7 @@ from distutils import spawn
 DEVELOPMENT = True
 
 # When running this on the website itself, set USELOCALFILES to False
-# But since xmlto isn't installed there, we currently have to run it locally so this is now True (i.e. it uses the local files)
+# But since docbook2html isn't installed there, we currently have to run it locally so this is now True (i.e. it uses the local files)
 USELOCALFILES = True
 
 GITWEB = 'http://cgit.freedesktop.org'
@@ -201,7 +201,7 @@ class SpecObject():
         if one_chunk_command:
             retcode = subprocess.call(one_chunk_command)
             if retcode != 0:
-                raise Exception('Cannot convert \'%s\' to HTML.' % path)
+                raise Exception('Cannot convert \'%s\' to HTML.\nThe command was %s' % path % one_chunk_command)
             self.one_chunk = True
 
         if multiple_chunks_command:

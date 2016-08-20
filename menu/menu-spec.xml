@@ -1,6 +1,6 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
                   "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY version "1.1-draft">
+  <!ENTITY version "1.1">
   <!ENTITY dtd-version "1.0">
             	  ]>
 
@@ -8,7 +8,7 @@
   <articleinfo>
     <title>Desktop Menu Specification</title>
     <releaseinfo>Version &version;</releaseinfo>
-    <pubdate>31 March 2011</pubdate>
+    <pubdate>20 August 2016</pubdate>
     <authorgroup>
       <author>
 	<firstname>Waldo</firstname>
@@ -2173,6 +2173,8 @@
               <entry>EDE</entry><entry>EDE Desktop</entry>
             </row><row>
               <entry>Cinnamon</entry><entry>Cinnamon Desktop</entry>
+            </row><row>
+              <entry>Pantheon</entry><entry>Pantheon Desktop</entry>
             </row><row>
               <entry>Old</entry><entry>Legacy menu systems</entry>
             </row>

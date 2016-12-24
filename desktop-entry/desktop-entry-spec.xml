@@ -763,7 +763,7 @@
 	  <row>
 	    <entry><literal>%f</literal></entry>
 	    <entry>
-	      A single file name, even if multiple files are selected.  The system
+	      A single file name (including the path), even if multiple files are selected.  The system
 	      reading the desktop entry should recognize that the program in
 	      question cannot handle multiple file arguments, and it should
 	      should probably spawn and execute multiple copies of a program

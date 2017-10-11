@@ -109,9 +109,14 @@
     </para>
     <para>
       The name of the desktop entry should follow the "reverse DNS"
-      convention, for example <literal>org.example.FooViewer</literal>,
-      resulting in a file named
-      <literal>org.example.FooViewer.desktop</literal>.
+      convention: it should start with a reversed DNS domain name
+      controlled by the author of the application, in lower case. The
+      domain name should be followed by the name of the application, which
+      is conventionally written with words run together and initial capital
+      letters (CamelCase). For example, if the owner of
+      <literal>example.org</literal> writes "Foo Viewer", they might choose
+      the name <literal>org.example.FooViewer</literal>, resulting in a file
+      named <literal>org.example.FooViewer.desktop</literal>.
     </para>
 
     <sect2 id="desktop-file-id">

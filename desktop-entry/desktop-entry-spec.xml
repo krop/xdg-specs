@@ -85,8 +85,8 @@
       the specification, becomes simpler.
     </para>
   </sect1>
-  <sect1 id="basic-format">
-    <title>Basic format of the file</title>
+  <sect1 id="file-naming">
+    <title>File naming</title>
     <para>
       Desktop entry files should have the <filename>.desktop</filename>
       extension, except for files of <varname>Type</varname>
@@ -103,6 +103,46 @@
       <literal>[A-Z][a-z][0-9]</literal> along with dash ('<literal>-</literal>') and underscore
       ('<literal>_</literal>').  Components may not begin with a digit.
     </para>
+
+    <sect2 id="desktop-file-id">
+      <title>Desktop File ID</title>
+      <para>
+        Each desktop entry representing an application is identified by
+        its <firstterm>desktop file ID</firstterm>, which is based on its
+        filename.
+      </para>
+      <para>
+          To determine the ID of a desktop file, make its full path relative to
+          the <literal>$XDG_DATA_DIRS</literal> component in which the desktop file is installed, remove the "applications/"
+          prefix, and turn '/' into '-'.
+       </para>
+       <para>
+          For example <filename>/usr/share/applications/foo/bar.desktop</filename> has
+          the desktop file ID <literal>foo-bar.desktop</literal>.
+       </para>
+       <para>
+          If multiple files have the same desktop file ID, the first one in the
+          $XDG_DATA_DIRS precedence order is used.
+       </para>
+       <para>
+          For example, if <literal>$XDG_DATA_DIRS</literal> contains the default paths /usr/local/share:/usr/share, then
+          <filename>/usr/local/share/applications/org.foo.bar.desktop</filename> and
+          <filename>/usr/share/applications/org.foo.bar.desktop</filename> both have
+          the same desktop file ID <literal>org.foo.bar.desktop</literal>, but only the first
+          one will be used.
+       </para>
+       <para>
+          If both <filename>foo-bar.desktop</filename> and <filename>foo/bar.desktop</filename> exist,
+          it is undefined which is selected.
+       </para>
+       <para>
+          If the desktop file is not installed in an <literal>applications</literal> subdirectory of one
+          of the $XDG_DATA_DIRS components, it does not have an ID.
+       </para>
+    </sect2>
+  </sect1>
+  <sect1 id="basic-format">
+    <title>Basic format of the file</title>
     <para>
       Desktop entry files are encoded in UTF-8. A file is interpreted as a
       series of lines that are separated by linefeed characters. Case is
@@ -1553,40 +1593,6 @@ Icon=fooview-new
       <literal>GEORGIAN-ACADEMY</literal>. Desktop files creators should, however, use
       the name as it appears in the "Encoding" column above.
     </para>
-  </appendix>
-  <appendix id="desktop-file-id">
-    <title>Desktop File ID</title>
-    <para>
-        The desktop file ID is the identifier of an installed desktop entry file.
-    </para>
-    <para>
-        To determine the ID of a desktop file, make its full path relative to
-        the <literal>$XDG_DATA_DIRS</literal> component in which the desktop file is installed, remove the "applications/"
-        prefix, and turn '/' into '-'.
-     </para>
-     <para>
-        For example <filename>/usr/share/applications/foo/bar.desktop</filename> has
-        the desktop file ID <literal>foo-bar.desktop</literal>.
-     </para>
-     <para>
-        If multiple files have the same desktop file ID, the first one in the
-        $XDG_DATA_DIRS precedence order is used.
-     </para>
-     <para>
-        For example, if <literal>$XDG_DATA_DIRS</literal> contains the default paths /usr/local/share:/usr/share, then
-        <filename>/usr/local/share/applications/org.foo.bar.desktop</filename> and
-        <filename>/usr/share/applications/org.foo.bar.desktop</filename> both have
-        the same desktop file ID <literal>org.foo.bar.desktop</literal>, but only the first
-        one will be used.
-     </para>
-     <para>
-        If both <filename>foo-bar.desktop</filename> and <filename>foo/bar.desktop</filename> exist,
-        it is undefined which is selected.
-     </para>
-     <para>
-        If the desktop file is not installed in an <literal>applications</literal> subdirectory of one
-        of the $XDG_DATA_DIRS components, it does not have an ID.
-     </para>
   </appendix>
   <appendix>
     <title>Changes to this Specification</title>

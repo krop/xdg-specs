@@ -118,6 +118,21 @@
       the name <literal>org.example.FooViewer</literal>, resulting in a file
       named <literal>org.example.FooViewer.desktop</literal>.
     </para>
+    <para>
+      Well-known names containing the dash are allowed but not recommended,
+      because the dash is not allowed in some related uses of reversed
+      DNS names, such as D-Bus object paths and interface names, and Flatpak
+      app IDs. If the author's domain name contains a dash, replacing it
+      with an underscore is recommended: this cannot cause ambiguity,
+      because underscores are not allowed in DNS domain names.
+    </para>
+    <para>
+      If the author's domain name contains a label starting with a digit,
+      (which is not allowed in D-Bus well-known names), prepending an
+      underscore to that element of the desktop entry name is recommended.
+      For example, 7-zip.org might release an application named
+      <literal>org._7_zip.Archiver</literal>.
+    </para>
 
     <sect2 id="desktop-file-id">
       <title>Desktop File ID</title>

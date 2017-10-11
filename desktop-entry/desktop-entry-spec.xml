@@ -97,11 +97,21 @@
       fall back to recognition via "magic detection".
     </para>
     <para>
-      For applications, the part of the name of the desktop file (before the <filename>.desktop</filename>)
-      should follow the "reverse DNS" convention, e.g. <literal>org.example.FooViewer.desktop</literal>.  The
-      name should be a valid D-Bus well-known bus name.  The valid characters (aside '<literal>.</literal>') are
-      <literal>[A-Z][a-z][0-9]</literal> along with dash ('<literal>-</literal>') and underscore
-      ('<literal>_</literal>').  Components may not begin with a digit.
+      For applications, the part of the name of the desktop file before the
+      <filename>.desktop</filename> extension should be a valid
+      <ulink url="https://dbus.freedesktop.org/doc/dbus-specification.html#message-protocol-names">D-Bus
+        well-known name</ulink>. This means that it is a sequence of
+      non-empty elements separated by dots (U+002E FULL STOP), none of
+      which starts with a digit, and each of which contains only
+      characters from the set <literal>[A-Za-z0-9-_]</literal>: ASCII
+      letters, digits, dash (U+002D HYPHEN-MINUS) and underscore
+      (U+005F LOW LINE).
+    </para>
+    <para>
+      The name of the desktop entry should follow the "reverse DNS"
+      convention, for example <literal>org.example.FooViewer</literal>,
+      resulting in a file named
+      <literal>org.example.FooViewer.desktop</literal>.
     </para>
 
     <sect2 id="desktop-file-id">

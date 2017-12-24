@@ -1,7 +1,7 @@
 git:xdg/xdg-specs:autostart/autostart-spec.xml                 master            0.5	autostart-spec
 
-git:xdg/xdg-specs:basedir/basedir-spec.xml		master	0.8	basedir-spec
-git:xdg/xdg-specs:basedir/basedir-spec.xml		5c950648d4e3b186bda82c0c27ef089ee6747cbd	0.7	basedir-spec
+# git:xdg/xdg-specs:basedir/basedir-spec.xml		master	0.8	basedir-spec
+git:xdg/xdg-specs:basedir/basedir-spec.xml		e9be1b7628eb1db3e85be02a3a9f424448be1ec6	0.7	basedir-spec
 git:xdg/xdg-specs:basedir/basedir-spec.xml		2c096d0c74244bd573027b217be3a69335a923f4	0.6	basedir-spec
 # Invalid docbook:
 #git:xdg/xdg-specs:basedir/basedir-spec.xml		c8475bef1d1f84afcc89c710b6b5b214f11a670f	0.5	basedir-spec

@@ -4,8 +4,9 @@
 <article id="index">
   <articleinfo>
     <title>Desktop Entry Specification</title>
+    <!-- When bumping the version, update web-export/specs.idx as well -->
     <releaseinfo>Version 1.2alpha</releaseinfo>
-    <pubdate>2015-03-06</pubdate>
+    <pubdate>2017-12-24</pubdate>
     <authorgroup>
       <author>
 	<firstname>Preston</firstname>
@@ -1628,6 +1629,9 @@ Icon=fooview-new
     <title>Changes to this Specification</title>
     <section>
       <title>Changes from version 1.1 to 1.2</title>
+      <para>
+        New section "File naming", to formalize file names, with relation to D-Bus naming.
+      </para>
       <para>
         Add Implements key.
       </para>

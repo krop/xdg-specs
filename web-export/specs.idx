@@ -11,7 +11,8 @@ git:xdg/xdg-specs:clipboard/clipboard-extensions.txt		791f359c0a03dd36e716a9a040
 
 git:dbus/dbus:doc/introspect.dtd				7652304bff969afb3969603149bb385efe861fe8		1.0	dbus
 
-git:xdg/xdg-specs:desktop-entry/desktop-entry-spec.xml          master          1.1     desktop-entry-spec
+git:xdg/xdg-specs:desktop-entry/desktop-entry-spec.xml          master          1.2     desktop-entry-spec
+git:xdg/xdg-specs:desktop-entry/desktop-entry-spec.xml          e9be1b7628eb1db3e85be02a3a9f424448be1ec6          1.1     desktop-entry-spec
 git:xdg/xdg-specs:desktop-entry/desktop-entry-spec.xml          e1775a202af19adf9c73e6954293e2e95f8f13a0          1.0     desktop-entry-spec
 git:xdg/xdg-specs:desktop-entry/desktop-entry-spec.xml          7d249792235d0f3b69f833f89bef545a367f0b6b          0.9.8     desktop-entry-spec
 git:xdg/xdg-specs:desktop-entry/desktop-entry-spec.xml          3e675b52041139085cc280dcdf2562e38cba8a31          0.9.7     desktop-entry-spec

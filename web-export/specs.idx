@@ -60,6 +60,7 @@ git:xdg/xdg-specs:menu/menu.dtd                                2403355e486ac6bc9
 
 git:xdg/xdg-specs:recent-files/recent-file-spec.xml		2f2e0cc7ded9b2c8afe29281c621d8ee6c5def9a	0.2	recent-file-spec
 
+git:xdg/shared-mime-info:shared-mime-info-spec.xml	90eb7974ec4e8ea9ae7daa96b1d2f9a2b4fe9a20		0.21	shared-mime-info-spec
 git:xdg/shared-mime-info:shared-mime-info-spec.xml	2f909cff817a3f08d12321769173cac2de0da1b4		0.20	shared-mime-info-spec
 git:xdg/shared-mime-info:shared-mime-info-spec.xml	30349a8810143c1f808a74c96bceba87d48e8364		0.19	shared-mime-info-spec
 git:xdg/shared-mime-info:shared-mime-info-spec.xml	1bac8224c7439452a85693dc1a25f64d3a467e7d		0.18	shared-mime-info-spec

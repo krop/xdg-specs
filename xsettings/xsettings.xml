@@ -142,7 +142,7 @@
       document.
     </para>
     <para>
-      Clients must trap X errors when reading the _XSETTING_SETTINGS property
+      Clients must trap X errors when reading the _XSETTINGS_SETTINGS property
       because it is possible that the selection window may be destroyed
       at any time.
     </para>
@@ -154,7 +154,7 @@
     </para>
     <para>
       When a client receives a PropertyChangeNotify event for the window
-      it should reread the _XSETTING_SETTINGS property. It can use
+      it should reread the _XSETTINGS_SETTINGS property. It can use
       the 'serial' field to tell what fields have been changed. The
       client must parse the entire property and read in all new values
       before taking action on changed settings such as notifying listeners
@@ -281,9 +281,9 @@ be set to 65535.
   <sect1 id="manager-behavior">
     <title>Settings Manager behavior</title>
     <para>
-      The _XSETTING_S[N] selection is managed as a manager selection
+      The _XSETTINGS_S[N] selection is managed as a manager selection
       according to section 2.8 of the ICCCM and the handling of the
-      selections window, the _XSETTING_S[N] window and MANAGER client
+      selections window, the _XSETTINGS_S[N] window and MANAGER client
       messages must conform to that specification.
     </para>
     <para>

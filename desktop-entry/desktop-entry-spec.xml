@@ -1182,7 +1182,7 @@ application/x-bar=bar.desktop;</programlisting>
             <row>
               <entry id="key-action-group-icon"><varname>Icon</varname></entry>
               <entry>
-                Icon to be shown togheter with the action. If the name is
+                Icon to be shown together with the action. If the name is
                 an absolute path, the given file will be used. If the name is not
                 an absolute path, the algorithm described in the <ulink
                 url="http://freedesktop.org/wiki/Standards/icon-theme-spec">Icon

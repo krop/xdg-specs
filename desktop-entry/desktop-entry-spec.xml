@@ -257,6 +257,7 @@
     <para>
       The value types recognized are <literal>string</literal>,
       <literal>localestring</literal>,
+      <literal>iconstring</literal>,
       <literal>boolean</literal>, and
       <literal>numeric</literal>.
     </para>
@@ -271,6 +272,16 @@
        <para>
 	 Values of type <literal>localestring</literal> are user displayable,
 	 and are encoded in UTF-8.
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+	Values of type <literal>iconstring</literal> are the names of icons;
+	these may be absolute paths, or symbolic names for icons located using
+	the algorithm described in the <ulink
+	url="http://freedesktop.org/wiki/Standards/icon-theme-spec">Icon
+	Theme Specification</ulink>. Such values are not user-displayable, and
+	are encoded in UTF-8.
        </para>
       </listitem>
       <listitem>
@@ -291,7 +302,8 @@
       The escape sequences <literal>\s</literal>, <literal>\n</literal>,
       <literal>\t</literal>, <literal>\r</literal>, and
       <literal>\\</literal> are supported for values of type
-      <literal>string</literal> and <literal>localestring</literal>, meaning
+      <literal>string</literal>, <literal>localestring</literal> and
+      <literal>iconstring</literal>, meaning
       ASCII space, newline, tab, carriage return, and backslash, respectively.
     </para>
     <para>
@@ -306,7 +318,8 @@
   <sect1 id="localized-keys">
     <title>Localized values for keys</title>
     <para>
-	  Keys  with type <literal>localestring</literal> may be postfixed by
+	  Keys with type <literal>localestring</literal> and
+	  <literal>iconstring</literal> may be postfixed by
 	  [<replaceable>LOCALE</replaceable>],
 	  where <replaceable>LOCALE</replaceable> is the locale type of the
 	  entry.  <replaceable>LOCALE</replaceable> must be of the form
@@ -412,6 +425,13 @@
  Name[sr]=...</programlisting>
     <para>
       then the value of the <varname>Name</varname> keyed by <literal>sr_YU</literal> is used.
+    </para>
+    <para>
+      Although icon names of type <literal>iconstring</literal> are localizable,
+      they are not human-readable strings, so should typically not be handled
+      by translation tools.  Most applications are not expected to localize
+      their icons; exceptions might include icons containing text or
+      culture-specific symbology.
     </para>
   </sect1>
   <sect1 id="recognized-keys">
@@ -531,7 +551,7 @@
 	  url="http://freedesktop.org/wiki/Standards/icon-theme-spec">Icon
 	  Theme Specification</ulink> will be used to locate the icon.
 	    </entry>
-	    <entry>localestring</entry>
+	    <entry>iconstring</entry>
 	    <entry>NO</entry>
             <entry>1-3</entry>
 	  </row>
@@ -1189,7 +1209,7 @@ application/x-bar=bar.desktop;</programlisting>
                 Theme Specification</ulink> will be used to locate the icon.
                 Implementations may choose to ignore it.
               </entry>
-              <entry>localestring</entry>
+              <entry>iconstring</entry>
               <entry>NO</entry>
             </row>
             <row>
@@ -1349,7 +1369,7 @@ Icon=fooview-new
 	    <entry>
            Icon to display when device is not mounted.  Mounted devices display icon from the <varname>Icon</varname> key.
 	    </entry>
-	    <entry>localestring</entry>
+	    <entry>iconstring</entry>
 	  </row>
 	</tbody>
       </tgroup>

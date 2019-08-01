@@ -5,8 +5,8 @@
   <articleinfo>
     <title>Desktop Entry Specification</title>
     <!-- When bumping the version, update web-export/specs.idx as well -->
-    <releaseinfo>Version 1.2alpha</releaseinfo>
-    <pubdate>2017-12-24</pubdate>
+    <releaseinfo>Version 1.3</releaseinfo>
+    <pubdate>2019-10-22</pubdate>
     <authorgroup>
       <author>
 	<firstname>Preston</firstname>
@@ -1656,6 +1656,12 @@ Icon=fooview-new
   </appendix>
   <appendix>
     <title>Changes to this Specification</title>
+    <section>
+      <title>Changes from version 1.2 to 1.3</title>
+      <para>
+        New type "iconstring", similar to "localestring" but not user-displayable.
+      </para>
+    </section>
     <section>
       <title>Changes from version 1.1 to 1.2</title>
       <para>

@@ -201,14 +201,14 @@ class SpecObject():
         if one_chunk_command:
             retcode = subprocess.call(one_chunk_command)
             if retcode != 0:
-                raise Exception('Cannot convert \'%s\' to HTML.\nThe command was %s' % path % one_chunk_command)
+                raise Exception('Cannot convert \'%s\' to HTML.\nThe command was %s' % (path, one_chunk_command))
             self.one_chunk = True
 
         if multiple_chunks_command:
             safe_mkdir(html_dir)
             retcode = subprocess.call(multiple_chunks_command)
             if retcode != 0:
-                raise Exception('Cannot convert \'%s\' to multiple-chunks HTML.' % path)
+                raise Exception('Cannot convert \'%s\' to multiple-chunks HTML.\nThe command was %s' % (path, multiple_chunks_command))
             self.multiple_chunks = True
 
     def latestize(self):

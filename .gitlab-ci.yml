@@ -1,0 +1,24 @@
+image: fedora:30
+
+variables:
+  DEPENDENCIES: xmlto docbook-utils libxslt make git
+
+build:
+  before_script:
+    - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES
+  script:
+    # Generate specs locally
+    - cd web-export
+    - ./update.py
+    - cd ..
+    # That worked, clean up
+    - git clean -dxf
+    # Generate specs for older versions
+    - cd web-export
+    - sed -i 's/USELOCALFILES = True/USELOCALFILES = False/' update.py
+    - ./update.py
+    - cd ..
+
+  artifacts:
+    paths:
+    - public

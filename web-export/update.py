@@ -32,7 +32,7 @@ DEVELOPMENT = True
 
 # When running this on the website itself, set USELOCALFILES to False
 # But since docbook2html isn't installed there, we currently have to run it locally so this is now True (i.e. it uses the local files)
-USELOCALFILES = True
+USELOCALFILES = False
 
 # Directory to put everything in, relative to the git root directory
 OUTPUTDIR = "public"

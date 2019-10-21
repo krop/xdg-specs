@@ -37,6 +37,10 @@ USELOCALFILES = True
 GITWEB = 'http://gitlab.freedesktop.org'
 HASH = 'md5'
 
+# Specifications with their own build system
+# FIXME: would be good to be able to use the same script to generate them
+SELF_BUILT = [ "idle-inhibit-spec", "secret-service-spec" ]
+
 if not spawn.find_executable("xmlto"):
     print("ERROR: xmlto is not installed...")
     sys.exit(1)
@@ -274,7 +278,7 @@ for line in lines:
     splitted_line = data.split(":")
     if data.startswith("git:"):
         repo = splitted_line[1]
-        if USELOCALFILES and (revision != "master" or repo != "xdg/xdg-specs" or path in [ "idle-inhibit-spec", "secret-service-spec" ]):
+        if USELOCALFILES and (revision != "master" or repo != "xdg/xdg-specs" or path in SELF_BUILT):
             continue
         vcs = VcsObject('git', repo, splitted_line[2], revision)
     else:

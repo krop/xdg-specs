@@ -39,7 +39,7 @@ HASH = 'md5'
 
 # Specifications with their own build system
 # FIXME: would be good to be able to use the same script to generate them
-SELF_BUILT = [ "idle-inhibit-spec", "secret-service-spec" ]
+SELF_BUILT = [ "idle-inhibit-spec", "secret-service" ]
 
 if not spawn.find_executable("xmlto"):
     print("ERROR: xmlto is not installed...")
@@ -195,7 +195,9 @@ class SpecObject():
         one_chunk_command = None
         multiple_chunks_command = None
 
-        if self.ext == '.xml':
+        if self.spec_dir in SELF_BUILT:
+            multiple_chunks_command = ['make', '-C', "../" + os.path.dirname(self.vcs.file)]
+        elif self.ext == '.xml':
             one_chunk_command = ['xmlto', '-o', self.spec_dir, 'html-nochunks', path]
             multiple_chunks_command = ['xmlto', '-o', html_dir, 'html', path]
         elif self.ext == '.sgml':
@@ -278,8 +280,6 @@ for line in lines:
     splitted_line = data.split(":")
     if data.startswith("git:"):
         repo = splitted_line[1]
-        if path in SELF_BUILT:
-            continue
         if USELOCALFILES and (revision != "master" or repo != "xdg/xdg-specs"):
             continue
         vcs = VcsObject('git', repo, splitted_line[2], revision)

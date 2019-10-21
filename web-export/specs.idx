@@ -31,7 +31,9 @@ git:xdg/default-icon-theme:spec/icon-naming-spec.xml    1dc55c9db340a7d0a9ac84e1
 # Invalid docbook:
 #git:xdg/default-icon-theme:spec/icon-naming-spec.xml    db9bb955c0cf20322b149676b908ecd69929d2f1          0.3  icon-naming-spec
 
+# FIXME does not support rev != master
 git:xdg/xdg-specs:idle-inhibit/specification.xml       master                                            0.1   idle-inhibit-spec
+git:xdg/xdg-specs:secret-service/specification.xml     master                                            0.2   secret-service
 
 git:xdg/default-icon-theme:spec/icon-theme-spec.xml    fca8fecff452ed188584f22e99e9b96458f697f9          0.13  icon-theme-spec
 git:xdg/default-icon-theme:spec/icon-theme-spec.xml    7d2735da96abf7e1d2ce9a56e38240498e2f5e67          0.12  icon-theme-spec

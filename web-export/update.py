@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Dependencies to run this:
 #  - xmlto and docbook2html in $PATH
@@ -16,16 +16,15 @@
 
 import os
 import sys
+import io
 
 import errno
 
-import StringIO
 import hashlib
 import shutil
 import subprocess
-import urllib
-import urllib2
-import urlparse
+import urllib.request
+import urllib.error
 from distutils import spawn
 
 # True = Allow this file to differ from the committed version
@@ -39,7 +38,7 @@ GITWEB = 'http://cgit.freedesktop.org'
 HASH = 'md5'
 
 if not spawn.find_executable("xmlto"):
-    print "ERROR: xmlto is not installed..."
+    print("ERROR: xmlto is not installed...")
     sys.exit(1)
 
 def safe_mkdir(dir):
@@ -48,7 +47,7 @@ def safe_mkdir(dir):
 
     try:
         os.mkdir(dir)
-    except OSError, e:
+    except OSError as e:
         if e.errno != errno.EEXIST:
             raise e
 
@@ -67,7 +66,7 @@ def get_hash_from_fd(fd, algo = HASH, read_blocks = 1024):
 
 
 def get_hash_from_url(url, algo = HASH):
-    fd = urllib2.urlopen(url, None)
+    fd = urllib.request.urlopen(url, None)
     digest = get_hash_from_fd(fd, algo)
     fd.close()
     return digest
@@ -81,7 +80,7 @@ def get_hash_from_path(path, algo = HASH):
 
 
 def get_hash_from_data(data, algo = HASH):
-    fd = StringIO.StringIO(data)
+    fd = io.BytesIO(data)
     digest = get_hash_from_fd(fd, algo, read_blocks = 32768)
     fd.close()
     return digest
@@ -105,11 +104,11 @@ class VcsObject:
         else:
             raise Exception('Unknown VCS: %s' % self.vcs)
 
-        (scheme, netloc, basepath) = urlparse.urlsplit(baseurl)[0:3]
+        (scheme, netloc, basepath) = urllib.parse.urlsplit(baseurl)[0:3]
         full_path = '/'.join((basepath, path))
 
-        query_str = urllib.urlencode(query)
-        return urlparse.urlunsplit((scheme, netloc, full_path, query_str, ''))
+        query_str = urllib.parse.quote(bytes(query))
+        return urllib.parse.urlunsplit((scheme, netloc, full_path, query_str, ''))
 
     def fetch(self):
         if self.data:
@@ -117,12 +116,12 @@ class VcsObject:
 
         if USELOCALFILES:
             localpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + '/' + self.file
-            fd = open(localpath)
+            fd = open(localpath, 'rb')
             self.data = fd.read()
             fd.close()
         else:
             url = self.get_url()
-            fd = urllib2.urlopen(url, None)
+            fd = urllib.request.urlopen(url, None)
             self.data = fd.read()
             fd.close()
 
@@ -161,7 +160,7 @@ class SpecObject():
 
         self.vcs.fetch()
         fd = open(path, 'wb')
-        fd.write(self.vcs.data)
+        fd.write(bytes(self.vcs.data))
         fd.close()
 
         self.downloaded = True
@@ -173,7 +172,7 @@ class SpecObject():
         if self.ext == '.html':
             return
 
-        print "Converting", self.filename, "to HTML"
+        print("Converting", self.filename, "to HTML")
 
         path = os.path.join(self.spec_dir, self.filename)
         (path_no_ext, ext) = os.path.splitext(path)
@@ -254,7 +253,7 @@ def is_up_to_date():
 
 if not DEVELOPMENT:
     if not is_up_to_date():
-        print >>sys.stderr, 'Script is not up-to-date, please download %s' % SCRIPT.get_url()
+        print(sys.stderr, 'Script is not up-to-date, please download %s' % SCRIPT.get_url(), file=sys.stderr)
         sys.exit(1)
 
     SPECS_INDEX.fetch()

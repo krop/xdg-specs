@@ -278,7 +278,9 @@ for line in lines:
     splitted_line = data.split(":")
     if data.startswith("git:"):
         repo = splitted_line[1]
-        if USELOCALFILES and (revision != "master" or repo != "xdg/xdg-specs" or path in SELF_BUILT):
+        if path in SELF_BUILT:
+            continue
+        if USELOCALFILES and (revision != "master" or repo != "xdg/xdg-specs"):
             continue
         vcs = VcsObject('git', repo, splitted_line[2], revision)
     else:

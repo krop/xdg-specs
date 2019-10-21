@@ -768,6 +768,19 @@
 	    <entry>YES</entry>
             <entry>2</entry>
 	  </row>
+          <row>
+            <entry id="key-prefersnondefaultgpu"><varname>PrefersNonDefaultGPU</varname></entry>
+            <entry>
+              If true, the application prefers to be run on a more powerful discrete GPU if available,
+              which we describe as “a GPU other than the default one” in this spec to avoid the need
+              to define what a discrete GPU is and in which cases it might be considered more powerful
+              than the default GPU.
+              This key is only a hint and support might not be present depending on the implementation.
+            </entry>
+            <entry>boolean</entry>
+            <entry>NO</entry>
+            <entry>1</entry>
+          </row>
 	</tbody>
       </tgroup>
     </table>
@@ -1656,6 +1669,12 @@ Icon=fooview-new
   </appendix>
   <appendix>
     <title>Changes to this Specification</title>
+    <section>
+      <title>Changes from version 1.3 to 1.4</title>
+      <para>
+        Add PrefersNonDefaultGPU key.
+      </para>
+    </section>
     <section>
       <title>Changes from version 1.2 to 1.3</title>
       <para>

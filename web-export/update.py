@@ -34,7 +34,7 @@ DEVELOPMENT = True
 # But since docbook2html isn't installed there, we currently have to run it locally so this is now True (i.e. it uses the local files)
 USELOCALFILES = True
 
-GITWEB = 'http://cgit.freedesktop.org'
+GITWEB = 'http://gitlab.freedesktop.org'
 HASH = 'md5'
 
 if not spawn.find_executable("xmlto"):
@@ -98,9 +98,10 @@ class VcsObject:
         query = {}
         if self.vcs == 'git':
             baseurl = GITWEB
-            path = '/'.join((self.repo, 'plain', self.file))
             if self.revision:
-                query['id'] = self.revision
+                path = '/'.join((self.repo, 'raw', self.revision, self.file))
+            else:
+                path = '/'.join((self.repo, 'raw', 'master', self.file))
         else:
             raise Exception('Unknown VCS: %s' % self.vcs)
 

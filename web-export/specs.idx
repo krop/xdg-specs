@@ -60,7 +60,11 @@ git:xdg/xdg-specs:menu/menu-spec.xml			e1b6bf680dc4d021e7f2122841f812975a31985c	
 #git:xdg/xdg-specs:menu/menu-spec.xml			9f969d0e6625b2da24fb971ebd3cf7f913a1c5f1		0.6	menu-spec
 #git:xdg/xdg-specs:menu/menu-spec.xml			c15b9df59efac72ea80fb715bf2a9d7f7afd1bba		0.5	menu-spec
 #git:xdg/xdg-specs:menu/menu-spec.xml			c8475bef1d1f84afcc89c710b6b5b214f11a670f		0.4	menu-spec
-git:xdg/xdg-specs:menu/menu.dtd                                2403355e486ac6bc972fd150d38e3c44d086960a                0.91	menu-spec
+
+# XXX: Note that the version should stay "1.0" so it is exported as
+# http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd
+# as per the specification
+git:xdg/xdg-specs:menu/menu.dtd                                2403355e486ac6bc972fd150d38e3c44d086960a                1.0	menu-spec
 
 git:xdg/xdg-specs:recent-files/recent-file-spec.xml		2f2e0cc7ded9b2c8afe29281c621d8ee6c5def9a	0.2	recent-file-spec
 

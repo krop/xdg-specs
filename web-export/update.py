@@ -23,6 +23,7 @@ import errno
 import hashlib
 import shutil
 import subprocess
+import re
 import urllib.request
 import urllib.error
 from distutils import spawn
@@ -92,25 +93,28 @@ def get_hash_from_data(data, algo = HASH):
     fd.close()
     return digest
 
+def get_main_branch(url):
+    out = subprocess.check_output(["git ls-remote --symref " + url + " HEAD"], shell=True)
+    m = re.search('refs/heads/(.+)\t', out.decode('utf-8'))
+    return m.group(1)
 
 class VcsObject:
     def __init__(self, vcs, repo, file, revision = None):
         self.vcs = vcs
+        if self.vcs != 'git':
+            raise Exception('Unknown VCS: %s' % self.vcs)
         self.repo = repo
         self.file = file
         self.revision = revision
+        if not self.revision:
+            self.revision = get_main_branch('/'.join((GITWEB, self.repo + '.git')))
+        print (self.revision)
         self.data = None
 
     def get_url(self):
         query = {}
-        if self.vcs == 'git':
-            baseurl = GITWEB
-            if self.revision:
-                path = '/'.join((self.repo, 'raw', self.revision, self.file))
-            else:
-                path = '/'.join((self.repo, 'raw', 'master', self.file))
-        else:
-            raise Exception('Unknown VCS: %s' % self.vcs)
+        baseurl = GITWEB
+        path = '/'.join((self.repo, 'raw', self.revision, self.file))
 
         (scheme, netloc, basepath) = urllib.parse.urlsplit(baseurl)[0:3]
         full_path = '/'.join((basepath, path))
@@ -289,7 +293,7 @@ for line in lines:
     splitted_line = data.split(":")
     if data.startswith("git:"):
         repo = splitted_line[1]
-        if USELOCALFILES and (revision != "master" or repo != "xdg/xdg-specs"):
+        if USELOCALFILES and (revision != "HEAD" or repo != "xdg/xdg-specs"):
             continue
         vcs = VcsObject('git', repo, splitted_line[2], revision)
     else:

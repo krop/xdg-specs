@@ -314,3 +314,5 @@ for line in lines:
 
 for dirs in source_dirs.items():
     shutil.copytree(dirs[0], dirs[1], symlinks=True)
+
+shutil.copy('favicon.ico', public_dir)

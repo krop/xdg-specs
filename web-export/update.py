@@ -34,6 +34,9 @@ DEVELOPMENT = True
 # But since docbook2html isn't installed there, we currently have to run it locally so this is now True (i.e. it uses the local files)
 USELOCALFILES = True
 
+# Directory to put everything in, relative to the git root directory
+OUTPUTDIR = "public"
+
 GITWEB = 'http://gitlab.freedesktop.org'
 HASH = 'md5'
 
@@ -269,7 +272,13 @@ else:
     lines = open('specs.idx').readlines()
 
 
+out = subprocess.check_output(["git rev-parse --show-toplevel"], shell=True)
+root_dir = out.decode('utf-8').rstrip()
+public_dir = os.path.join(root_dir, OUTPUTDIR)
+safe_mkdir(public_dir)
+
 latests = []
+source_dirs = {}
 
 for line in lines:
     line = line.strip()
@@ -295,3 +304,13 @@ for line in lines:
     if (spec.spec_dir, spec.basename_no_ext) not in latests:
         latests.append((spec.spec_dir, spec.basename_no_ext))
         spec.latestize()
+
+    target_dir = os.path.join(public_dir, spec.spec_dir)
+    src_dir = spec.spec_dir
+    if path in SELF_BUILT:
+        src_dir = os.path.join("../", os.path.dirname(vcs.file), "html")
+    if src_dir not in source_dirs:
+        source_dirs[src_dir] = target_dir
+
+for dirs in source_dirs.items():
+    shutil.copytree(dirs[0], dirs[1], symlinks=True)

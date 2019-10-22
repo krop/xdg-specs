@@ -83,6 +83,9 @@ git:xdg/shared-mime-info:shared-mime-info-spec.xml	bfd730e142344783603ac4cdf0467
 git:xdg/shared-mime-info:shared-mime-info-spec.xml	f6fa8bf89055da53e9323aca59d5337729178ade		0.3	shared-mime-info-spec
 git:xdg/shared-mime-info:shared-mime-info-spec.xml	e235408efaeec39b5be22d4f1d4218da64247d74		0.2	shared-mime-info-spec
 
+git:xdg/sound-theme-spec:spec/sound-naming-spec.xml	master							0.2	sound-naming-spec
+git:xdg/sound-theme-spec:spec/sound-theme-spec.xml	master							0.2	sound-theme-spec
+
 git:xdg/startup-notification:doc/startup-notification.txt   master                0.2     startup-notification-spec
 git:xdg/startup-notification:doc/startup-notification.txt   e1d689b36635ed632cbb91cf3104f84bd0b59bfd                0.1     startup-notification-spec
 

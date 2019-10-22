@@ -38,7 +38,7 @@ USELOCALFILES = False
 # Directory to put everything in, relative to the git root directory
 OUTPUTDIR = "public"
 
-GITWEB = 'http://gitlab.freedesktop.org'
+GITWEB = 'https://gitlab.freedesktop.org'
 HASH = 'md5'
 
 # Specifications with their own build system

@@ -1,7 +1,7 @@
 image: fedora:30
 
 variables:
-  DEPENDENCIES: xmlto docbook-utils libxslt make git
+  DEPENDENCIES: xmlto docbook-utils libxslt make git discount
 
 build:
   before_script:

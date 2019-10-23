@@ -345,5 +345,9 @@ index_fd.close()
 for dirs in source_dirs.items():
     shutil.copytree(dirs[0], dirs[1], symlinks=True)
 
+# Copy file for the website look
 shutil.copy('favicon.ico', public_dir)
+shutil.copy('simple.css', public_dir)
 shutil.copytree('images', os.path.join(public_dir, 'images'))
+os.chdir(public_dir)
+subprocess.call(['discount-mkd2html', '-css', 'simple.css', 'index.md'])

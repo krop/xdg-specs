@@ -98,6 +98,13 @@ def get_main_branch(url):
     m = re.search('refs/heads/(.+)\t', out.decode('utf-8'))
     return m.group(1)
 
+def open_file_with_template(dst, template):
+    fd = open(dst, 'w')
+    with open(template, 'r') as content_file:
+        content = content_file.read()
+    fd.write(content)
+    return fd
+
 class VcsObject:
     def __init__(self, vcs, repo, file, revision = None):
         self.vcs = vcs
@@ -223,7 +230,7 @@ class SpecObject():
                 raise Exception('Cannot convert \'%s\' to multiple-chunks HTML.\nThe command was %s' % (path, multiple_chunks_command))
             self.multiple_chunks = True
 
-    def latestize(self):
+    def latestize(self, fd):
         filename_latest = '%s-latest%s' % (self.basename_no_ext, self.ext)
 
         path_latest = os.path.join(self.spec_dir, filename_latest)
@@ -231,7 +238,11 @@ class SpecObject():
             os.unlink(path_latest)
         os.symlink(self.filename, path_latest)
 
+        fd.write('\n- %s\n' % self.spec_dir)
+
         if self.ext in ['.xml', '.sgml']:
+            fd.write('  - **version %s (' % self.version)
+
             # One-chunk HTML
             html_path_latest = os.path.join(self.spec_dir, '%s-latest%s' % (self.basename_no_ext, '.html'))
             if os.path.exists(html_path_latest):
@@ -240,8 +251,11 @@ class SpecObject():
             (filename_no_ext, ext) = os.path.splitext(self.filename)
             html_filename = '%s%s' % (filename_no_ext, '.html')
             html_path = os.path.join(self.spec_dir, html_filename)
+            has_html_path = False
             if os.path.exists(html_path):
                 os.symlink(html_filename, html_path_latest)
+                has_html_path = True
+                fd.write('[one page](%s)' % html_path_latest)
 
             # Multiple chunks
             html_dir_latest = os.path.join(self.spec_dir, 'latest')
@@ -251,7 +265,15 @@ class SpecObject():
             html_dir = os.path.join(self.spec_dir, self.version)
             if os.path.exists(html_dir):
                 os.symlink(self.version, html_dir_latest)
+                if has_html_path:
+                    fd.write(', ')
+                fd.write('[split pages](%s))**\n' % html_dir_latest)
+            else:
+                fd.write(')**\n')
 
+            return
+
+        fd.write('  - **version %s ([%s format](%s))**\n' % (self.version, self.ext, path_latest))
 
 SCRIPT = VcsObject('git', 'xdg/xdg-specs', 'web-export/update.py')
 SPECS_INDEX = VcsObject('git', 'xdg/xdg-specs', 'web-export/specs.idx')
@@ -282,6 +304,7 @@ safe_mkdir(public_dir)
 
 latests = []
 source_dirs = {}
+index_fd = open_file_with_template(os.path.join(public_dir, 'index.md'), 'index.md.in')
 
 for line in lines:
     line = line.strip()
@@ -306,7 +329,9 @@ for line in lines:
     # Create latest links if it's the first time we see this spec
     if (spec.spec_dir, spec.basename_no_ext) not in latests:
         latests.append((spec.spec_dir, spec.basename_no_ext))
-        spec.latestize()
+        spec.latestize(index_fd)
+    else:
+        index_fd.write('  - [version %s](%s)\n' % (version, spec.spec_dir))
 
     target_dir = os.path.join(public_dir, spec.spec_dir)
     src_dir = spec.spec_dir
@@ -314,6 +339,8 @@ for line in lines:
         src_dir = os.path.join("../", os.path.dirname(vcs.file), "html")
     if src_dir not in source_dirs:
         source_dirs[src_dir] = target_dir
+
+index_fd.close()
 
 for dirs in source_dirs.items():
     shutil.copytree(dirs[0], dirs[1], symlinks=True)

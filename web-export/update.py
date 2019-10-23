@@ -108,7 +108,6 @@ class VcsObject:
         self.revision = revision
         if not self.revision:
             self.revision = get_main_branch('/'.join((GITWEB, self.repo + '.git')))
-        print (self.revision)
         self.data = None
 
     def get_url(self):

@@ -3,7 +3,7 @@ image: fedora:30
 variables:
   DEPENDENCIES: xmlto docbook-utils libxslt make git discount
 
-build:
+pages:
   before_script:
     - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES
   script:

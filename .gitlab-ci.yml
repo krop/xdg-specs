@@ -2,6 +2,7 @@ image: fedora:30
 
 variables:
   DEPENDENCIES: xmlto docbook-utils libxslt make git discount
+  LANG: en_US.UTF-8
 
 pages:
   before_script:
@@ -9,7 +10,7 @@ pages:
   script:
     # Generate specs locally
     - cd web-export
-    - ./update.py
+    - LC_ALL=$LANG ./update.py
     - cd ..
     # That worked, clean up
     - git clean -dxf
@@ -17,7 +18,7 @@ pages:
     # Generate specs for older versions
     - cd web-export
     - sed -i 's/USELOCALFILES = True/USELOCALFILES = False/' update.py
-    - ./update.py
+    - LC_ALL=$LANG ./update.py
     - cd ..
 
   artifacts:

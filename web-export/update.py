@@ -331,7 +331,7 @@ for line in lines:
         latests.append((spec.spec_dir, spec.basename_no_ext))
         spec.latestize(index_fd)
     else:
-        index_fd.write('  - [version %s](%s)\n' % (version, spec.spec_dir))
+        index_fd.write('  - [version %s](%s/%s)\n' % (version, spec.spec_dir, spec.version))
 
     target_dir = os.path.join(public_dir, spec.spec_dir)
     src_dir = spec.spec_dir

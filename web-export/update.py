@@ -41,6 +41,9 @@ OUTPUTDIR = "public"
 GITWEB = 'https://gitlab.freedesktop.org'
 HASH = 'md5'
 
+BUG_REPORT_LABEL = 'Freedesktop.org GitLab'
+BUG_REPORT_URL = 'https://gitlab.freedesktop.org/xdg/xdg-specs/issues/new?issue[assignee_id]=&issue[milestone_id]=&issue[description]=/label%20~web-export'
+
 # Specifications with their own build system
 # FIXME: would be good to be able to use the same script to generate them
 SELF_BUILT = [ "idle-inhibit-spec", "secret-service" ]
@@ -340,6 +343,8 @@ for line in lines:
     if src_dir not in source_dirs:
         source_dirs[src_dir] = target_dir
 
+index_fd.write('\n\n\n\n')
+index_fd.write('###### Report website bugs on the [%s](%s)\n' % (BUG_REPORT_LABEL, BUG_REPORT_URL))
 index_fd.close()
 
 for dirs in source_dirs.items():

@@ -339,6 +339,7 @@ for line in lines:
     if (spec.spec_dir, spec.basename_no_ext) not in latests:
         latests.append((spec.spec_dir, spec.basename_no_ext))
         spec.latestize(index_fd)
+        shutil.copy('redirect.html', spec.spec_dir + '/index.html')
     else:
         index_fd.write('  - [version %s](%s/%s)\n' % (version, spec.spec_dir, spec.version))
 

@@ -1,11 +1,12 @@
 image: fedora:30
 
 variables:
-  DEPENDENCIES: xmlto docbook-utils libxslt make git discount
+  DEPENDENCIES: xmlto docbook-utils libxslt make git discount glibc-langpack-en
   LANG: en_US.UTF-8
 
 pages:
   before_script:
+    - rm -f /etc/rpm/macros.image-language-conf
     - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES
   script:
     # Generate specs locally

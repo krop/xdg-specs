@@ -13,6 +13,7 @@ pages:
     - cd ..
     # That worked, clean up
     - git clean -dxf
+    - rm -rf public/
     # Generate specs for older versions
     - cd web-export
     - sed -i 's/USELOCALFILES = True/USELOCALFILES = False/' update.py

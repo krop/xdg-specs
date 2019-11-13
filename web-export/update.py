@@ -342,8 +342,6 @@ for line in lines:
 
     target_dir = os.path.join(public_dir, spec.spec_dir)
     src_dir = spec.spec_dir
-    if path in SELF_BUILT:
-        src_dir = os.path.join("../", os.path.dirname(vcs.file), "html")
     if src_dir not in source_dirs:
         source_dirs[src_dir] = target_dir
 

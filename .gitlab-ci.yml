@@ -1,8 +1,8 @@
 image: fedora:30
 
 variables:
-  DEPENDENCIES: xmlto docbook-utils libxslt make git discount glibc-langpack-en
-  LANG: en_US.UTF-8
+  DEPENDENCIES: xmlto docbook-utils libxslt make git discount
+  LANG: C.UTF-8
 
 pages:
   before_script:

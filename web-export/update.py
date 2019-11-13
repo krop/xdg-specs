@@ -226,18 +226,15 @@ class SpecObject():
                 raise Exception('Cannot convert \'%s\' to HTML.\nThe command was %s' % (path, one_chunk_command))
             self.one_chunk = True
 
-        if multiple_chunks_command and self.spec_dir in SELF_BUILT:
-            retcode = subprocess.call(multiple_chunks_command)
-            if retcode != 0:
-                raise Exception('Cannot convert \'%s\' to multiple-chunks HTML.\nThe command was %s' % (path, multiple_chunks_command))
-            self.multiple_chunks = True
-            shutil.copytree('../' + os.path.dirname(self.vcs.file) + '/html', html_dir)
-        elif multiple_chunks_command:
+        if self.spec_dir not in SELF_BUILT:
             safe_mkdir(html_dir)
+        if multiple_chunks_command:
             retcode = subprocess.call(multiple_chunks_command)
             if retcode != 0:
                 raise Exception('Cannot convert \'%s\' to multiple-chunks HTML.\nThe command was %s' % (path, multiple_chunks_command))
             self.multiple_chunks = True
+        if multiple_chunks_command and self.spec_dir in SELF_BUILT:
+            shutil.copytree('../' + os.path.dirname(self.vcs.file) + '/html', html_dir)
 
     def latestize(self, fd):
         filename_latest = '%s-latest%s' % (self.basename_no_ext, self.ext)

@@ -8,6 +8,8 @@ pages:
   before_script:
     - rm -f /etc/rpm/macros.image-language-conf
     - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES
+    # Work-around xmlto and/or docbook stylesheets forcing ISO-8859-1
+    - sed -i s/ISO-8859-1/UTF-8/ /usr/share/sgml/docbook/xsl-stylesheets-1.79.2/*/*.xsl
   script:
     # Generate specs locally
     - cd web-export

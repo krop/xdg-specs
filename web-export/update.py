@@ -42,7 +42,7 @@ GITWEB = 'https://gitlab.freedesktop.org'
 HASH = 'md5'
 
 BUG_REPORT_LABEL = 'Freedesktop.org GitLab'
-BUG_REPORT_URL = 'https://gitlab.freedesktop.org/xdg/xdg-specs/issues/new?issue[assignee_id]=&issue[milestone_id]=&issue[description]=/label%20~web-export'
+BUG_REPORT_URL = 'https://gitlab.freedesktop.org/xdg/xdg-specs/issues/new?issue[assignee_id]=&issue[milestone_id]=&issue[title]=web-export:%20&issue[description]=%0d%0dCC:%20@hadess'
 
 # Specifications with their own build system
 # FIXME: would be good to be able to use the same script to generate them

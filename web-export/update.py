@@ -46,7 +46,7 @@ BUG_REPORT_URL = 'https://gitlab.freedesktop.org/xdg/xdg-specs/issues/new?issue[
 
 # Specifications with their own build system
 # FIXME: would be good to be able to use the same script to generate them
-SELF_BUILT = [ "idle-inhibit-spec", "secret-service" ]
+SELF_BUILT = [ "idle-inhibit-spec", "secret-service", "mpris-spec" ]
 
 if not spawn.find_executable("xmlto"):
     print("ERROR: xmlto is not installed...")
@@ -216,7 +216,10 @@ class SpecObject():
         multiple_chunks_command = None
 
         if self.spec_dir in SELF_BUILT:
-            multiple_chunks_command = ['make', '-C', "../" + os.path.dirname(self.vcs.file)]
+            if self.spec_dir != 'mpris-spec':
+                multiple_chunks_command = ['make', '-C', "../" + os.path.dirname(self.vcs.file)]
+            else:
+                multiple_chunks_command = ['make', '-C', "../mpris-spec"]
         elif self.ext == '.xml':
             one_chunk_command = ['xmlto', '-o', self.spec_dir, 'html-nochunks', path]
             multiple_chunks_command = ['xmlto', '-o', html_dir, 'html', path]
@@ -238,7 +241,10 @@ class SpecObject():
                 raise Exception('Cannot convert \'%s\' to multiple-chunks HTML.\nThe command was %s' % (path, multiple_chunks_command))
             self.multiple_chunks = True
         if multiple_chunks_command and self.spec_dir in SELF_BUILT:
-            shutil.copytree('../' + os.path.dirname(self.vcs.file) + '/html', html_dir)
+            if self.spec_dir != 'mpris-spec':
+                shutil.copytree('../' + os.path.dirname(self.vcs.file) + '/html', html_dir)
+            else:
+                shutil.copytree('../mpris-spec/doc/spec/', html_dir)
 
     def latestize(self, fd):
         filename_latest = '%s-latest%s' % (self.basename_no_ext, self.ext)

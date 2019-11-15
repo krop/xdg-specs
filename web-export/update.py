@@ -142,7 +142,11 @@ class VcsObject:
             fd.close()
         else:
             url = self.get_url()
-            fd = urllib.request.urlopen(url, None)
+            try:
+                fd = urllib.request.urlopen(url, None)
+            except:
+                print("Failed to fetch URL: %s" % url)
+                raise
             self.data = fd.read()
             fd.close()
 

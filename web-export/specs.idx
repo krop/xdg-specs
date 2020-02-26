@@ -67,6 +67,8 @@ git:xdg/xdg-specs:menu/menu-spec.xml			e1b6bf680dc4d021e7f2122841f812975a31985c	
 # as per the specification
 git:xdg/xdg-specs:menu/menu.dtd                                2403355e486ac6bc972fd150d38e3c44d086960a                1.0	menu-spec
 
+git:xdg/xdg-specs:notification/notification-spec.xml	HEAD	1.2	notification-spec
+
 git:xdg/xdg-specs:recent-files/recent-file-spec.xml		2f2e0cc7ded9b2c8afe29281c621d8ee6c5def9a	0.2	recent-file-spec
 
 git:xdg/shared-mime-info:shared-mime-info-spec.xml	90eb7974ec4e8ea9ae7daa96b1d2f9a2b4fe9a20		0.21	shared-mime-info-spec

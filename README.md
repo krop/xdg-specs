@@ -11,6 +11,6 @@ To discuss the specifications, you may use the xdg mailing list:
 How to report issues
 ====================
 
-Issues should be reported to the freedesktop.org bug tracking system:
+Issues should be reported to:
 
-   https://bugs.freedesktop.org/ (product Specifications)
+   https://gitlab.freedesktop.org/xdg/xdg-specs/-/issues

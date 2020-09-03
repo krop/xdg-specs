@@ -8,7 +8,9 @@ It's mostly 2 files:
 
  - `update.py`: hacky script that uses specs.idx and creates html pages
 
-To publish a new or updated spec, add an entry into specs.idx, and file a
-merge request. Once merged, the files will be automatically exported after
-building through the continuous integration.
+To publish a new or updated spec, add an entry into `specs.idx`, and [file a
+merge request](https://gitlab.freedesktop.org/xdg/xdg-specs/-/merge_requests).
+
+Once merged, the files will be automatically exported after building through
+the continuous integration.
 

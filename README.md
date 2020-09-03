@@ -1,7 +1,10 @@
 xdg-specs
 =========
 
-This repository contains the XDG specifications.
+This repository contains the XDG specifications that are
+readable at:
+
+  https://specifications.freedesktop.org/
 
 To discuss the specifications, you may use the xdg mailing list:
 

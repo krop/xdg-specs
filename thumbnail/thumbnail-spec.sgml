@@ -30,6 +30,11 @@
   <sect1 id="history">
     <title>History</title>
     <itemizedlist>
+    <listitem><para>December 2020, Version 0.9.0</para>
+      <itemizedlist>
+      <listitem><para>Added x-large and xx-large thumbnail sizes</para></listitem>
+      </itemizedlist>
+    </listitem>
     <listitem><para>May 2012, Version 0.8.0</para>
       <itemizedlist>
       <listitem><para>Modified to respect the
@@ -190,6 +195,8 @@
 $XDG_CACHE_HOME/thumbnails/
 $XDG_CACHE_HOME/thumbnails/normal
 $XDG_CACHE_HOME/thumbnails/large/
+$XDG_CACHE_HOME/thumbnails/x-large/
+$XDG_CACHE_HOME/thumbnails/xx-large/
 $XDG_CACHE_HOME/thumbnails/fail/
        </programlisting>
       <para> The meaning of the directories are as follows:</para>
@@ -204,6 +211,14 @@ $XDG_CACHE_HOME/thumbnails/fail/
 	<listitem>
 	  <para>Large: The previous notes apply to this directory too, except
 	  that the thumbnail size must be 256x256 pixel. </para>
+	</listitem>
+	<listitem>
+	  <para>Extra Large: The previous notes apply to this directory too, except
+	  that the thumbnail size must be 512x512 pixel. </para>
+	</listitem>
+	<listitem>
+	  <para>Extra extra Large: The previous notes apply to this directory too, except
+	  that the thumbnail size must be 1024x1024 pixel. </para>
 	</listitem>
 	<listitem>
 	  <para>Fail: This directory is used to store information about files
@@ -388,18 +403,18 @@ $XDG_CACHE_HOME/thumbnails/fail/
     <sect2 id="thumbsize"><title>Thumbnail Size</title>
      <para>
         As already mentionend in the <link linkend="directory">Thumbnail
-        Directory</link> section there exists two suggested sizes you can use
-        for your thumbnails: 128x128 and 256x256 pixel. The idea is that if a
-        program uses another size for it's previews it loads one of the two
+        Directory</link> section there exists four suggested sizes you can use
+        for your thumbnails: 128x128, 256x256, 512x512, 1024x1024 pixel. The idea
+        is that if a program uses another size for it's previews it loads one of the two
         versions and scales them down to the desired size. Similar, when
         creating a thumbnail it scales the file down to 128x128 first (or
-        256x256), saves it to disk and then reduce the size further. This
+        256x256, 512x512, or 1024x1024), saves it to disk and then reduce the size further. This
         mechanism enables all programs to obtain their desired previews in an
         easy and fast way. </para>
 
 	<para> However, these are suggestions. Implementations should cope also
-        with images that are smaller than the suggested size for the normal and
-        large subdirectories. Depending on the difference between the actual
+        with images that are smaller than the suggested size for the normal, large and
+        extra large subdirectories. Depending on the difference between the actual
         and the desired size, they can either use the smaller one found in the
         cache and scale it down or recreate a thumbnail with the proposed size
         for this directory.</para>
@@ -437,7 +452,8 @@ $XDG_CACHE_HOME/thumbnails/fail/
     <listitem>
     <para>To get the final filename for the thumbnail just append a '.png' to
     the hash string. According to the dimension of the thumbnail you must store
-    the result either in $XDG_CACHE_HOME/thumbnails/normal or $XDG_CACHE_HOME/thumbnails/large.
+    the result either in $XDG_CACHE_HOME/thumbnails/normal, $XDG_CACHE_HOME/thumbnails/large,
+    $XDG_CACHE_HOME/thumbnails/x-large, or $XDG_CACHE_HOME/thumbnails/xx-large.
     </para>
     </listitem>
     </orderedlist>
@@ -705,6 +721,8 @@ if (file.mtime != thumb.MTime) {
    <programlisting>.sh_thumbnails/
    .sh_thumbnails/normal/
    .sh_thumbnails/large/
+   .sh_thumbnails/x-large/
+   .sh_thumbnails/xx-large/
    .sh_thumbnails/fail/
    </programlisting>
    <para>The meaning of these directories is identical to their meaning in the global directory.</para>

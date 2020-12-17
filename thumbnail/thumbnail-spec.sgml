@@ -61,7 +61,7 @@
       <listitem><para>Introduction and conclusion rewrite.</para></listitem>
       </itemizedlist>
     </listitem>
-    <listitem><para>Janurary 2002, Version 0.5</para>
+    <listitem><para>January 2002, Version 0.5</para>
       <itemizedlist>
       <listitem><para>Changed handling of different thumbnail sizes.</para></listitem>
       <listitem><para>Renamed directories.</para></listitem>
@@ -94,7 +94,7 @@
     <listitem><para>July 2001, Version 0.2</para>
       <itemizedlist>
       <listitem><para>Removed distinction between low/high quality thumbnails.</para></listitem>
-      <listitem><para>Seperate directory for failures.</para></listitem>
+      <listitem><para>Separate directory for failures.</para></listitem>
       <listitem><para>Consider permission settings.</para></listitem>
       </itemizedlist>
     </listitem>
@@ -122,10 +122,10 @@
 
     <para>But why does a program use thumbnails? Often these are presented in
     file operation dialogs to give the user a hint what a certain file is
-    about. This can be seen as information in additon to the plain filename
+    about. This can be seen as information in addition to the plain filename
     which helps to identify the desired file faster and more easily. But the
     idea isn't limited to images and file operation dialogs. The additional
-    value of previews is also applyable to other file types, like text
+    value of previews is also applicable to other file types, like text
     documents, pdf files, spreadsheets and so on. The reason why this isn't
     deployed widely so far is, that it requires a lot of effort and is only of
     little use for a single program (for example, if only the spreadsheet
@@ -135,10 +135,10 @@
     </para>
 
     <para>If there is a general accepted, file type independent way how to
-    deal with previews, the above sketched vision can come true. Everytime an
+    deal with previews, the above sketched vision can come true. Every time an
     application saves a file it creates also a preview thumbnail for it. Other
     programs can check if there is a thumbnail for a specific file and can
-    present it. This proposal tries to unifiy the thumbnail managing and
+    present it. This proposal tries to unify the thumbnail managing and
     constitutes the first step to a better graphical desktop.
     </para>
   </sect1>
@@ -477,14 +477,14 @@ $XDG_CACHE_HOME/thumbnails/fail/
 
     <sect2><title>Concurrent Thumbnail Creation</title> <para>An important goal
     of this paper is to enable programs to share their thumbnails. This
-    includes the occurences of concurrent accesses to the cache by different
+    includes the occurrences of concurrent accesses to the cache by different
     programs. Problems arise if two programs try to create a thumbnail for the
     same file at the same time. Because of this the following procedure is
     suggested: </para>
     <orderedlist>
     <listitem><para>Check if the thumbnail already exists and if it's valid.</para>
     </listitem>
-    <listitem><para>If the above conditions are not fulfiled create the
+    <listitem><para>If the above conditions are not fulfilled create the
     thumbnail and write it under a temporary filename onto the disk.</para>
     </listitem>
     <listitem><para>Rename the temporary file to the thumbnail filename. Since
@@ -632,7 +632,7 @@ if (file.mtime != thumb.MTime) {
   <sect1 id="delete"><title>Deleting Thumbnails</title> 
   
     <para> The deletion of a thumbnail is somehow tricky. A general rule is
-     that a thumbnail should be deleted if the orginial file doesn't exist
+     that a thumbnail should be deleted if the original file doesn't exist
      anymore (Note: If it was only modified the thumbnail should be recreated
      instead). There are different ways how this can be achieved:</para>
      <orderedlist>
@@ -647,7 +647,7 @@ if (file.mtime != thumb.MTime) {
      <listitem>
      <para>The user can call a managing tool which lists all the thumbnails
        together with their original file paths. From there he can delete single
-       images, all images where the orignial doesn't exist anymore or all
+       images, all images where the original doesn't exist anymore or all
        images older than eg. 30 days.</para>
      </listitem>
      </orderedlist>
@@ -671,7 +671,7 @@ if (file.mtime != thumb.MTime) {
          time period (can default to 30 days).</para>
        </listitem>
        <listitem>
-        <para>Removable medias should be considered too. Although this can't
+        <para>Removable media should be considered too. Although this can't
         work for all systems in all cases reliable there are some heuristics
         which can be used. Eg. checking the fstab configuration file and look
         for the mount point of /dev/fd0 (floppy disk) or check if the CD-Rom

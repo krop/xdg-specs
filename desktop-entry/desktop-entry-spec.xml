@@ -1035,12 +1035,26 @@
     </para>
     <para>
       All methods take a <literal>platform-data</literal> argument that is used in a similar way to how
-      environment variables might be used.  Currently, only one field is defined by the specification:
-      <varname>desktop-startup-id</varname>.  This should be a string of the same value as would be stored in
-      the <varname>DESKTOP_STARTUP_ID</varname> environment variable, as specified by the <ulink
-      url="http://www.freedesktop.org/Standards/startup-notification-spec">Startup Notification Protocol
-      Specification</ulink>.
+      environment variables might be used. Current fields described by the specification are:
     </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        <varname>desktop-startup-id</varname>: This should be a string of the same value as would be stored in
+            the <varname>DESKTOP_STARTUP_ID</varname> environment variable, as specified by the <ulink
+            url="http://www.freedesktop.org/Standards/startup-notification-spec">Startup Notification Protocol
+            Specification</ulink>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <varname>activation-token</varname>: This should be a string of the same value as would be stored in
+            the <varname>XDG_ACTIVATION_TOKEN</varname> environment variable, as specified by the <ulink
+            url="https://gitlab.freedesktop.org/wayland/wayland-protocols/-/blob/main/staging/xdg-activation/xdg-activation-v1.xml">
+            XDG Activation</ulink> protocol for Wayland.
+        </para>
+      </listitem>
+    <itemizedlist>
   </sect1>
   <sect1 id="interfaces">
     <title>Interfaces</title>

@@ -1054,7 +1054,7 @@
             XDG Activation</ulink> protocol for Wayland.
         </para>
       </listitem>
-    <itemizedlist>
+    </itemizedlist>
   </sect1>
   <sect1 id="interfaces">
     <title>Interfaces</title>

@@ -30,6 +30,11 @@
   <sect1 id="history">
     <title>History</title>
     <itemizedlist>
+    <listitem><para>December 2020, Version 0.9.0</para>
+      <itemizedlist>
+      <listitem><para>Added x-large and xx-large thumbnail sizes</para></listitem>
+      </itemizedlist>
+    </listitem>
     <listitem><para>May 2012, Version 0.8.0</para>
       <itemizedlist>
       <listitem><para>Modified to respect the
@@ -61,7 +66,7 @@
       <listitem><para>Introduction and conclusion rewrite.</para></listitem>
       </itemizedlist>
     </listitem>
-    <listitem><para>Janurary 2002, Version 0.5</para>
+    <listitem><para>January 2002, Version 0.5</para>
       <itemizedlist>
       <listitem><para>Changed handling of different thumbnail sizes.</para></listitem>
       <listitem><para>Renamed directories.</para></listitem>
@@ -94,7 +99,7 @@
     <listitem><para>July 2001, Version 0.2</para>
       <itemizedlist>
       <listitem><para>Removed distinction between low/high quality thumbnails.</para></listitem>
-      <listitem><para>Seperate directory for failures.</para></listitem>
+      <listitem><para>Separate directory for failures.</para></listitem>
       <listitem><para>Consider permission settings.</para></listitem>
       </itemizedlist>
     </listitem>
@@ -122,10 +127,10 @@
 
     <para>But why does a program use thumbnails? Often these are presented in
     file operation dialogs to give the user a hint what a certain file is
-    about. This can be seen as information in additon to the plain filename
+    about. This can be seen as information in addition to the plain filename
     which helps to identify the desired file faster and more easily. But the
     idea isn't limited to images and file operation dialogs. The additional
-    value of previews is also applyable to other file types, like text
+    value of previews is also applicable to other file types, like text
     documents, pdf files, spreadsheets and so on. The reason why this isn't
     deployed widely so far is, that it requires a lot of effort and is only of
     little use for a single program (for example, if only the spreadsheet
@@ -135,10 +140,10 @@
     </para>
 
     <para>If there is a general accepted, file type independent way how to
-    deal with previews, the above sketched vision can come true. Everytime an
+    deal with previews, the above sketched vision can come true. Every time an
     application saves a file it creates also a preview thumbnail for it. Other
     programs can check if there is a thumbnail for a specific file and can
-    present it. This proposal tries to unifiy the thumbnail managing and
+    present it. This proposal tries to unify the thumbnail managing and
     constitutes the first step to a better graphical desktop.
     </para>
   </sect1>
@@ -190,6 +195,8 @@
 $XDG_CACHE_HOME/thumbnails/
 $XDG_CACHE_HOME/thumbnails/normal
 $XDG_CACHE_HOME/thumbnails/large/
+$XDG_CACHE_HOME/thumbnails/x-large/
+$XDG_CACHE_HOME/thumbnails/xx-large/
 $XDG_CACHE_HOME/thumbnails/fail/
        </programlisting>
       <para> The meaning of the directories are as follows:</para>
@@ -204,6 +211,14 @@ $XDG_CACHE_HOME/thumbnails/fail/
 	<listitem>
 	  <para>Large: The previous notes apply to this directory too, except
 	  that the thumbnail size must be 256x256 pixel. </para>
+	</listitem>
+	<listitem>
+	  <para>Extra Large: The previous notes apply to this directory too, except
+	  that the thumbnail size must be 512x512 pixel. </para>
+	</listitem>
+	<listitem>
+	  <para>Extra extra Large: The previous notes apply to this directory too, except
+	  that the thumbnail size must be 1024x1024 pixel. </para>
 	</listitem>
 	<listitem>
 	  <para>Fail: This directory is used to store information about files
@@ -388,18 +403,18 @@ $XDG_CACHE_HOME/thumbnails/fail/
     <sect2 id="thumbsize"><title>Thumbnail Size</title>
      <para>
         As already mentionend in the <link linkend="directory">Thumbnail
-        Directory</link> section there exists two suggested sizes you can use
-        for your thumbnails: 128x128 and 256x256 pixel. The idea is that if a
-        program uses another size for it's previews it loads one of the two
+        Directory</link> section there exists four suggested sizes you can use
+        for your thumbnails: 128x128, 256x256, 512x512, 1024x1024 pixel. The idea
+        is that if a program uses another size for it's previews it loads one of the two
         versions and scales them down to the desired size. Similar, when
         creating a thumbnail it scales the file down to 128x128 first (or
-        256x256), saves it to disk and then reduce the size further. This
+        256x256, 512x512, or 1024x1024), saves it to disk and then reduce the size further. This
         mechanism enables all programs to obtain their desired previews in an
         easy and fast way. </para>
 
 	<para> However, these are suggestions. Implementations should cope also
-        with images that are smaller than the suggested size for the normal and
-        large subdirectories. Depending on the difference between the actual
+        with images that are smaller than the suggested size for the normal, large and
+        extra large subdirectories. Depending on the difference between the actual
         and the desired size, they can either use the smaller one found in the
         cache and scale it down or recreate a thumbnail with the proposed size
         for this directory.</para>
@@ -437,7 +452,8 @@ $XDG_CACHE_HOME/thumbnails/fail/
     <listitem>
     <para>To get the final filename for the thumbnail just append a '.png' to
     the hash string. According to the dimension of the thumbnail you must store
-    the result either in $XDG_CACHE_HOME/thumbnails/normal or $XDG_CACHE_HOME/thumbnails/large.
+    the result either in $XDG_CACHE_HOME/thumbnails/normal, $XDG_CACHE_HOME/thumbnails/large,
+    $XDG_CACHE_HOME/thumbnails/x-large, or $XDG_CACHE_HOME/thumbnails/xx-large.
     </para>
     </listitem>
     </orderedlist>
@@ -477,14 +493,14 @@ $XDG_CACHE_HOME/thumbnails/fail/
 
     <sect2><title>Concurrent Thumbnail Creation</title> <para>An important goal
     of this paper is to enable programs to share their thumbnails. This
-    includes the occurences of concurrent accesses to the cache by different
+    includes the occurrences of concurrent accesses to the cache by different
     programs. Problems arise if two programs try to create a thumbnail for the
     same file at the same time. Because of this the following procedure is
     suggested: </para>
     <orderedlist>
     <listitem><para>Check if the thumbnail already exists and if it's valid.</para>
     </listitem>
-    <listitem><para>If the above conditions are not fulfiled create the
+    <listitem><para>If the above conditions are not fulfilled create the
     thumbnail and write it under a temporary filename onto the disk.</para>
     </listitem>
     <listitem><para>Rename the temporary file to the thumbnail filename. Since
@@ -632,7 +648,7 @@ if (file.mtime != thumb.MTime) {
   <sect1 id="delete"><title>Deleting Thumbnails</title> 
   
     <para> The deletion of a thumbnail is somehow tricky. A general rule is
-     that a thumbnail should be deleted if the orginial file doesn't exist
+     that a thumbnail should be deleted if the original file doesn't exist
      anymore (Note: If it was only modified the thumbnail should be recreated
      instead). There are different ways how this can be achieved:</para>
      <orderedlist>
@@ -647,7 +663,7 @@ if (file.mtime != thumb.MTime) {
      <listitem>
      <para>The user can call a managing tool which lists all the thumbnails
        together with their original file paths. From there he can delete single
-       images, all images where the orignial doesn't exist anymore or all
+       images, all images where the original doesn't exist anymore or all
        images older than eg. 30 days.</para>
      </listitem>
      </orderedlist>
@@ -671,7 +687,7 @@ if (file.mtime != thumb.MTime) {
          time period (can default to 30 days).</para>
        </listitem>
        <listitem>
-        <para>Removable medias should be considered too. Although this can't
+        <para>Removable media should be considered too. Although this can't
         work for all systems in all cases reliable there are some heuristics
         which can be used. Eg. checking the fstab configuration file and look
         for the mount point of /dev/fd0 (floppy disk) or check if the CD-Rom
@@ -705,6 +721,8 @@ if (file.mtime != thumb.MTime) {
    <programlisting>.sh_thumbnails/
    .sh_thumbnails/normal/
    .sh_thumbnails/large/
+   .sh_thumbnails/x-large/
+   .sh_thumbnails/xx-large/
    .sh_thumbnails/fail/
    </programlisting>
    <para>The meaning of these directories is identical to their meaning in the global directory.</para>

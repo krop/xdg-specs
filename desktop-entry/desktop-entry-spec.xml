@@ -5,8 +5,8 @@
   <articleinfo>
     <title>Desktop Entry Specification</title>
     <!-- When bumping the version, update web-export/specs.idx as well -->
-    <releaseinfo>Version 1.2alpha</releaseinfo>
-    <pubdate>2017-12-24</pubdate>
+    <releaseinfo>Version 1.5</releaseinfo>
+    <pubdate>2020-04-27</pubdate>
     <authorgroup>
       <author>
 	<firstname>Preston</firstname>
@@ -68,6 +68,15 @@
         <affiliation>
           <address>
             <email>faure@kde.org</email>
+          </address>
+        </affiliation>
+      </author>
+      <author>
+        <firstname>Will</firstname>
+        <surname>Thompson</surname>
+        <affiliation>
+          <address>
+            <email>wjt@endlessm.com</email>
           </address>
         </affiliation>
       </author>
@@ -257,6 +266,7 @@
     <para>
       The value types recognized are <literal>string</literal>,
       <literal>localestring</literal>,
+      <literal>iconstring</literal>,
       <literal>boolean</literal>, and
       <literal>numeric</literal>.
     </para>
@@ -271,6 +281,16 @@
        <para>
 	 Values of type <literal>localestring</literal> are user displayable,
 	 and are encoded in UTF-8.
+       </para>
+      </listitem>
+      <listitem>
+       <para>
+	Values of type <literal>iconstring</literal> are the names of icons;
+	these may be absolute paths, or symbolic names for icons located using
+	the algorithm described in the <ulink
+	url="http://freedesktop.org/wiki/Standards/icon-theme-spec">Icon
+	Theme Specification</ulink>. Such values are not user-displayable, and
+	are encoded in UTF-8.
        </para>
       </listitem>
       <listitem>
@@ -291,7 +311,8 @@
       The escape sequences <literal>\s</literal>, <literal>\n</literal>,
       <literal>\t</literal>, <literal>\r</literal>, and
       <literal>\\</literal> are supported for values of type
-      <literal>string</literal> and <literal>localestring</literal>, meaning
+      <literal>string</literal>, <literal>localestring</literal> and
+      <literal>iconstring</literal>, meaning
       ASCII space, newline, tab, carriage return, and backslash, respectively.
     </para>
     <para>
@@ -306,7 +327,8 @@
   <sect1 id="localized-keys">
     <title>Localized values for keys</title>
     <para>
-	  Keys  with type <literal>localestring</literal> may be postfixed by
+	  Keys with type <literal>localestring</literal> and
+	  <literal>iconstring</literal> may be postfixed by
 	  [<replaceable>LOCALE</replaceable>],
 	  where <replaceable>LOCALE</replaceable> is the locale type of the
 	  entry.  <replaceable>LOCALE</replaceable> must be of the form
@@ -413,6 +435,13 @@
     <para>
       then the value of the <varname>Name</varname> keyed by <literal>sr_YU</literal> is used.
     </para>
+    <para>
+      Although icon names of type <literal>iconstring</literal> are localizable,
+      they are not human-readable strings, so should typically not be handled
+      by translation tools.  Most applications are not expected to localize
+      their icons; exceptions might include icons containing text or
+      culture-specific symbology.
+    </para>
   </sect1>
   <sect1 id="recognized-keys">
     <title>Recognized desktop entry keys</title>
@@ -472,7 +501,7 @@
 	    <entry>
 	      Version of the Desktop Entry Specification that the
 	      desktop entry conforms with. Entries that confirm with this 
-	      version of the specification should use <literal>1.1</literal>.
+	      version of the specification should use <literal>1.5</literal>.
 	      Note that the version field is not required to be present.
 	    </entry>
 	    <entry>string</entry>
@@ -531,7 +560,7 @@
 	  url="http://freedesktop.org/wiki/Standards/icon-theme-spec">Icon
 	  Theme Specification</ulink> will be used to locate the icon.
 	    </entry>
-	    <entry>localestring</entry>
+	    <entry>iconstring</entry>
 	    <entry>NO</entry>
             <entry>1-3</entry>
 	  </row>
@@ -739,6 +768,19 @@
 	    <entry>YES</entry>
             <entry>2</entry>
 	  </row>
+          <row>
+            <entry id="key-prefersnondefaultgpu"><varname>PrefersNonDefaultGPU</varname></entry>
+            <entry>
+              If true, the application prefers to be run on a more powerful discrete GPU if available,
+              which we describe as “a GPU other than the default one” in this spec to avoid the need
+              to define what a discrete GPU is and in which cases it might be considered more powerful
+              than the default GPU.
+              This key is only a hint and support might not be present depending on the implementation.
+            </entry>
+            <entry>boolean</entry>
+            <entry>NO</entry>
+            <entry>1</entry>
+          </row>
 	</tbody>
       </tgroup>
     </table>
@@ -993,12 +1035,26 @@
     </para>
     <para>
       All methods take a <literal>platform-data</literal> argument that is used in a similar way to how
-      environment variables might be used.  Currently, only one field is defined by the specification:
-      <varname>desktop-startup-id</varname>.  This should be a string of the same value as would be stored in
-      the <varname>DESKTOP_STARTUP_ID</varname> environment variable, as specified by the <ulink
-      url="http://www.freedesktop.org/Standards/startup-notification-spec">Startup Notification Protocol
-      Specification</ulink>.
+      environment variables might be used. Current fields described by the specification are:
     </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        <varname>desktop-startup-id</varname>: This should be a string of the same value as would be stored in
+            the <varname>DESKTOP_STARTUP_ID</varname> environment variable, as specified by the <ulink
+            url="http://www.freedesktop.org/Standards/startup-notification-spec">Startup Notification Protocol
+            Specification</ulink>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <varname>activation-token</varname>: This should be a string of the same value as would be stored in
+            the <varname>XDG_ACTIVATION_TOKEN</varname> environment variable, as specified by the <ulink
+            url="https://gitlab.freedesktop.org/wayland/wayland-protocols/-/blob/main/staging/xdg-activation/xdg-activation-v1.xml">
+            XDG Activation</ulink> protocol for Wayland.
+        </para>
+      </listitem>
+    </itemizedlist>
   </sect1>
   <sect1 id="interfaces">
     <title>Interfaces</title>
@@ -1182,14 +1238,14 @@ application/x-bar=bar.desktop;</programlisting>
             <row>
               <entry id="key-action-group-icon"><varname>Icon</varname></entry>
               <entry>
-                Icon to be shown togheter with the action. If the name is
+                Icon to be shown together with the action. If the name is
                 an absolute path, the given file will be used. If the name is not
                 an absolute path, the algorithm described in the <ulink
                 url="http://freedesktop.org/wiki/Standards/icon-theme-spec">Icon
                 Theme Specification</ulink> will be used to locate the icon.
                 Implementations may choose to ignore it.
               </entry>
-              <entry>localestring</entry>
+              <entry>iconstring</entry>
               <entry>NO</entry>
             </row>
             <row>
@@ -1349,7 +1405,7 @@ Icon=fooview-new
 	    <entry>
            Icon to display when device is not mounted.  Mounted devices display icon from the <varname>Icon</varname> key.
 	    </entry>
-	    <entry>localestring</entry>
+	    <entry>iconstring</entry>
 	  </row>
 	</tbody>
       </tgroup>
@@ -1627,6 +1683,18 @@ Icon=fooview-new
   </appendix>
   <appendix>
     <title>Changes to this Specification</title>
+    <section>
+      <title>Changes from version 1.3 to 1.4</title>
+      <para>
+        Add PrefersNonDefaultGPU key.
+      </para>
+    </section>
+    <section>
+      <title>Changes from version 1.2 to 1.3</title>
+      <para>
+        New type "iconstring", similar to "localestring" but not user-displayable.
+      </para>
+    </section>
     <section>
       <title>Changes from version 1.1 to 1.2</title>
       <para>

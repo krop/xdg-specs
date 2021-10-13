@@ -1,38 +1,47 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
-                  "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-				  ]>
+                         "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+                         ]>
 <article id="index">
   <articleinfo>
     <title>XDG Base Directory Specification</title>
-    <releaseinfo>Version 0.7</releaseinfo>
-    <pubdate>24th November 2010</pubdate>
+    <releaseinfo>Version 0.8</releaseinfo>
+    <pubdate>08th May 2021</pubdate>
     <authorgroup>
       <author>
-	<firstname>Waldo</firstname>
-	<surname>Bastian</surname>
-	<affiliation>
-	  <address>
-	    <email>bastian@kde.org</email>
-	  </address>
-	</affiliation>
+        <firstname>Waldo</firstname>
+        <surname>Bastian</surname>
+        <affiliation>
+          <address>
+            <email>bastian@kde.org</email>
+          </address>
+        </affiliation>
       </author>
       <author>
-	<firstname>Ryan</firstname>
-	<surname>Lortie</surname>
-	<affiliation>
-	  <address>
-	    <email>desrt@desrt.ca</email>
-	  </address>
-	</affiliation>
+        <firstname>Allison</firstname>
+        <surname>Karlitskaya</surname>
+        <affiliation>
+          <address>
+            <email>desrt@desrt.ca</email>
+          </address>
+        </affiliation>
       </author>
       <author>
-	<firstname>Lennart</firstname>
-	<surname>Poettering</surname>
-	<affiliation>
-	  <address>
-	    <email>lennart@poettering.net</email>
-	  </address>
-	</affiliation>
+        <firstname>Lennart</firstname>
+        <surname>Poettering</surname>
+        <affiliation>
+          <address>
+            <email>lennart@poettering.net</email>
+          </address>
+        </affiliation>
+      </author>
+      <author>
+        <firstname>Johannes</firstname>
+        <surname>Löthberg</surname>
+        <affiliation>
+          <address>
+            <email>johannes@kyriasis.com</email>
+          </address>
+        </affiliation>
       </author>
     </authorgroup>
   </articleinfo>
@@ -64,6 +73,19 @@
             There is a single base directory relative to which user-specific
             configuration files should be written. This directory is defined by the
             environment variable <literal>$XDG_CONFIG_HOME</literal>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            There is a single base directory relative to which user-specific
+            state data should be written. This directory is defined by the
+            environment variable <literal>$XDG_STATE_HOME</literal>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            There is a single base directory relative to which
+            user-specific executable files may be written.
           </para>
         </listitem>
         <listitem>
@@ -100,26 +122,58 @@
       </itemizedlist>
     </para>
 
-    <para>All paths set in these environment variables must be
-    absolute. If an implementation encounters a relative path in any
-    of these variables it should consider the path invalid and ignore
-    it.</para>
+    <para>
+      All paths set in these environment variables must be
+      absolute. If an implementation encounters a relative path in any
+      of these variables it should consider the path invalid and ignore
+      it.
+    </para>
   </sect1>
-
 
   <sect1 id="variables">
     <title>Environment variables</title>
     <para>
       <literal>$XDG_DATA_HOME</literal> defines the base directory relative to
-      which user specific data files should be stored. If
+      which user-specific data files should be stored. If
       <literal>$XDG_DATA_HOME</literal> is either not set or empty, a default equal to
       <literal>$HOME</literal>/.local/share should be used.
     </para>
     <para>
       <literal>$XDG_CONFIG_HOME</literal> defines the base directory relative to
-      which user specific configuration files should be stored. If
+      which user-specific configuration files should be stored. If
       <literal>$XDG_CONFIG_HOME</literal> is either not set or empty, a default equal to
       <literal>$HOME</literal>/.config should be used.
+    </para>
+    <para>
+      <literal>$XDG_STATE_HOME</literal> defines the base directory relative to
+      which user-specific state files should be stored. If
+      <literal>$XDG_STATE_HOME</literal> is either not set or empty, a default equal to
+      <literal>$HOME</literal>/.local/state should be used.
+    </para>
+    <para>
+      The <literal>$XDG_STATE_HOME</literal> contains state data that should persist between
+      (application) restarts, but that is not important or portable enough to the user that it should be stored
+      in <literal>$XDG_DATA_HOME</literal>. It may contain:
+      <itemizedlist>
+        <listitem><para>actions history (logs, history, recently used files, …)</para></listitem>
+        <listitem><para>current state of the application that can be reused on a restart (view, layout,
+        open files, undo history, …)</para></listitem>
+      </itemizedlist>
+    </para>
+    <para>
+      User-specific executable files may be stored in
+      <literal>$HOME</literal>/.local/bin. Distributions should ensure
+      this directory shows up in the UNIX <literal>$PATH</literal>
+      environment variable, at an appropriate place.
+    </para>
+    <para>
+      Since <literal>$HOME</literal> might be shared between systems
+      of different achitectures, installing compiled binaries to
+      <literal>$HOME</literal>/.local/bin could cause
+      problems when used on systems of differing architectures. This
+      is often not a problem, but the fact that
+      <literal>$HOME</literal> becomes partially achitecture-specific
+      if compiled binaries are placed in it should be kept in mind.
     </para>
     <para>
       <literal>$XDG_DATA_DIRS</literal> defines the preference-ordered set of
@@ -156,7 +210,7 @@
     </para>
     <para>
       <literal>$XDG_CACHE_HOME</literal> defines the base directory relative to
-      which user specific non-essential data files should be stored. If
+      which user-specific non-essential data files should be stored. If
       <literal>$XDG_CACHE_HOME</literal> is either not set or empty, a default equal to
       <literal>$HOME</literal>/.cache should be used.
     </para>
@@ -219,7 +273,7 @@
         </listitem>
         <listitem>
           <para>
-            A user specific version of the data file may be created in
+            A user-specific version of the data file may be created in
             <literal>$XDG_DATA_HOME</literal>/subdir/filename, taking into
             account the default value for <literal>$XDG_DATA_HOME</literal> if
             <literal>$XDG_DATA_HOME</literal> is not set.
@@ -249,7 +303,7 @@
         </listitem>
         <listitem>
           <para>
-            A user specific version of the configuration file may be created in
+            A user-specific version of the configuration file may be created in
             <literal>$XDG_CONFIG_HOME</literal>/subdir/filename, taking into
             account the default value for <literal>$XDG_CONFIG_HOME</literal> if
             <literal>$XDG_CONFIG_HOME</literal> is not set.
@@ -268,21 +322,21 @@
     </para>
     <para>
       If, when attempting to write a file, the destination
-      directory is non-existant an attempt should be made to create it
+      directory is non-existent an attempt should be made to create it
       with permission <literal>0700</literal>. If the destination directory
       exists already the permissions should not be changed.
       The application should be prepared to handle the case where the file
-      could not be written, either because the directory was non-existant
+      could not be written, either because the directory was non-existent
       and could not be created, or for any other reason. In such case it
-      may chose to present an error message to the user.
+      may choose to present an error message to the user.
     </para>
     <para>
       When attempting to read a file, if for any reason a file in a certain
-      directory is unaccessible, e.g. because the directory is non-existant,
-      the file is non-existant or the user is not authorized to open the file,
+      directory is unaccessible, e.g. because the directory is non-existent,
+      the file is non-existent or the user is not authorized to open the file,
       then the processing of the file in that directory should be skipped.
       If due to this a required file could not be found at all, the
-      application may chose to present an error message to the user.
+      application may choose to present an error message to the user.
     </para>
     <para>
       A specification that refers to <literal>$XDG_DATA_DIRS</literal> or

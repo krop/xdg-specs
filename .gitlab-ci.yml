@@ -1,0 +1,30 @@
+image: fedora:30
+
+variables:
+  DEPENDENCIES: xmlto docbook-utils libxslt make git discount python2-cheetah
+  LANG: C.UTF-8
+  GIT_SUBMODULE_STRATEGY: recursive
+
+pages:
+  before_script:
+    - rm -f /etc/rpm/macros.image-language-conf
+    - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES
+    # Work-around xmlto and/or docbook stylesheets forcing ISO-8859-1
+    - sed -i s/ISO-8859-1/UTF-8/ /usr/share/sgml/docbook/xsl-stylesheets-1.79.2/*/*.xsl
+  script:
+    # Generate specs locally
+    - cd web-export
+    - LC_ALL=$LANG ./update.py
+    - cd ..
+    # That worked, clean up
+    - git clean -dxf
+    - rm -rf public/
+    # Generate specs for older versions
+    - cd web-export
+    - sed -i 's/USELOCALFILES = True/USELOCALFILES = False/' update.py
+    - LC_ALL=$LANG ./update.py
+    - cd ..
+
+  artifacts:
+    paths:
+    - public

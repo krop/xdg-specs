@@ -145,12 +145,12 @@
       <sect3>
         <title>OnlyShowIn and NotShowIn Keys</title>
         <para>
-          The OnlyShownIn entry may contain a list of strings identifying
+          The OnlyShowIn entry may contain a list of strings identifying
           the desktop environments that MUST autostart this application,
           all other desktop environments MUST NOT autostart this application.
         </para>
         <para>
-          The NotShownIn entry may contain a list of strings identifying
+          The NotShowIn entry may contain a list of strings identifying
           the desktop environments that MUST NOT autostart this
           application, all other desktop environments MUST autostart this
           application.
